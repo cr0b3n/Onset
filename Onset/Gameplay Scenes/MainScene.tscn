@@ -1,0 +1,123 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Art/Godette 128 x 256/Body.png" type="Texture" id=17]
+[ext_resource path="res://Art/Godette 128 x 256/Face.png" type="Texture" id=18]
+[ext_resource path="res://Art/Godette 128 x 256/Neck.png" type="Texture" id=19]
+[ext_resource path="res://Art/Godette 128 x 256/Arm-Left.png" type="Texture" id=20]
+[ext_resource path="res://Art/Godette 128 x 256/Arm-Right.png" type="Texture" id=21]
+[ext_resource path="res://Art/Godette 128 x 256/Hand-Left.png" type="Texture" id=22]
+[ext_resource path="res://Art/Godette 128 x 256/Leg-Left-Top.png" type="Texture" id=23]
+[ext_resource path="res://Art/Godette 128 x 256/Mask-Left.png" type="Texture" id=24]
+[ext_resource path="res://Art/Godette 128 x 256/Hand-Right.png" type="Texture" id=25]
+[ext_resource path="res://Art/Godette 128 x 256/Foot.png" type="Texture" id=26]
+[ext_resource path="res://Art/Godette 128 x 256/Leg-Left-Bot.png" type="Texture" id=27]
+[ext_resource path="res://Art/Godette 128 x 256/Leg-Right-Top.png" type="Texture" id=28]
+[ext_resource path="res://Art/Godette 128 x 256/Leg-Right-Bot.png" type="Texture" id=29]
+[ext_resource path="res://Art/Godette 128 x 256/Mask-Right.png" type="Texture" id=30]
+[ext_resource path="res://Art/Godette 128 x 256/Extra-Left.png" type="Texture" id=31]
+[ext_resource path="res://Art/Godette 128 x 256/Extra-Right.png" type="Texture" id=32]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 19, 112 )
+
+[node name="Gameplay" type="Node2D"]
+
+[node name="Godette 128 x 256" type="KinematicBody2D" parent="."]
+position = Vector2( 242.178, 400.267 )
+
+[node name="Graphic" type="Node2D" parent="Godette 128 x 256"]
+position = Vector2( -0.0625, 8.70013 )
+
+[node name="Body" type="Sprite" parent="Godette 128 x 256/Graphic"]
+z_index = 1
+texture = ExtResource( 17 )
+
+[node name="Neck" type="Sprite" parent="Godette 128 x 256/Graphic/Body"]
+position = Vector2( 0.334076, -36.143 )
+z_index = -1
+texture = ExtResource( 19 )
+
+[node name="Face" type="Sprite" parent="Godette 128 x 256/Graphic/Body/Neck"]
+position = Vector2( -10.0957, -49.2887 )
+z_index = 3
+texture = ExtResource( 18 )
+
+[node name="Arm-Right-Up" type="Sprite" parent="Godette 128 x 256/Graphic/Body"]
+position = Vector2( 11.3082, -24.401 )
+z_index = -3
+texture = ExtResource( 21 )
+offset = Vector2( 1.34225, 14.8891 )
+
+[node name="Hand-Right" type="Sprite" parent="Godette 128 x 256/Graphic/Body/Arm-Right-Up"]
+position = Vector2( 3.44125, 31.8941 )
+rotation = -0.0516124
+texture = ExtResource( 25 )
+offset = Vector2( 8.66032, 17.8287 )
+
+[node name="Arm-Left-Up" type="Sprite" parent="Godette 128 x 256/Graphic/Body"]
+position = Vector2( -13.4558, -24.5019 )
+z_index = 5
+texture = ExtResource( 20 )
+offset = Vector2( -2.49409, 14.849 )
+
+[node name="Hand-Left" type="Sprite" parent="Godette 128 x 256/Graphic/Body/Arm-Left-Up"]
+position = Vector2( -4.03992, 31.4232 )
+z_index = 6
+texture = ExtResource( 22 )
+offset = Vector2( 1.28168, 18.2164 )
+
+[node name="Leg-Right-Up" type="Sprite" parent="Godette 128 x 256/Graphic/Body"]
+position = Vector2( 5.6, 22 )
+z_index = 1
+texture = ExtResource( 28 )
+offset = Vector2( 0.00240326, 19.4748 )
+
+[node name="Leg-Right-Bot" type="Sprite" parent="Godette 128 x 256/Graphic/Body/Leg-Right-Up"]
+position = Vector2( -0.6, 40.983 )
+texture = ExtResource( 29 )
+offset = Vector2( -1.24331, 17.484 )
+
+[node name="Foot-Right" type="Sprite" parent="Godette 128 x 256/Graphic/Body/Leg-Right-Up/Leg-Right-Bot"]
+position = Vector2( -5.9778, 35.8566 )
+texture = ExtResource( 26 )
+offset = Vector2( 8.19844, -0.834656 )
+
+[node name="Pants-Right-Extra" type="Sprite" parent="Godette 128 x 256/Graphic/Body/Leg-Right-Up"]
+visible = false
+position = Vector2( 10.328, 7.0041 )
+z_index = 3
+texture = ExtResource( 32 )
+
+[node name="Leg-Left-Up" type="Sprite" parent="Godette 128 x 256/Graphic/Body"]
+position = Vector2( -6.3, 22 )
+z_index = 4
+texture = ExtResource( 23 )
+offset = Vector2( 0.00240326, 19.4748 )
+
+[node name="Leg-Left-Bot" type="Sprite" parent="Godette 128 x 256/Graphic/Body/Leg-Left-Up"]
+position = Vector2( -0.6, 40.983 )
+texture = ExtResource( 27 )
+offset = Vector2( -1.24331, 17.484 )
+
+[node name="Foot-Left" type="Sprite" parent="Godette 128 x 256/Graphic/Body/Leg-Left-Up/Leg-Left-Bot"]
+position = Vector2( -5.9778, 35.8566 )
+texture = ExtResource( 26 )
+offset = Vector2( 8.19844, -0.834656 )
+
+[node name="Pants-Left-Extra" type="Sprite" parent="Godette 128 x 256/Graphic/Body/Leg-Left-Up"]
+position = Vector2( -0.534737, 8.30193 )
+z_index = 5
+texture = ExtResource( 31 )
+
+[node name="Mask-Left" type="Sprite" parent="Godette 128 x 256/Graphic/Body"]
+position = Vector2( -1.01225, 15.5026 )
+z_index = 5
+texture = ExtResource( 24 )
+
+[node name="Mask-Right" type="Sprite" parent="Godette 128 x 256/Graphic/Body"]
+position = Vector2( 13.1813, 20.2493 )
+z_index = 2
+texture = ExtResource( 30 )
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Godette 128 x 256"]
+shape = SubResource( 2 )
