@@ -5,6 +5,7 @@ class_name state_machine
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
+export var states_dictionary = {}
 # public variables      i.e var a: int = 2
 # private variables     i.e var _b: String = "text"
 var _current_state: state = null
@@ -18,9 +19,4 @@ var _current_state: state = null
 
 
 func _set_state(new_state: state) -> void:
-	
-	if _current_state != null:
-		_current_state._end()
-	
-	_current_state = new_state
-	_current_state._start()
+	pass

@@ -6,6 +6,7 @@ class_name state
 # constants             i.e const MOVE_SPEED: float = 50.0
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
+var current_fsm #state_machine
 # private variables     i.e var _b: String = "text"
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 
@@ -16,11 +17,11 @@ class_name state
 # private methods
 
 
-func _start() -> void:
-	pass
+func _start(fsm) -> void:
+	current_fsm = fsm
 
 
-func _update(delta: float) -> void:
+func _update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:
 	pass
 
 

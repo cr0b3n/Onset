@@ -1,4 +1,5 @@
-extends state_machine
+tool
+extends extended_state
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
@@ -15,13 +16,13 @@ extends state_machine
 # private methods
 
 
-func _ready() -> void:
+func _start(fsm) -> void:
 	pass
 
 
-#func _process(delta: float) -> void:
-#   pass
+func _update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:
+	extra_state._update(delta, body, input, is_grounded)
 
 
-#func _physics_process(delta: float) -> void:
-#	pass
+func _end() -> void:
+	pass

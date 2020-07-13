@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Art/Godette 128 x 256/Hand-Left.png" type="Texture" id=1]
 [ext_resource path="res://Art/Godette 128 x 256/Leg-Left-Bot.png" type="Texture" id=2]
@@ -17,9 +17,12 @@
 [ext_resource path="res://Art/Godette 128 x 256/Mask-Left.png" type="Texture" id=15]
 [ext_resource path="res://Art/Godette 128 x 256/Leg-Right-Top.png" type="Texture" id=16]
 [ext_resource path="res://Scripts/player.gd" type="Script" id=17]
-[ext_resource path="res://Scripts/player_fsm.gd" type="Script" id=18]
+[ext_resource path="res://Scripts/Player FSM/player_fsm.gd" type="Script" id=18]
 [ext_resource path="res://Scripts/player_input.gd" type="Script" id=19]
-[ext_resource path="res://Scripts/player_animation.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/Player FSM/jump_state.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/Player FSM/movement_state.gd" type="Script" id=21]
+[ext_resource path="res://Scripts/Player FSM/idle_state.gd" type="Script" id=22]
+[ext_resource path="res://Scripts/Player FSM/run_state.gd" type="Script" id=23]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 19, 112 )
@@ -1200,6 +1203,26 @@ one_shot = true
 
 [node name="PlayerFSM" type="Node" parent="."]
 script = ExtResource( 18 )
+states_dictionary = {
+"IDLE": NodePath("IdleState"),
+"JUMP": NodePath("JumpState"),
+"RUN": NodePath("RunState")
+}
+
+[node name="MovementState" type="Node" parent="PlayerFSM"]
+script = ExtResource( 21 )
+
+[node name="JumpState" type="Node" parent="PlayerFSM"]
+script = ExtResource( 20 )
+extra_state_node_path = "../MovementState"
+
+[node name="IdleState" type="Node" parent="PlayerFSM"]
+script = ExtResource( 22 )
+extra_state_node_path = "../MovementState"
+
+[node name="RunState" type="Node" parent="PlayerFSM"]
+script = ExtResource( 23 )
+extra_state_node_path = "../MovementState"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 20 )
@@ -1210,7 +1233,6 @@ parameters/conditions/grounded = false
 parameters/conditions/idle = false
 parameters/conditions/jump = false
 parameters/conditions/run = false
-script = ExtResource( 20 )
 
 [node name="PlayerInput" type="Node" parent="."]
 script = ExtResource( 19 )

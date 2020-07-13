@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "state",
+"class": "extended_state",
+"language": "GDScript",
+"path": "res://Scripts/Player FSM/extended_state.gd"
+}, {
+"base": "state",
+"class": "movement_state",
+"language": "GDScript",
+"path": "res://Scripts/Player FSM/movement_state.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "player",
 "language": "GDScript",
@@ -27,14 +37,16 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "state",
 "language": "GDScript",
-"path": "res://Scripts/state.gd"
+"path": "res://Scripts/Player FSM/state.gd"
 }, {
 "base": "Node",
 "class": "state_machine",
 "language": "GDScript",
-"path": "res://Scripts/state_machine.gd"
+"path": "res://Scripts/Player FSM/state_machine.gd"
 } ]
 _global_script_class_icons={
+"extended_state": "",
+"movement_state": "",
 "player": "",
 "player_animation": "",
 "player_input": "",

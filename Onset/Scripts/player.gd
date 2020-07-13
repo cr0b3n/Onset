@@ -45,8 +45,9 @@ func _ready() -> void:
 	_max_jump_velocity = -sqrt( 2 * _gravity * _max_jump_height)
 	_min_jump_velocity = -sqrt( 2 * _gravity * _min_jump_height)
 
-	var anim: = $AnimationTree
-	anim.m_player = self
+#	var anim: = $AnimationTree
+#	anim.m_player = self
+	$PlayerFSM.m_player = self
 
 
 func _process(delta: float) -> void:
@@ -55,25 +56,25 @@ func _process(delta: float) -> void:
 	_check_coyote_time()
 
 
-func _physics_process(delta: float) -> void:
-	#increase gravity when falling or peek is reached of the jump
-	_apply_gravity(delta, !is_grounded && current_velocity.y > 0)
-	_apply_movement(delta)
-	_apply_air_movement()
-
-
-func _apply_gravity(delta: float, has_multiplier: bool) -> void:
-
-	current_velocity.y += (_gravity * delta * (FALL_GRAVITY_MULTIPLIER if has_multiplier else 1.0))
-	
-	if current_velocity.y > MAX_Y_VELOCITY:
-		current_velocity.y = MAX_Y_VELOCITY
-
-
-func _apply_movement(delta: float) -> void:
-	current_velocity.x = input.horizontal * MOVE_SPEED
-	current_velocity = move_and_slide(current_velocity, FLOOR)
-	_adjust_facing_direction()
+#func _physics_process(delta: float) -> void:
+#	#increase gravity when falling or peek is reached of the jump
+#	_apply_gravity(delta, !is_grounded && current_velocity.y > 0)
+#	_apply_movement(delta)
+#	_apply_air_movement()
+#
+#
+#func _apply_gravity(delta: float, has_multiplier: bool) -> void:
+#
+#	current_velocity.y += (_gravity * delta * (FALL_GRAVITY_MULTIPLIER if has_multiplier else 1.0))
+#
+#	if current_velocity.y > MAX_Y_VELOCITY:
+#		current_velocity.y = MAX_Y_VELOCITY
+#
+#
+#func _apply_movement(delta: float) -> void:
+#	current_velocity.x = input.horizontal * MOVE_SPEED
+#	current_velocity = move_and_slide(current_velocity, FLOOR)
+#	_adjust_facing_direction()
 
 
 func _adjust_facing_direction() -> void:
