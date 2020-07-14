@@ -9,6 +9,7 @@ extends extended_state
 # private variables     i.e var _b: String = "text"
 var _jump_buffer_active: bool = false
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
+#JumbBufferTimer is activated both in Jump & Fall State so it's necessary to have 1 for both
 onready var jump_buffer_timer: Timer = $JumpBufferTimer
 # optional built-in virtual _init method
 # built-in virtual _ready method

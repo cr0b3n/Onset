@@ -15,12 +15,6 @@ extends idle_state
 # private methods
 
 
-func _apply_transition(input: player_input, is_grounded: bool) -> void:
-	if input.jump_pressed:
-		_end("Jump")
-		coyote_timer.stop()
-		
-	elif !is_grounded:
-		_enter_coyote_mode()
-	elif abs(input.horizontal) == 0:
+func _check_horizontal(input: player_input) -> void:
+	if abs(input.horizontal) == 0:
 		_end("Idle")

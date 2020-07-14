@@ -16,7 +16,6 @@ func _ready() -> void:
 
 
 func _start(fsm) -> void:
-
 	._start(fsm)
 	_jump(fsm.m_player.input.input_jump_release)
 
@@ -44,9 +43,9 @@ func _apply_air_movement(input: player_input, is_grounded: bool) -> void:
 			extra_state.current_velocity.y = _adjust_jump_velocity(_min_jump_velocity) #returns posi
 
 
-func _adjust_jump_velocity(vel_y: float) -> float:
-	return (abs(_max_jump_velocity) + extra_state.current_velocity.y) + vel_y
-
-
 func _jump(short_jump: bool = false) -> void:
 	extra_state.current_velocity.y = _min_jump_velocity if short_jump else _max_jump_velocity
+
+
+func _adjust_jump_velocity(vel_y: float) -> float:
+	return (abs(_max_jump_velocity) + extra_state.current_velocity.y) + vel_y

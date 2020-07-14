@@ -6,7 +6,7 @@ class_name idle_state
 export(NodePath) var coyote_timer_path setget set_coyote_timer_path
 
 var is_coyote: bool
-
+#CoyoteTimer is shared between Run and Idle so it's necessary to have 1 for both
 onready var coyote_timer: Timer = get_node(coyote_timer_path)
 
 
@@ -33,17 +33,30 @@ func _start(fsm) -> void:
 
 
 func _update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:
+	
 	extra_state._update(delta, body, input, is_grounded)
-	_apply_transition(input, is_grounded)
+	var is_transitioning: bool = _apply_transition(input, is_grounded)
+	
+	if !is_transitioning:
+		_check_horizontal(input)
 
 
-func _apply_transition(input: player_input, is_grounded: bool) -> void:
+func _apply_transition(input: player_input, is_grounded: bool) -> bool:
 	if input.jump_pressed:
 		_end("Jump")
 		coyote_timer.stop()
+		return true
 	elif !is_grounded:
 		_enter_coyote_mode()
-	elif abs(input.horizontal) > 0:
+		return true
+	elif input.dash_pressed:
+		_end("Dash")
+	
+	return false
+
+
+func _check_horizontal(input: player_input) -> void:
+	if abs(input.horizontal) > 0:
 		_end("Run")
 
 
