@@ -15,7 +15,7 @@ func _start(fsm) -> void:
 
 
 func _update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:
-	
+
 	if _dash_dir == 0:
 		_dash_dir = input.x_direction
 	

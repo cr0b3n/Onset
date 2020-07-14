@@ -29,7 +29,7 @@ func _update(delta: float, body: KinematicBody2D, input: player_input, is_ground
 	#increase gravity when falling or peek is reached of the jump
 	_apply_gravity(delta, !is_grounded && current_velocity.y > 0)
 	_apply_movement(delta, body, input.horizontal)
-
+	
 
 func _apply_gravity(delta: float, has_multiplier: bool) -> void:
 

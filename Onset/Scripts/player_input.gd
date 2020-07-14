@@ -67,6 +67,7 @@ func _clear_inputs() -> void:
 	jump_pressed = false
 	jump_released = false
 	horizontal = 0.0
+	dash_pressed = false #Must reset dash_pressed here & not on the _update_dash_timer
 
 
 func _check_dash(dir: int) -> void:
@@ -79,6 +80,7 @@ func _check_dash(dir: int) -> void:
 		
 		if _dash_press_count > 1:
 			dash_pressed = true
+			_dash_press_count = 0
 	
 	_last_pressed_time = 0.0
 
@@ -90,4 +92,3 @@ func _update_dash_timer(delta: float) -> void:
 	if _last_pressed_time > DOUBLE_PRESS_TIME:
 		_last_pressed_time = 0
 		_dash_press_count = 0
-		dash_pressed = false
