@@ -1,12 +1,10 @@
 extends Node
-class_name state
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
-var current_fsm #state_machine
 # private variables     i.e var _b: String = "text"
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 
@@ -16,18 +14,12 @@ var current_fsm #state_machine
 # public methods
 # private methods
 
+var is_paused: bool = false
 
-func _start(fsm) -> void:
-	if current_fsm == null:
-		current_fsm = fsm
+#func _process(delta: float) -> void:
+#   pass
 
-
-func _update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:
-	pass
-
-
-func _end(key: String) -> void:
-	if current_fsm == null:
-		return
-	
-	current_fsm._set_state(key)
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		is_paused = !is_paused
+		get_tree().paused = is_paused

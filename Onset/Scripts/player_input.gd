@@ -8,6 +8,7 @@ class_name player_input
 # public variables      i.e var a: int = 2
 var jump_pressed: bool
 var jump_released: bool
+var input_jump_release: bool = true
 var horizontal: float
 
 # private variables     i.e var _b: String = "text"
@@ -21,8 +22,13 @@ var _ready_to_clear: bool = true
 # private methods
 
 func _input(event: InputEvent) -> void:
-	jump_pressed = event.is_action_pressed("c_jump")
-	jump_released = event.is_action_released("c_jump")
+	
+	if event.is_action_pressed("c_jump"):
+		jump_pressed = true
+		input_jump_release = false
+	if event.is_action_released("c_jump"):
+		jump_released = true
+		input_jump_release = true
 
 
 func _process(delta: float) -> void:

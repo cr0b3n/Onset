@@ -1,11 +1,12 @@
 extends state
 class_name movement_state
 
+
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
+signal direction_changed(dir)
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
-const TILE_SIZE: float = 128.0
-const MOVE_SPEED: float = 5.0 * TILE_SIZE
+const MOVE_SPEED: float = 5.0 * Global.TILE_SIZE
 const FLOOR: Vector2 = Vector2.UP
 const MAX_Y_VELOCITY: float = 3000.0
 const FALL_GRAVITY_MULTIPLIER: float = 1.7
@@ -14,10 +15,7 @@ const FALL_GRAVITY_MULTIPLIER: float = 1.7
 var current_velocity: Vector2 = Vector2.ZERO
 # private variables     i.e var _b: String = "text"
 var _facing_direction: int = 1
-
-const JUMP_DURATION: float = 0.5
-var _max_jump_height: float = 3.5 * TILE_SIZE
-var _gravity: float = 2 * _max_jump_height / pow(JUMP_DURATION, 2)
+var _gravity: float = Global.gravity
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 
 # optional built-in virtual _init method
@@ -50,4 +48,4 @@ func _apply_movement(delta: float, body: KinematicBody2D, x_input: float) -> voi
 func _adjust_facing_direction() -> void:
 	if current_velocity.x * _facing_direction < 0.0:
 		_facing_direction *= -1
-#		graphic.scale.x = _facing_direction
+		emit_signal("direction_changed", _facing_direction)

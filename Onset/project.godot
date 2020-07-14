@@ -12,12 +12,17 @@ _global_script_classes=[ {
 "base": "state",
 "class": "extended_state",
 "language": "GDScript",
-"path": "res://Scripts/Player FSM/extended_state.gd"
+"path": "res://Scripts/Player FSM/Player States/extended_state.gd"
+}, {
+"base": "extended_state",
+"class": "idle_state",
+"language": "GDScript",
+"path": "res://Scripts/Player FSM/Player States/idle_state.gd"
 }, {
 "base": "state",
 "class": "movement_state",
 "language": "GDScript",
-"path": "res://Scripts/Player FSM/movement_state.gd"
+"path": "res://Scripts/Player FSM/Player States/movement_state.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "player",
@@ -46,6 +51,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "extended_state": "",
+"idle_state": "",
 "movement_state": "",
 "player": "",
 "player_animation": "",
@@ -60,6 +66,10 @@ config/name="Onset"
 run/main_scene="res://Gameplay Scenes/MainScene.tscn"
 boot_splash/image="res://Art/Others-Art/socialMediaAlpha.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
+
+[autoload]
+
+Global="*res://Scripts/global.gd"
 
 [display]
 

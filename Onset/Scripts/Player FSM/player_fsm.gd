@@ -16,7 +16,8 @@ var m_player: player
 # private methods
 
 func _ready() -> void:
-	_current_state = get_node(states_dictionary["IDLE"])
+	_current_state = get_node(states_dictionary["Idle"])
+	_current_state._start(self)
 
 
 func _physics_process(delta: float) -> void:
@@ -27,5 +28,7 @@ func _physics_process(delta: float) -> void:
 	_current_state._update(delta, m_player, m_player.input, m_player.is_grounded)
 
 
-func _set_state(new_state: state) -> void:
-	pass
+func _set_state(key: String) -> void:
+	_current_state = get_node(states_dictionary[key])
+	_current_state._start(self)
+	._set_state(key)

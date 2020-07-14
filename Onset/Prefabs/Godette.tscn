@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Art/Godette 128 x 256/Hand-Left.png" type="Texture" id=1]
 [ext_resource path="res://Art/Godette 128 x 256/Leg-Left-Bot.png" type="Texture" id=2]
@@ -19,10 +19,11 @@
 [ext_resource path="res://Scripts/player.gd" type="Script" id=17]
 [ext_resource path="res://Scripts/Player FSM/player_fsm.gd" type="Script" id=18]
 [ext_resource path="res://Scripts/player_input.gd" type="Script" id=19]
-[ext_resource path="res://Scripts/Player FSM/jump_state.gd" type="Script" id=20]
-[ext_resource path="res://Scripts/Player FSM/movement_state.gd" type="Script" id=21]
-[ext_resource path="res://Scripts/Player FSM/idle_state.gd" type="Script" id=22]
-[ext_resource path="res://Scripts/Player FSM/run_state.gd" type="Script" id=23]
+[ext_resource path="res://Scripts/Player FSM/Player States/jump_state.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/Player FSM/Player States/movement_state.gd" type="Script" id=21]
+[ext_resource path="res://Scripts/Player FSM/Player States/idle_state.gd" type="Script" id=22]
+[ext_resource path="res://Scripts/Player FSM/Player States/run_state.gd" type="Script" id=23]
+[ext_resource path="res://Scripts/Player FSM/Player States/fall_state.gd" type="Script" id=24]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 19, 112 )
@@ -1016,7 +1017,7 @@ advance_condition = "run"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
 advance_condition = "idle"
-xfade_time = 0.2
+xfade_time = 0.05
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
 advance_condition = "jump"
@@ -1068,13 +1069,13 @@ __meta__ = {
 
 [node name="Body" type="Sprite" parent="Graphic"]
 position = Vector2( 0, 0.8 )
-rotation = 0.0349066
+rotation = 0.0129489
 z_index = 1
 texture = ExtResource( 11 )
 
 [node name="Neck" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 0.334076, -36.143 )
-rotation = 0.0261799
+rotation = -0.0067566
 z_index = -1
 texture = ExtResource( 3 )
 
@@ -1085,41 +1086,41 @@ texture = ExtResource( 12 )
 
 [node name="Arm-Right-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 12.4483, -23.8104 )
-rotation = -0.10472
+rotation = -0.0717832
 z_index = -1
 texture = ExtResource( 6 )
 offset = Vector2( -0.618535, 14.4798 )
 
 [node name="Hand-Right" type="Sprite" parent="Graphic/Body/Arm-Right-Up"]
 position = Vector2( 1.60196, 31.5883 )
-rotation = 0.026359
+rotation = 0.0097781
 texture = ExtResource( 4 )
 offset = Vector2( 8.66032, 17.8287 )
 
 [node name="Arm-Left-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( -13.4558, -24.5019 )
-rotation = 0.10472
+rotation = 0.0772726
 z_index = 5
 texture = ExtResource( 13 )
 offset = Vector2( -2.49409, 14.849 )
 
 [node name="Hand-Left" type="Sprite" parent="Graphic/Body/Arm-Left-Up"]
 position = Vector2( -4.03992, 31.4232 )
-rotation = -0.218166
+rotation = -0.245613
 z_index = 6
 texture = ExtResource( 1 )
 offset = Vector2( 1.28168, 18.2164 )
 
 [node name="Leg-Right-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 5.6, 22 )
-rotation = -0.244346
+rotation = -0.222388
 z_index = 1
 texture = ExtResource( 16 )
 offset = Vector2( 0.00240326, 19.4748 )
 
 [node name="Leg-Right-Bot" type="Sprite" parent="Graphic/Body/Leg-Right-Up"]
 position = Vector2( -0.6, 40.983 )
-rotation = 0.200713
+rotation = 0.211692
 texture = ExtResource( 7 )
 offset = Vector2( -1.24331, 17.484 )
 
@@ -1130,14 +1131,14 @@ offset = Vector2( 8.19844, -0.834656 )
 
 [node name="Leg-Left-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( -6.3, 22 )
-rotation = 0.00523599
+rotation = 0.0271937
 z_index = 4
 texture = ExtResource( 14 )
 offset = Vector2( 0.00240326, 19.4748 )
 
 [node name="Leg-Left-Bot" type="Sprite" parent="Graphic/Body/Leg-Left-Up"]
 position = Vector2( -0.6, 40.983 )
-rotation = 0.0959931
+rotation = 0.106972
 texture = ExtResource( 2 )
 offset = Vector2( -1.24331, 17.484 )
 
@@ -1193,20 +1194,18 @@ anims/Run = SubResource( 7 )
 current = true
 zoom = Vector2( 1.5, 1.5 )
 
-[node name="JumpBufferTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
 [node name="CoyoteTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.08
 one_shot = true
 
 [node name="PlayerFSM" type="Node" parent="."]
 script = ExtResource( 18 )
 states_dictionary = {
-"IDLE": NodePath("IdleState"),
-"JUMP": NodePath("JumpState"),
-"RUN": NodePath("RunState")
+"Dash": NodePath(""),
+"Fall": NodePath("FallState"),
+"Idle": NodePath("IdleState"),
+"Jump": NodePath("JumpState"),
+"Run": NodePath("RunState")
 }
 
 [node name="MovementState" type="Node" parent="PlayerFSM"]
@@ -1219,10 +1218,20 @@ extra_state_node_path = "../MovementState"
 [node name="IdleState" type="Node" parent="PlayerFSM"]
 script = ExtResource( 22 )
 extra_state_node_path = "../MovementState"
+coyote_timer_path = "../../CoyoteTimer"
 
 [node name="RunState" type="Node" parent="PlayerFSM"]
 script = ExtResource( 23 )
 extra_state_node_path = "../MovementState"
+coyote_timer_path = "../../CoyoteTimer"
+
+[node name="FallState" type="Node" parent="PlayerFSM"]
+script = ExtResource( 24 )
+extra_state_node_path = "../MovementState"
+
+[node name="JumpBufferTimer" type="Timer" parent="PlayerFSM/FallState"]
+wait_time = 0.1
+one_shot = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 20 )
