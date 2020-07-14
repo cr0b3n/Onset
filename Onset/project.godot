@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/player_animation.gd"
 }, {
+"base": "state_machine",
+"class": "player_fsm",
+"language": "GDScript",
+"path": "res://Scripts/Player FSM/player_fsm.gd"
+}, {
 "base": "Node",
 "class": "player_input",
 "language": "GDScript",
@@ -55,6 +60,7 @@ _global_script_class_icons={
 "movement_state": "",
 "player": "",
 "player_animation": "",
+"player_fsm": "",
 "player_input": "",
 "state": "",
 "state_machine": ""

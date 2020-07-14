@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _start(fsm) -> void:
 	._start(fsm)
-	_jump(fsm.m_player.input.input_jump_release)
+	_jump(fsm.m_player_input.input_jump_release)
 
 
 func _update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:

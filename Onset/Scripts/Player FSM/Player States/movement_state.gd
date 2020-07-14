@@ -3,7 +3,7 @@ class_name movement_state
 
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
-signal direction_changed(dir)
+#signal direction_changed(dir)
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
 const MOVE_SPEED: float = 5.0 * Global.TILE_SIZE
@@ -14,7 +14,7 @@ const FALL_GRAVITY_MULTIPLIER: float = 1.7
 # public variables      i.e var a: int = 2
 var current_velocity: Vector2 = Vector2.ZERO
 # private variables     i.e var _b: String = "text"
-var _facing_direction: int = 1
+#var _facing_direction: int = 1
 var _gravity: float = Global.gravity
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 
@@ -42,10 +42,10 @@ func _apply_gravity(delta: float, has_multiplier: bool) -> void:
 func _apply_movement(delta: float, body: KinematicBody2D, x_input: float) -> void:
 	current_velocity.x = x_input * MOVE_SPEED
 	current_velocity = body.move_and_slide(current_velocity, FLOOR)
-	_adjust_facing_direction()
+	#_adjust_facing_direction()
 
 
-func _adjust_facing_direction() -> void:
-	if current_velocity.x * _facing_direction < 0.0:
-		_facing_direction *= -1
-		emit_signal("direction_changed", _facing_direction)
+#func _adjust_facing_direction() -> void:
+#	if current_velocity.x * _facing_direction < 0.0:
+#		_facing_direction *= -1
+#		emit_signal("direction_changed", _facing_direction)

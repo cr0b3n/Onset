@@ -20,6 +20,9 @@ var gravity: float = 2 * _max_jump_height / pow(JUMP_DURATION, 2)
 # private methods
 
 
+#https://docs.godotengine.org/en/stable/getting_started/step_by_step/singletons_autoload.html
+#use call_deferred("_deferred_goto_scene", path) to transition to next scenes
+
 func _ready() -> void:
 	pass
 

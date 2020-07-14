@@ -1,4 +1,5 @@
 extends state_machine
+class_name player_fsm
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
@@ -6,6 +7,7 @@ extends state_machine
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
 var m_player: player
+var m_player_input: player_input
 # private variables     i.e var _b: String = "text"
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 
@@ -25,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	if _current_state == null:
 		return
 	
-	_current_state._update(delta, m_player, m_player.input, m_player.is_grounded)
+	_current_state._update(delta, m_player, m_player_input, m_player.is_grounded)
 
 
 func _set_state(key: String) -> void:

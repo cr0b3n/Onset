@@ -2,6 +2,7 @@ extends Node
 class_name player_input
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
+signal x_direction_changed(dir)
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
 const DOUBLE_PRESS_TIME: float = 0.2
@@ -38,10 +39,10 @@ func _input(event: InputEvent) -> void:
 		input_jump_release = true
 	
 	if event.is_action_pressed("c_right"):
-		_check_dash(1)
+		_check_dash_and_direction(1)
 		
 	if event.is_action_pressed("c_left"):
-		_check_dash(-1)
+		_check_dash_and_direction(-1)
 
 
 func _process(delta: float) -> void:
@@ -70,11 +71,12 @@ func _clear_inputs() -> void:
 	dash_pressed = false #Must reset dash_pressed here & not on the _update_dash_timer
 
 
-func _check_dash(dir: int) -> void:
+func _check_dash_and_direction(dir: int) -> void:
 	
 	if x_direction != dir:
 		x_direction = dir
 		_dash_press_count = 1
+		emit_signal("x_direction_changed", x_direction)
 	else:
 		_dash_press_count +=1
 		

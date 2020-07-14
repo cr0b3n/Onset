@@ -12,7 +12,6 @@ var anim_state #AnimationNodeStateMachine asigned on _ready cannot by static typ
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 onready var graphic: Node2D = $Graphic
 onready var raycasts: Array = $CollisionBox.get_children()
-onready var input: player_input = $PlayerInput
 
 # optional built-in virtual _init method
 # built-in virtual _ready method
@@ -23,10 +22,15 @@ onready var input: player_input = $PlayerInput
 
 func _ready() -> void:
 	#Connect to movement state signal to determine facing directions
-	$PlayerFSM/MovementState.connect("direction_changed", self, "on_direction_changed")
+	#$PlayerFSM/MovementState.connect("direction_changed", self, "on_direction_changed")
+	var input: player_input = $PlayerInput
+	input.connect("x_direction_changed", self, "on_direction_changed")
+	
 	#Connect to player state machine to apply new animation on state change
-	$PlayerFSM.connect("state_changed", self, "on_state_changed")
-	$PlayerFSM.m_player = self
+	var fsm: = $PlayerFSM
+	fsm.connect("state_changed", self, "on_state_changed")
+	fsm.m_player = self
+	fsm.m_player_input = input
 	
 	var anim_tree: AnimationTree = $AnimationTree
 	anim_tree.active = true #Activate animation tree then asign AnimationNodeStateMachine to anim_state
