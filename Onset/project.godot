@@ -39,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player FSM/player_fsm.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "player_input",
 "language": "GDScript",
 "path": "res://Scripts/player_input.gd"
@@ -104,6 +104,10 @@ c_jump={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 

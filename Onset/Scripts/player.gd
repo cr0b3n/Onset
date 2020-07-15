@@ -25,7 +25,7 @@ func _ready() -> void:
 	#$PlayerFSM/MovementState.connect("direction_changed", self, "on_direction_changed")
 	var input: player_input = $PlayerInput
 	input.connect("x_direction_changed", self, "on_direction_changed")
-	
+
 	#Connect to player state machine to apply new animation on state change
 	var fsm: = $PlayerFSM
 	fsm.connect("state_changed", self, "on_state_changed")
@@ -40,6 +40,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#Place in _process check per frame & make coyote time more acurate
 	is_grounded = _is_on_ground()
+#
+#	if $PlayerInput.dash_pressed:
+#		print(get_global_mouse_position())
+#		print(get_local_mouse_position())
 
 
 func on_direction_changed(direction: float) -> void:

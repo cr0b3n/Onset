@@ -1257,5 +1257,5 @@ tree_root = SubResource( 24 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 25 )
 
-[node name="PlayerInput" type="Node" parent="."]
+[node name="PlayerInput" type="Node2D" parent="."]
 script = ExtResource( 19 )
