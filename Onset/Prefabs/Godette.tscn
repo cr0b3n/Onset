@@ -1229,21 +1229,17 @@ script = ExtResource( 21 )
 
 [node name="JumpState" type="Node" parent="PlayerFSM"]
 script = ExtResource( 20 )
-extra_state_node_path = "../MovementState"
 
 [node name="IdleState" type="Node" parent="PlayerFSM"]
 script = ExtResource( 22 )
-extra_state_node_path = "../MovementState"
 coyote_timer_path = "../../CoyoteTimer"
 
 [node name="RunState" type="Node" parent="PlayerFSM"]
 script = ExtResource( 23 )
-extra_state_node_path = "../MovementState"
 coyote_timer_path = "../../CoyoteTimer"
 
 [node name="FallState" type="Node" parent="PlayerFSM"]
 script = ExtResource( 24 )
-extra_state_node_path = "../MovementState"
 
 [node name="JumpBufferTimer" type="Timer" parent="PlayerFSM/FallState"]
 wait_time = 0.1

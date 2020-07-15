@@ -1,11 +1,14 @@
 tool
-extends extended_state
+extends state
 class_name idle_state
 
 
 export(NodePath) var coyote_timer_path setget set_coyote_timer_path
 
 var is_coyote: bool
+var stop_offset: float = 25.0 #IF UPDATED ALSO UPDATE MOVEMENT STATE
+
+
 #CoyoteTimer is shared between Run and Idle so it's necessary to have 1 for both
 onready var coyote_timer: Timer = get_node(coyote_timer_path)
 
@@ -13,9 +16,7 @@ onready var coyote_timer: Timer = get_node(coyote_timer_path)
 func _get_configuration_warning() -> String:
 	
 	var warnings: String = ""
-	
-	warnings += ._get_configuration_warning()
-	
+
 	if coyote_timer_path == "":
 		warnings += "\nPlease add a timer node path!"
 	
@@ -33,12 +34,10 @@ func _start(fsm) -> void:
 
 
 func _update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:
-	
-	extra_state._update(delta, body, input, is_grounded)
 	var is_transitioning: bool = _apply_transition(input, is_grounded)
 	
 	if !is_transitioning:
-		_check_horizontal(input)
+		_check_horizontal(body, input)
 
 
 func _apply_transition(input: player_input, is_grounded: bool) -> bool:
@@ -51,13 +50,20 @@ func _apply_transition(input: player_input, is_grounded: bool) -> bool:
 		return true
 	elif input.dash_pressed:
 		_end("Dash")
-	
+		return true
+		
 	return false
 
 
-func _check_horizontal(input: player_input) -> void:
-	if abs(input.horizontal) > 0:
+func _check_horizontal(body: KinematicBody2D, input: player_input) -> void:
+	if abs(input.horizontal) > 0 || (_is_not_on_target_position(body, input) && !input.target_canceled):
+		#print(_is_not_on_target_position(body, input))
 		_end("Run")
+
+
+func _is_not_on_target_position(body: KinematicBody2D, input: player_input) -> bool:
+	var target_pos: Vector2 = Vector2(input.target_x_pos, body.global_position.y)
+	return body.position.distance_to(target_pos) > stop_offset
 
 
 func _enter_coyote_mode() -> void:

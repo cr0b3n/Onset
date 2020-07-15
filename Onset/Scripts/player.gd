@@ -40,10 +40,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#Place in _process check per frame & make coyote time more acurate
 	is_grounded = _is_on_ground()
-#
-#	if $PlayerInput.dash_pressed:
-#		print(get_global_mouse_position())
-#		print(get_local_mouse_position())
+#	if is_on_wall():
+#		print("is on wall")
 
 
 func on_direction_changed(direction: float) -> void:

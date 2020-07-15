@@ -1,5 +1,4 @@
-tool
-extends extended_state
+extends state
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
@@ -11,6 +10,7 @@ var _jump_buffer_active: bool = false
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 #JumbBufferTimer is activated both in Jump & Fall State so it's necessary to have 1 for both
 onready var jump_buffer_timer: Timer = $JumpBufferTimer
+onready var movement: movement_state = get_parent().get_node("MovementState")
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
@@ -24,7 +24,7 @@ func _ready() -> void:
 	
 
 func _update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:
-	extra_state._update(delta, body, input, is_grounded)
+	movement.update(delta, body, input, is_grounded)
 	
 	if input.jump_pressed:
 		_activate_jump_buffer()

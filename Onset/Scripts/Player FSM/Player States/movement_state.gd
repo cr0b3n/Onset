@@ -1,4 +1,4 @@
-extends state
+extends Node
 class_name movement_state
 
 
@@ -13,6 +13,7 @@ const FALL_GRAVITY_MULTIPLIER: float = 1.7
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
 var current_velocity: Vector2 = Vector2.ZERO
+var stop_offset: float = 25.0 #IF UPDATED ALSO UPDATE IDLE
 # private variables     i.e var _b: String = "text"
 #var _facing_direction: int = 1
 var _gravity: float = Global.gravity
@@ -25,11 +26,11 @@ var _gravity: float = Global.gravity
 # private methods
 
 
-func _update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:
+func update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:
 	#increase gravity when falling or peek is reached of the jump
 	_apply_gravity(delta, !is_grounded && current_velocity.y > 0)
-	_apply_movement(delta, body, input.horizontal)
-	
+	_apply_movement(delta, body, input)
+
 
 func _apply_gravity(delta: float, has_multiplier: bool) -> void:
 
@@ -39,13 +40,17 @@ func _apply_gravity(delta: float, has_multiplier: bool) -> void:
 		current_velocity.y = MAX_Y_VELOCITY
 
 
-func _apply_movement(delta: float, body: KinematicBody2D, x_input: float) -> void:
-	current_velocity.x = x_input * MOVE_SPEED
+func _apply_movement(delta: float, body: KinematicBody2D, input: player_input) -> void:
+	
+	if input.horizontal != 0: #Keyboard base movement
+		current_velocity.x = input.horizontal * MOVE_SPEED
+	#Catch excess or cancelled movement
+	elif (input.x_direction < 0 && input.target_x_pos >= body.global_position.x - stop_offset) || \
+		(input.x_direction > 0 && input.target_x_pos <= body.global_position.x + stop_offset) || \
+		input.target_canceled:
+			
+		current_velocity.x = 0
+	else: #Mouse base movement
+		current_velocity.x = input.x_direction * MOVE_SPEED
+			
 	current_velocity = body.move_and_slide(current_velocity, FLOOR)
-	#_adjust_facing_direction()
-
-
-#func _adjust_facing_direction() -> void:
-#	if current_velocity.x * _facing_direction < 0.0:
-#		_facing_direction *= -1
-#		emit_signal("direction_changed", _facing_direction)

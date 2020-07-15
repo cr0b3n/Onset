@@ -14,12 +14,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player FSM/Player States/extended_state.gd"
 }, {
-"base": "extended_state",
+"base": "state",
 "class": "idle_state",
 "language": "GDScript",
 "path": "res://Scripts/Player FSM/Player States/idle_state.gd"
 }, {
-"base": "state",
+"base": "Node",
 "class": "movement_state",
 "language": "GDScript",
 "path": "res://Scripts/Player FSM/Player States/movement_state.gd"
@@ -104,10 +104,12 @@ c_jump={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
  ]
 }
-
-[input_devices]
-
-pointing/emulate_touch_from_mouse=true
+c_mouse_click={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
 
 [layer_names]
 
