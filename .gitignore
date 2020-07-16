@@ -3,6 +3,7 @@
 .import/
 export.cfg
 export_presets.cfg
+[Bb]uilds/
 
 # Mono-specific ignores
 .mono/

@@ -70,7 +70,7 @@ _global_script_class_icons={
 
 config/name="Onset"
 run/main_scene="res://Gameplay Scenes/MainScene.tscn"
-boot_splash/image="res://Art/Others-Art/socialMediaAlpha.png"
+boot_splash/image="res://Art/Others-Art/logo200x200.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 
 [autoload]
@@ -110,6 +110,10 @@ c_mouse_click={
 , Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 
