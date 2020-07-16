@@ -12,6 +12,7 @@ var anim_state #AnimationNodeStateMachine asigned on _ready cannot by static typ
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 onready var graphic: Node2D = $Graphic
 onready var raycasts: Array = $CollisionBox.get_children()
+onready var wall_ray: Node2D = $CollisionBox/WallRayCast
 
 # optional built-in virtual _init method
 # built-in virtual _ready method
@@ -46,6 +47,7 @@ func _process(delta: float) -> void:
 
 func on_direction_changed(direction: float) -> void:
 	graphic.scale.x = direction
+	wall_ray.scale.x = direction
 
 
 func _is_on_ground() -> bool:

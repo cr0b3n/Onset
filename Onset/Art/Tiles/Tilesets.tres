@@ -4,7 +4,7 @@
 [ext_resource path="res://Art/Tiles/Center-Fill.png" type="Texture" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 0, 11, 128, 11, 128, 128, 0, 128 )
+points = PoolVector2Array( 0, 11, 128, 11, 128, 44, 0, 44 )
 
 [resource]
 0/name = "Top-Center-Fill.png 0"

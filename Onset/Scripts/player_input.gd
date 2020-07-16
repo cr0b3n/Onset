@@ -16,6 +16,7 @@ var dash_pressed: bool
 var horizontal: float
 var x_direction: int = 1
 var target_canceled: bool = true
+var click_held: bool = false
 # private variables     i.e var _b: String = "text"
 #Dash timer
 var _last_pressed_time: float = 0.0
@@ -36,8 +37,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("c_jump"):
 		jump_pressed = true
 		input_jump_release = false
-	
-	if event.is_action_released("c_jump"):
+	elif event.is_action_released("c_jump"):
 		jump_released = true
 		input_jump_release = true
 	
@@ -50,6 +50,7 @@ func _input(event: InputEvent) -> void:
 		_check_dash_and_direction(-1)
 
 	if event.is_action_pressed("c_mouse_click"):
+		click_held = true
 		if horizontal == 0:
 			target_x_pos = get_global_mouse_position().x
 			_check_dash_and_direction(_check_mouse_base_directions(target_x_pos), true)
@@ -57,25 +58,8 @@ func _input(event: InputEvent) -> void:
 		else: #If keyboard & mouse is use at the same time prioritize keyboard values
 			_check_dash_and_direction(x_direction, false)
 			target_canceled = true
-	#Check cause not all event is mouse button so error could occur
-#	if event is InputEventMouseButton: 
-#		_process_mouse_inputs(event)
-
-
-func _process_mouse_inputs(event: InputEventMouseButton) -> void:
-	
-	if event.doubleclick: #BOTH: pressed & double click must calculate direction
-		dash_pressed = true
-		_dash_press_count = 0
-		_last_pressed_time = 0.0
-		target_canceled = true
-		if horizontal == 0: #To AVOID updating direction while using keyboard horizontal
-			_notify_direction_change(_check_mouse_base_directions(get_global_mouse_position().x))
-			
-	elif event.pressed && horizontal == 0: #BOTH: pressed & double click must calculate direction
-			target_canceled = false
-			target_x_pos = get_global_mouse_position().x
-			_notify_direction_change(_check_mouse_base_directions(target_x_pos))
+	elif event.is_action_released("c_mouse_click"):
+		click_held = false
 
 
 func _process(delta: float) -> void:
@@ -86,6 +70,22 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	_ready_to_clear = true
+	_update_x_target()
+	
+
+func is_target_reached(offset: float) -> bool:
+	return ((x_direction < 0 && target_x_pos >= global_position.x - offset) || \
+		(x_direction > 0 && target_x_pos <= global_position.x + offset) || \
+		target_canceled) && !click_held
+
+
+func _update_x_target() -> void:
+	
+	if !click_held || target_canceled:
+		return
+	
+	target_x_pos = get_global_mouse_position().x
+	_notify_direction_change(_check_mouse_base_directions(target_x_pos))
 
 
 func _check_mouse_base_directions(mouse_x: float) -> int:
@@ -95,6 +95,7 @@ func _check_mouse_base_directions(mouse_x: float) -> int:
 		return 1 #_notify_direction_change(1)
 
 	return x_direction
+
 
 func _process_x_inputs() -> void:
 	horizontal = (Input.get_action_strength("c_right") - Input.get_action_strength("c_left"))

@@ -44,13 +44,10 @@ func _apply_movement(delta: float, body: KinematicBody2D, input: player_input) -
 	
 	if input.horizontal != 0: #Keyboard base movement
 		current_velocity.x = input.horizontal * MOVE_SPEED
-	#Catch excess or cancelled movement
-	elif (input.x_direction < 0 && input.target_x_pos >= body.global_position.x - stop_offset) || \
-		(input.x_direction > 0 && input.target_x_pos <= body.global_position.x + stop_offset) || \
-		input.target_canceled:
-			
+	#Catch excess or cancelled movement! DO NOT REMOVE!!! Other wise will overshoot
+	elif input.is_target_reached(stop_offset):
 		current_velocity.x = 0
 	else: #Mouse base movement
 		current_velocity.x = input.x_direction * MOVE_SPEED
-			
+
 	current_velocity = body.move_and_slide(current_velocity, FLOOR)
