@@ -20,7 +20,7 @@ var click_held: bool = false
 # private variables     i.e var _b: String = "text"
 #Swipe 
 var _init_click_pos: Vector2 = Vector2.ZERO
-var _click_delta_pos: Vector2 = Vector2.ZERO
+var _click_held_pos: Vector2 = Vector2.ZERO
 #Dash timer
 var _dash_pressed_time: float = 0.0
 var _dash_press_count: int = 0
@@ -92,7 +92,7 @@ func _process_mouse_click(event: InputEventMouseButton) -> void:
 			_set_jump_release()
 		return # No need to continue if was release
 		
-	_init_click_pos = target.position
+	_init_click_pos = event.position #target.position
 	if horizontal == 0:
 			_set_target_x_pos()
 			_check_dash_and_direction(_check_mouse_base_directions(target_x_pos), true)
@@ -104,6 +104,7 @@ func _process_mouse_click(event: InputEventMouseButton) -> void:
 
 func _process_mouse_motion(event: InputEventMouseMotion) -> void:
 	_set_target_position(event.position)
+	_click_held_pos = event.position #added for updated swipe
 
 
 func _set_target_position(event_pos: Vector2) -> void:
@@ -122,7 +123,7 @@ func _set_jump_release() -> void:
 
 func _reset_click(reset_pos: Vector2 = Vector2.ZERO) -> void:
 	_init_click_pos = reset_pos
-	_click_delta_pos = reset_pos
+	_click_held_pos = reset_pos
 
 
 func _update_click_held() -> void:
@@ -130,16 +131,24 @@ func _update_click_held() -> void:
 	if !click_held || target_canceled:
 		return
 
-	_click_delta_pos = target.position - _init_click_pos 
-	
-	if _click_delta_pos.length_squared()  > 2000:
-		var y = _click_delta_pos.y
+	#var direction = fingerDownPosition.y - fingerUpPosition.y > 0 ? SwipeDirection.Up : SwipeDirection.Down;
+	if abs(_init_click_pos.y - _click_held_pos.y) > 25.0: #Swipe up/down detected
 		
-		if y < -25:
+		if _click_held_pos.y - _init_click_pos.y < 0: #swipe up
 			_set_jump_pressed()
 		#else:
-			#swipe_down
-		_reset_click(target.position)
+			#swipe down
+		_init_click_pos = _click_held_pos
+	#_click_held_pos = target.position - _init_click_pos 
+		
+#	if _click_held_pos.length_squared()  > 2000:
+#		var y = _click_held_pos.y
+#
+#		if y < -25:
+#			_set_jump_pressed()
+#		#else:
+#			#swipe_down
+#		_reset_click(target.position)
 		
 	target_x_pos = target.global_position.x
 	_notify_direction_change(_check_mouse_base_directions(target_x_pos))
