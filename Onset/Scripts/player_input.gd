@@ -136,8 +136,8 @@ func _update_click_held() -> void:
 		
 		if _click_held_pos.y - _init_click_pos.y < 0: #swipe up
 			_set_jump_pressed()
-		#else:
-			#swipe down
+		else: #swipe down
+			_set_jump_release()
 		_init_click_pos = _click_held_pos
 	#_click_held_pos = target.position - _init_click_pos 
 		

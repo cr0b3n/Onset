@@ -1239,7 +1239,7 @@ coyote_timer_path = "../../CoyoteTimer"
 script = ExtResource( 24 )
 
 [node name="JumpBufferTimer" type="Timer" parent="PlayerFSM/FallState"]
-wait_time = 0.1
+wait_time = 0.08
 one_shot = true
 
 [node name="DashState" type="Node" parent="PlayerFSM"]
