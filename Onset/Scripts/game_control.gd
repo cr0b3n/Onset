@@ -23,7 +23,7 @@ func _ready() -> void:
 	var device_data: String = ""
 	device_data += str(" OS Name: ", OS.get_name())
 	device_data += str("\n Device Touch Support: ", OS.has_touchscreen_ui_hint())
-
+	device_data += str("\n Viewport Size: ", get_viewport().size)
 	$Control/VBoxContainer/LblOSData.text = device_data
 	lbl_game_data = $Control/VBoxContainer/LblGameData
 

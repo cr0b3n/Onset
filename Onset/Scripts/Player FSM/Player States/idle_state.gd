@@ -6,7 +6,7 @@ class_name idle_state
 export(NodePath) var coyote_timer_path setget set_coyote_timer_path
 
 var is_coyote: bool
-var stop_offset: float = 25.0 #IF UPDATED ALSO UPDATE MOVEMENT STATE
+var stop_offset: float = 40.0 #IF UPDATED ALSO UPDATE MOVEMENT STATE
 var _wall_raycast: RayCast2D
 
 #CoyoteTimer is shared between Run and Idle so it's necessary to have 1 for both

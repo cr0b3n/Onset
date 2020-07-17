@@ -28,6 +28,7 @@ var _dash_press_count: int = 0
 var _ready_to_clear: bool = true
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 onready var target_x_pos: float = global_position.x
+onready var target: Node2D = $TargetPosition
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
@@ -50,25 +51,18 @@ func _input(event: InputEvent) -> void:
 		target_canceled = true
 		_check_dash_and_direction(-1)
 
-	if event.is_action_pressed("c_mouse_click"):
-		_init_click_pos = get_local_mouse_position()
-		click_held = true
-		
-		if horizontal == 0:
-			target_x_pos = get_global_mouse_position().x
-			_check_dash_and_direction(_check_mouse_base_directions(target_x_pos), true)
-			target_canceled = dash_pressed #target_cancel depends on the dash check
-		else: #If keyboard & mouse is use at the same time prioritize keyboard values
-			_check_dash_and_direction(x_direction, false)
-			target_canceled = true
-			
-	elif event.is_action_released("c_mouse_click"):
-
-		click_held = false
-		_reset_click()
-		
-		if !target_canceled:
-			_set_jump_release()
+	if event is InputEventMouseButton:
+		_process_mouse_click(event)
+#
+	if event is InputEventMouseMotion:
+	   _process_mouse_motion(event)
+	
+#	if event is InputEventScreenDrag:
+#		if event.relative.y > 25:
+#			print("swipe down")
+#		if event.relative.y < -25:
+#			print("swipe up")
+#		print(event.relative.y)
 
 
 func _process(delta: float) -> void:
@@ -76,7 +70,7 @@ func _process(delta: float) -> void:
 	_process_x_inputs()
 	_update_dash_timer(delta)
 	_update_click_held()
-
+	
 
 func _physics_process(delta: float) -> void:
 	_ready_to_clear = true
@@ -86,6 +80,34 @@ func is_target_reached(offset: float) -> bool:
 	return ((x_direction < 0 && target_x_pos >= global_position.x - offset) || \
 		(x_direction > 0 && target_x_pos <= global_position.x + offset) || \
 		target_canceled) #&& !click_held
+
+
+func _process_mouse_click(event: InputEventMouseButton) -> void:
+	_set_target_position(event.position)
+	click_held = !click_held
+
+	if !click_held: # Check if mouse has been unclick or release
+		_reset_click()
+		if !target_canceled:
+			_set_jump_release()
+		return # No need to continue if was release
+		
+	_init_click_pos = get_local_mouse_position()
+	if horizontal == 0:
+			_set_target_x_pos()
+			_check_dash_and_direction(_check_mouse_base_directions(target_x_pos), true)
+			target_canceled = dash_pressed #target_cancel depends on the dash check
+	else: #If keyboard & mouse is use at the same time prioritize keyboard values
+			_check_dash_and_direction(x_direction, false)
+			target_canceled = true
+
+
+func _process_mouse_motion(event: InputEventMouseMotion) -> void:
+	_set_target_position(event.position)
+	
+
+func _set_target_position(viewport_pos: Vector2) -> void:
+	target.global_position = _viewport_to_world(viewport_pos)
 
 
 func _set_jump_pressed() -> void:
@@ -119,8 +141,16 @@ func _update_click_held() -> void:
 			#swipe_down
 		_reset_click(get_local_mouse_position())
 		
-	target_x_pos = get_global_mouse_position().x
+	target_x_pos = target.global_position.x #get_global_mouse_position().x
 	_notify_direction_change(_check_mouse_base_directions(target_x_pos))
+
+
+func _set_target_x_pos() -> void:
+	target_x_pos = target.global_position.x
+
+
+func _viewport_to_world(pos: Vector2) -> Vector2:
+	return get_canvas_transform().affine_inverse().xform(pos)
 
 
 func _check_mouse_base_directions(mouse_x: float) -> int:

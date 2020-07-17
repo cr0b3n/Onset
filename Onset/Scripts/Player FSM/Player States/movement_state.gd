@@ -13,7 +13,7 @@ const FALL_GRAVITY_MULTIPLIER: float = 1.7
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
 var current_velocity: Vector2 = Vector2.ZERO
-var stop_offset: float = 25.0 #IF UPDATED ALSO UPDATE IDLE
+var stop_offset: float = 40.0 #IF UPDATED ALSO UPDATE IDLE
 # private variables     i.e var _b: String = "text"
 #var _facing_direction: int = 1
 var _gravity: float = Global.gravity

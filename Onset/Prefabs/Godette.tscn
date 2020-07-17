@@ -1261,3 +1261,10 @@ parameters/playback = SubResource( 25 )
 
 [node name="PlayerInput" type="Node2D" parent="."]
 script = ExtResource( 19 )
+
+[node name="TargetPosition" type="Node2D" parent="PlayerInput"]
+
+[node name="Neck" type="Sprite" parent="PlayerInput/TargetPosition"]
+scale = Vector2( 3, 3 )
+z_index = 20
+texture = ExtResource( 3 )
