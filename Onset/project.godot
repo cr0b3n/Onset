@@ -82,8 +82,8 @@ Global="*res://Scripts/global.gd"
 window/size/width=480
 window/size/height=853
 window/handheld/orientation="portrait"
-window/stretch/mode="viewport"
-window/stretch/aspect="keep"
+window/stretch/mode="2d"
+window/stretch/aspect="keep_height"
 
 [input]
 
@@ -110,10 +110,6 @@ c_mouse_click={
 , Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
-
-[input_devices]
-
-pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 

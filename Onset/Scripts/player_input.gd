@@ -92,7 +92,7 @@ func _process_mouse_click(event: InputEventMouseButton) -> void:
 			_set_jump_release()
 		return # No need to continue if was release
 		
-	_init_click_pos = get_local_mouse_position()
+	_init_click_pos = target.position
 	if horizontal == 0:
 			_set_target_x_pos()
 			_check_dash_and_direction(_check_mouse_base_directions(target_x_pos), true)
@@ -104,10 +104,10 @@ func _process_mouse_click(event: InputEventMouseButton) -> void:
 
 func _process_mouse_motion(event: InputEventMouseMotion) -> void:
 	_set_target_position(event.position)
-	
 
-func _set_target_position(viewport_pos: Vector2) -> void:
-	target.global_position = _viewport_to_world(viewport_pos)
+
+func _set_target_position(event_pos: Vector2) -> void:
+	target.global_position = _event_pos_to_world(event_pos)
 
 
 func _set_jump_pressed() -> void:
@@ -130,7 +130,7 @@ func _update_click_held() -> void:
 	if !click_held || target_canceled:
 		return
 
-	_click_delta_pos = get_local_mouse_position() - _init_click_pos 
+	_click_delta_pos = target.position - _init_click_pos 
 	
 	if _click_delta_pos.length_squared()  > 2000:
 		var y = _click_delta_pos.y
@@ -139,7 +139,7 @@ func _update_click_held() -> void:
 			_set_jump_pressed()
 		#else:
 			#swipe_down
-		_reset_click(get_local_mouse_position())
+		_reset_click(target.position)
 		
 	target_x_pos = target.global_position.x #get_global_mouse_position().x
 	_notify_direction_change(_check_mouse_base_directions(target_x_pos))
@@ -149,8 +149,8 @@ func _set_target_x_pos() -> void:
 	target_x_pos = target.global_position.x
 
 
-func _viewport_to_world(pos: Vector2) -> Vector2:
-	return get_canvas_transform().affine_inverse().xform(pos)
+func _event_pos_to_world(event_pos: Vector2) -> Vector2:
+	return get_canvas_transform().affine_inverse().xform(event_pos)
 
 
 func _check_mouse_base_directions(mouse_x: float) -> int:
