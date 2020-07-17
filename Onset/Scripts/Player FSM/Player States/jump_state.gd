@@ -45,7 +45,7 @@ func _apply_air_movement(input: player_input, is_grounded: bool) -> void:
 
 
 func _jump(short_jump: bool = false) -> void:
-	movement.current_velocity.y = _min_jump_velocity if short_jump else _max_jump_velocity
+	movement.current_velocity.y += _min_jump_velocity if short_jump else _max_jump_velocity
 
 
 func _adjust_jump_velocity(vel_y: float) -> float:

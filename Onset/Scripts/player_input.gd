@@ -141,7 +141,7 @@ func _update_click_held() -> void:
 			#swipe_down
 		_reset_click(target.position)
 		
-	target_x_pos = target.global_position.x #get_global_mouse_position().x
+	target_x_pos = target.global_position.x
 	_notify_direction_change(_check_mouse_base_directions(target_x_pos))
 
 
