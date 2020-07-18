@@ -31,7 +31,7 @@ func _update(delta: float, controller: input_controller) -> void:
 
 func _process_mouse_click(event: InputEventMouseButton, controller: input_controller) -> void:
 	controller.set_target_position(event.position)
-	_check_mouse_base_directions(controller.target_x_pos, controller)
+	controller.notify_direction_change(_check_mouse_base_directions(controller.target_x_pos, controller))
 	_click_held = !_click_held
 
 	if !_click_held: # Check if mouse has been unclick or release
@@ -45,7 +45,7 @@ func _process_mouse_click(event: InputEventMouseButton, controller: input_contro
 	
 	if event.doubleclick:
 		controller.dash_pressed = true
-		_check_mouse_base_directions(controller.target_x_pos, controller)
+		controller.notify_direction_change(_check_mouse_base_directions(controller.target_x_pos, controller))
 
 
 func _process_mouse_motion(event: InputEventMouseMotion, controller: input_controller) -> void:

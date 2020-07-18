@@ -5,9 +5,9 @@ extends Node
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
 const TILE_SIZE: float = 128.0
-const JUMP_DURATION: float = 0.5
-var _max_jump_height: float = 3.5 * TILE_SIZE
-var gravity: float = 2 * _max_jump_height / pow(JUMP_DURATION, 2)
+#const JUMP_DURATION: float = 0.5
+#var _max_jump_height: float = 3.5 * TILE_SIZE
+#var gravity: float = 2 * _max_jump_height / pow(JUMP_DURATION, 2)
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
 # private variables     i.e var _b: String = "text"

@@ -8,6 +8,7 @@ class_name idle_state_so
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
 # private variables     i.e var _b: String = "text"
+var _is_coyote: bool
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 
 # optional built-in virtual _init method
@@ -17,14 +18,19 @@ class_name idle_state_so
 # private methods
 
 
+#Setup or reset values here
+func _start(controller: player_controller) -> void:
+	_is_coyote = false
+
+
 func _update(delta: float, controller: player_controller) -> void:
 	_apply_transition(controller)
-
+	
 
 func _apply_transition(controller: player_controller) -> void:
 	if controller.input.jump_pressed:
 		_end("Jump", controller)
-		#coyote_timer.stop()
+		controller.coyote_timer.stop()
 	elif !controller.is_grounded:
 		_enter_coyote_mode(controller)
 	elif controller.input.dash_pressed:
@@ -42,12 +48,12 @@ func _horizontal_transition(controller: player_controller) -> void:
 
 
 func _enter_coyote_mode(controller: player_controller) -> void:
-	_end("Fall", controller)
-#	if !is_coyote:
-#		is_coyote = true
-#
-#		if coyote_timer.is_stopped(): #Check if it's already ticking to avoid endless timer reset when changing state
-#			coyote_timer.start()
-#
-#	elif coyote_timer.is_stopped(): 
-#		_end("Fall")
+	#_end("Fall", controller)
+	if !_is_coyote:
+		_is_coyote = true
+
+		if controller.coyote_timer.is_stopped(): #Check if it's already ticking to avoid endless timer reset when changing state
+			controller.coyote_timer.start()
+
+	elif controller.coyote_timer.is_stopped(): 
+		_end("Fall", controller)
