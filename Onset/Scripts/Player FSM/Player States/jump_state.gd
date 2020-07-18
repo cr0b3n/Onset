@@ -21,7 +21,7 @@ func _start(fsm) -> void:
 	_jump(fsm.m_player_input.input_jump_release)
 
 
-func _update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:
+func _update(delta: float, body: KinematicBody2D, input: input_controller, is_grounded: bool) -> void:
 	movement.update(delta, body, input, is_grounded)
 	_apply_air_movement(input, is_grounded)
 
@@ -32,7 +32,7 @@ func _update(delta: float, body: KinematicBody2D, input: player_input, is_ground
 #	pass
 
 
-func _apply_air_movement(input: player_input, is_grounded: bool) -> void:
+func _apply_air_movement(input: input_controller, is_grounded: bool) -> void:
 
 	if input.jump_pressed:
 		emit_signal("jump_buffer_activated")

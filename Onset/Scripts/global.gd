@@ -12,7 +12,7 @@ var gravity: float = 2 * _max_jump_height / pow(JUMP_DURATION, 2)
 # public variables      i.e var a: int = 2
 # private variables     i.e var _b: String = "text"
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
-
+var has_touch = true #to be updated OS.has_touchscreen_ui_hint() onready
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods

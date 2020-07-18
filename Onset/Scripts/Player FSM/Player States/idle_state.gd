@@ -6,7 +6,7 @@ class_name idle_state
 export(NodePath) var coyote_timer_path setget set_coyote_timer_path
 
 var is_coyote: bool
-var stop_offset: float = 40.0 #IF UPDATED ALSO UPDATE MOVEMENT STATE
+#var stop_offset: float = 40.0 #IF UPDATED ALSO UPDATE MOVEMENT STATE
 var _wall_raycast: RayCast2D
 
 #CoyoteTimer is shared between Run and Idle so it's necessary to have 1 for both
@@ -40,14 +40,14 @@ func _start(fsm) -> void:
 	is_coyote = false
 
 
-func _update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:
+func _update(delta: float, body: KinematicBody2D, input: input_controller, is_grounded: bool) -> void:
 	var is_transitioning: bool = _apply_transition(input, is_grounded)
 	
 	if !is_transitioning:
 		_check_horizontal(body, input)
 
 
-func _apply_transition(input: player_input, is_grounded: bool) -> bool:
+func _apply_transition(input: input_controller, is_grounded: bool) -> bool:
 	if input.jump_pressed:
 		_end("Jump")
 		coyote_timer.stop()
@@ -62,9 +62,9 @@ func _apply_transition(input: player_input, is_grounded: bool) -> bool:
 	return false
 
 
-func _check_horizontal(body: KinematicBody2D, input: player_input) -> void:
+func _check_horizontal(body: KinematicBody2D, input: input_controller) -> void:
 
-	if (abs(input.horizontal) > 0 || !input.is_target_reached(stop_offset)) && !_has_obstacle(input): #(_is_not_on_target_position(body, input) && !input.target_canceled):
+	if (abs(input.horizontal) > 0 || !input.target_reached) && !_has_obstacle(input): #(_is_not_on_target_position(body, input) && !input.target_canceled):
 		_end("Run")
 
 
@@ -89,7 +89,7 @@ func _enter_coyote_mode() -> void:
 #
 #	return result
 
-func _has_obstacle(input: player_input) -> bool:
+func _has_obstacle(input: input_controller) -> bool:
 #	_wall_raycast.cast_to = Vector2(_wall_raycast.cast_to.x * input.x_direction, 0) 
 #	print(_wall_raycast.cast_to)
 	return _wall_raycast.is_colliding()

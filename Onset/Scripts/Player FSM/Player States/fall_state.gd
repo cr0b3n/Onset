@@ -23,7 +23,7 @@ func _ready() -> void:
 	get_parent().get_node("JumpState").connect("jump_buffer_activated", self, "_activate_jump_buffer")
 	
 
-func _update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:
+func _update(delta: float, body: KinematicBody2D, input: input_controller, is_grounded: bool) -> void:
 	movement.update(delta, body, input, is_grounded)
 	
 	if input.jump_pressed:

@@ -14,7 +14,7 @@ func _start(fsm) -> void:
 	_dash_timer = 0
 
 
-func _update(delta: float, body: KinematicBody2D, input: player_input, is_grounded: bool) -> void:
+func _update(delta: float, body: KinematicBody2D, input: input_controller, is_grounded: bool) -> void:
 
 	if _dash_dir == 0:
 		_dash_dir = input.x_direction

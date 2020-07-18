@@ -7,7 +7,7 @@
 [node name="Gameplay" type="Node2D"]
 
 [node name="Godette" parent="." instance=ExtResource( 1 )]
-position = Vector2( 257.879, 410.74 )
+position = Vector2( 0, 410.74 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )

@@ -24,7 +24,7 @@ onready var wall_ray: Node2D = $CollisionBox/WallRayCast
 func _ready() -> void:
 	#Connect to movement state signal to determine facing directions
 	#$PlayerFSM/MovementState.connect("direction_changed", self, "on_direction_changed")
-	var input: player_input = $PlayerInput
+	var input: input_controller = $PlayerInput
 	input.connect("x_direction_changed", self, "on_direction_changed")
 
 	#Connect to player state machine to apply new animation on state change

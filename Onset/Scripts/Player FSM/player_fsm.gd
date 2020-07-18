@@ -7,7 +7,7 @@ class_name player_fsm
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
 var m_player: player
-var m_player_input: player_input
+var m_player_input: input_controller
 # private variables     i.e var _b: String = "text"
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 

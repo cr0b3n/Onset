@@ -28,13 +28,19 @@ var _dash_press_count: int = 0
 var _ready_to_clear: bool = true
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 onready var target_x_pos: float = global_position.x
-onready var target: Node2D = $TargetPosition
+onready var target: Node2D#$TargetPosition
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
 # public methods
 # private methods
 
+
+func _ready() -> void:
+	target = Node2D.new()
+	add_child(target)
+	target.position = Vector2.ZERO
+	
 
 func _input(event: InputEvent) -> void:
 
@@ -53,7 +59,7 @@ func _input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton:
 		_process_mouse_click(event)
-#
+		
 	if event is InputEventMouseMotion:
 	   _process_mouse_motion(event)
 	
