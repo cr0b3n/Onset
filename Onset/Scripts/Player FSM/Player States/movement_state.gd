@@ -32,14 +32,6 @@ func update(delta: float, body: KinematicBody2D, input: input_controller, is_gro
 	_apply_movement(delta, body, input)
 
 
-func _apply_gravity(delta: float, has_multiplier: bool) -> void:
-
-	current_velocity.y += (_gravity * delta * (FALL_GRAVITY_MULTIPLIER if has_multiplier else 1.0))
-	
-	if current_velocity.y > MAX_Y_VELOCITY:
-		current_velocity.y = MAX_Y_VELOCITY
-
-
 func _apply_movement(delta: float, body: KinematicBody2D, input: input_controller) -> void:
 	
 	if input.horizontal != 0: #Keyboard base movement
@@ -51,3 +43,11 @@ func _apply_movement(delta: float, body: KinematicBody2D, input: input_controlle
 		current_velocity.x = input.x_direction * MOVE_SPEED
 
 	current_velocity = body.move_and_slide(current_velocity, FLOOR)
+
+
+func _apply_gravity(delta: float, has_multiplier: bool) -> void:
+
+	current_velocity.y += (_gravity * delta * (FALL_GRAVITY_MULTIPLIER if has_multiplier else 1.0))
+	
+	if current_velocity.y > MAX_Y_VELOCITY:
+		current_velocity.y = MAX_Y_VELOCITY

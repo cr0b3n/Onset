@@ -64,7 +64,7 @@ func _apply_transition(input: input_controller, is_grounded: bool) -> bool:
 
 func _check_horizontal(body: KinematicBody2D, input: input_controller) -> void:
 
-	if (abs(input.horizontal) > 0 || !input.target_reached) && !_has_obstacle(input): #(_is_not_on_target_position(body, input) && !input.target_canceled):
+	if (input.horizontal != 0 || !input.target_reached) && !_has_obstacle(input): #(_is_not_on_target_position(body, input) && !input.target_canceled):
 		_end("Run")
 
 

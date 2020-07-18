@@ -12,7 +12,7 @@ var _mobile_input: mobile_input_so
 
 #Always reset since values of scriptable objects are stored
 func _setup() -> void:
-	_mobile_input = load("res://Scripts/PlayerInput/MobileInput-SO.tres")
+	_mobile_input = load("res://Scripts/PlayerInput/MobileInputSO.tres")
 	target_canceled = true
 	_reset_dash()
 

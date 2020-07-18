@@ -2,6 +2,7 @@ extends Node2D
 class_name input_controller
 
 
+#NOTE: its best to use this script as a Child and at local position = Vector2.ZERO
 signal x_direction_changed(dir)
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
@@ -17,7 +18,7 @@ var target_reached = true
 var target: Node2D
 # private variables     i.e var _b: String = "text"
 var _ready_to_clear: bool = true #Boolean flag for clearing inputs
-var _current_input  #Current input used #DO NOT!!! Static Type input_so will cause error
+var _current_input #Current input used #DO NOT!!! Static Type input_so will cause error
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 onready var target_x_pos: float = global_position.x
 
@@ -35,10 +36,10 @@ func _ready() -> void:
 	target.position = Vector2.ZERO
 	#Assign appropriate controls
 	if Global.has_touch: #Mobile
-		_current_input = load("res://Scripts/PlayerInput/MobileInput-SO.tres")
+		_current_input = load("res://Scripts/PlayerInput/MobileInputSO.tres")
 	else: #Desktop
-		_current_input = load("res://Scripts/PlayerInput/DesktopInput-SO.tres")
-
+		_current_input = load("res://Scripts/PlayerInput/DesktopInputSO.tres")
+		
 	_current_input._setup()
 
 

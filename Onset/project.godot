@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "state_so",
+"class": "dash_state_so",
+"language": "GDScript",
+"path": "res://Scripts/PlayerController/dash_state_so.gd"
+}, {
 "base": "input_so",
 "class": "desktop_input_so",
 "language": "GDScript",
@@ -19,10 +24,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player FSM/Player States/extended_state.gd"
 }, {
+"base": "state_so",
+"class": "fall_state_so",
+"language": "GDScript",
+"path": "res://Scripts/PlayerController/fall_state_so.gd"
+}, {
 "base": "state",
 "class": "idle_state",
 "language": "GDScript",
 "path": "res://Scripts/Player FSM/Player States/idle_state.gd"
+}, {
+"base": "state_so",
+"class": "idle_state_so",
+"language": "GDScript",
+"path": "res://Scripts/PlayerController/idle_state_so.gd"
 }, {
 "base": "Node2D",
 "class": "input_controller",
@@ -33,6 +48,11 @@ _global_script_classes=[ {
 "class": "input_so",
 "language": "GDScript",
 "path": "res://Scripts/PlayerInput/input_so.gd"
+}, {
+"base": "state_so",
+"class": "jump_state_so",
+"language": "GDScript",
+"path": "res://Scripts/PlayerController/jump_state_so.gd"
 }, {
 "base": "input_so",
 "class": "mobile_input_so",
@@ -49,20 +69,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/player.gd"
 }, {
-"base": "AnimationTree",
-"class": "player_animation",
+"base": "KinematicBody2D",
+"class": "player_controller",
 "language": "GDScript",
-"path": "res://Scripts/player_animation.gd"
+"path": "res://Scripts/PlayerController/player_controller.gd"
 }, {
 "base": "state_machine",
 "class": "player_fsm",
 "language": "GDScript",
 "path": "res://Scripts/Player FSM/player_fsm.gd"
 }, {
-"base": "Node2D",
-"class": "player_input",
+"base": "idle_state_so",
+"class": "run_state_so",
 "language": "GDScript",
-"path": "res://Scripts/player_input.gd"
+"path": "res://Scripts/PlayerController/run_state_so.gd"
 }, {
 "base": "Node",
 "class": "state",
@@ -73,21 +93,31 @@ _global_script_classes=[ {
 "class": "state_machine",
 "language": "GDScript",
 "path": "res://Scripts/Player FSM/state_machine.gd"
+}, {
+"base": "Resource",
+"class": "state_so",
+"language": "GDScript",
+"path": "res://Scripts/PlayerController/state_so.gd"
 } ]
 _global_script_class_icons={
+"dash_state_so": "",
 "desktop_input_so": "",
 "extended_state": "",
+"fall_state_so": "",
 "idle_state": "",
+"idle_state_so": "",
 "input_controller": "",
 "input_so": "",
+"jump_state_so": "",
 "mobile_input_so": "",
 "movement_state": "",
 "player": "",
-"player_animation": "",
+"player_controller": "",
 "player_fsm": "",
-"player_input": "",
+"run_state_so": "",
 "state": "",
-"state_machine": ""
+"state_machine": "",
+"state_so": ""
 }
 
 [application]
