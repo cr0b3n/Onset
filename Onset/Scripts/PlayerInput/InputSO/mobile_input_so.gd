@@ -16,7 +16,7 @@ func _setup() -> void:
 	_click_held = false
 
 
-func _check_inputs(event: InputEvent, controller: input_controller) -> void:
+func _check_inputs(event, controller) -> void:
 	if event is InputEventMouseButton:
 		_process_mouse_click(event, controller)
 		
@@ -24,12 +24,12 @@ func _check_inputs(event: InputEvent, controller: input_controller) -> void:
 	   _process_mouse_motion(event, controller)
 
 
-func _update(delta: float, controller: input_controller) -> void:
+func _update(delta, controller) -> void:
 	_update_click_held(controller)
 	_set_target_rearched(controller)
 
 
-func _process_mouse_click(event: InputEventMouseButton, controller: input_controller) -> void:
+func _process_mouse_click(event, controller) -> void:
 	controller.set_target_position(event.position)
 	controller.notify_direction_change(_check_mouse_base_directions(controller.target_x_pos, controller))
 	_click_held = !_click_held
@@ -48,7 +48,7 @@ func _process_mouse_click(event: InputEventMouseButton, controller: input_contro
 		controller.notify_direction_change(_check_mouse_base_directions(controller.target_x_pos, controller))
 
 
-func _process_mouse_motion(event: InputEventMouseMotion, controller: input_controller) -> void:
+func _process_mouse_motion(event, controller) -> void:
 	controller.set_target_position(event.position)
 	_click_held_pos = event.position #added for updated swipe
 	
@@ -58,7 +58,7 @@ func _reset_click(reset_pos: Vector2 = Vector2.ZERO) -> void:
 	_click_held_pos = reset_pos
 
 
-func _update_click_held(controller: input_controller) -> void:
+func _update_click_held(controller) -> void:
 	
 	if !_click_held:
 		return
@@ -76,8 +76,8 @@ func _update_click_held(controller: input_controller) -> void:
 	controller.notify_direction_change(_check_mouse_base_directions(controller.target_x_pos, controller))
 
 
-#mouse_x also identify as target_x_pos
-func _check_mouse_base_directions(mouse_x: float, controller: input_controller) -> int:
+#mouse_x also identify as target_x_pos #Mouse_x: float
+func _check_mouse_base_directions(mouse_x, controller) -> int:
 	if controller.global_position.x > mouse_x:
 		return -1 #_notify_direction_change(-1)
 	elif controller.global_position.x < mouse_x:
@@ -86,11 +86,11 @@ func _check_mouse_base_directions(mouse_x: float, controller: input_controller) 
 	return controller.x_direction
 
 
-func _set_target_rearched(controller: input_controller) -> void:
+func _set_target_rearched(controller) -> void:
 	controller.target_reached = _is_target_reached(controller)
 
 
-func _is_target_reached(controller: input_controller) -> bool:
+func _is_target_reached(controller) -> bool:
 	return (controller.x_direction < 0 && controller.target_x_pos >= controller.global_position.x - TARGET_STOP_DISTANCE) || \
 		(controller.x_direction > 0 && controller.target_x_pos <= controller.global_position.x + TARGET_STOP_DISTANCE)# || \
 		#target_canceled) #&& !click_held

@@ -18,7 +18,7 @@ var target_reached = true
 var target: Node2D
 # private variables     i.e var _b: String = "text"
 var _ready_to_clear: bool = true #Boolean flag for clearing inputs
-var _current_input #Current input used #DO NOT!!! Static Type input_so will cause error
+var _current_input#Current input used #DO NOT!!! Static Type input_so will cause error
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 onready var target_x_pos: float = global_position.x
 
@@ -30,16 +30,19 @@ onready var target_x_pos: float = global_position.x
 
 
 func _ready() -> void:
+	target = $Target
 	#Create a Node2D that will act as a cursor for both desktop & and mobile
-	target = Node2D.new()
-	add_child(target)
-	target.position = Vector2.ZERO
+#	target = Node2D.new()
+#	add_child(target)
+#	target.position = Vector2.ZERO
 	#Assign appropriate controls
 	if Global.has_touch: #Mobile
-		_current_input = load("res://Scripts/PlayerInput/MobileInputSO.tres")
+		#_current_input = load("res://Scripts/PlayerInput/InputSO/MobileInputSO.tres")
+		_current_input = input_mobile.new()
 	else: #Desktop
-		_current_input = load("res://Scripts/PlayerInput/DesktopInputSO.tres")
-		
+		#_current_input = load("res://Scripts/PlayerInput/InputSO/DesktopInputSO.tres")
+		_current_input = input_desktop.new()
+
 	_current_input._setup()
 
 
@@ -96,4 +99,3 @@ func _clear_inputs() -> void:
 
 func _event_pos_to_world(event_pos: Vector2) -> Vector2:
 	return get_canvas_transform().affine_inverse().xform(event_pos)
-

@@ -26,14 +26,22 @@ func _ready() -> void:
 	device_data += str("\n Viewport Size: ", get_viewport().size)
 	device_data += str("\n Real Window Size: ", OS.get_real_window_size())
 	device_data += str("\n Safe Window Size: ", OS.get_window_safe_area())
+	device_data += str("\n Total Restart: ", Global.restart_count)
 	$Control/VBoxContainer/LblOSData.text = device_data
 	lbl_game_data = $Control/VBoxContainer/LblGameData
+
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		is_paused = !is_paused
 		get_tree().paused = is_paused
+	
+	if Input.is_key_pressed(KEY_R):
+		if Global.restart_count >= 500:
+			return
+		Global.restart_count +=1
+		get_tree().reload_current_scene()
 
 
 func _physics_process(delta: float) -> void:

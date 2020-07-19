@@ -1197,6 +1197,8 @@ enabled = true
 cast_to = Vector2( 0, 3 )
 collision_mask = 2
 
+[node name="Target" type="Node2D" parent="CollisionBoxAndInput"]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -300 )
 current = true

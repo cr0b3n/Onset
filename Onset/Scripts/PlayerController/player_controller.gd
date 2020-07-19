@@ -37,11 +37,18 @@ onready var input: input_controller = $CollisionBoxAndInput
 
 func _ready() -> void:
 	#Load and add states to _states dictionary
-	_states["Idle"] = load("res://Scripts/PlayerController/StateSO/IdleStateSO.tres")
-	_states["Run"] = load("res://Scripts/PlayerController/StateSO/RunStateSO.tres")
-	_states["Jump"] = load("res://Scripts/PlayerController/StateSO/JumpStateSO.tres")
-	_states["Fall"] = load("res://Scripts/PlayerController/StateSO/FallStateSO.tres")
-	_states["Dash"] = load("res://Scripts/PlayerController/StateSO/DashStateSO.tres")
+#	_states["Idle"] = load("res://Scripts/PlayerController/StateSO/IdleStateSO.tres")
+#	_states["Run"] = load("res://Scripts/PlayerController/StateSO/RunStateSO.tres")
+#	_states["Jump"] = load("res://Scripts/PlayerController/StateSO/JumpStateSO.tres")
+#	_states["Fall"] = load("res://Scripts/PlayerController/StateSO/FallStateSO.tres")
+#	_states["Dash"] = load("res://Scripts/PlayerController/StateSO/DashStateSO.tres")
+
+	_states["Idle"] = state_idle.new()
+	_states["Run"] = state_run.new()
+	_states["Jump"] = state_jump.new()
+	_states["Fall"] = state_fall.new()
+	_states["Dash"] = state_dash.new()
+	
 	#Setup ground raycasts 
 	ground_raycasts.append($CollisionBoxAndInput/LeftRayCast)
 	ground_raycasts.append($CollisionBoxAndInput/RightRayCast)

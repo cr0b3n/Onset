@@ -1,5 +1,5 @@
-extends input_so
-class_name desktop_input_so
+extends input
+class_name input_desktop
 
 
 const DOUBLE_PRESS_TIME: float = 0.2
@@ -7,17 +7,18 @@ const DOUBLE_PRESS_TIME: float = 0.2
 var target_canceled: bool
 var _dash_pressed_time: float
 var _dash_press_count: int
-var _mobile_input: mobile_input_so
+var _mobile_input
 
 
 #Always reset since values of scriptable objects are stored
 func _setup() -> void:
-	_mobile_input = load("res://Scripts/PlayerInput/MobileInputSO.tres")
+	#_mobile_input = load("res://Scripts/PlayerInput/MobileInputSO.tres")
+	_mobile_input = input_mobile.new()
 	target_canceled = true
 	_reset_dash()
 
 
-func _check_inputs(event: InputEvent, controller: input_controller) -> void:
+func _check_inputs(event, controller) -> void:
 	
 	if event.is_action_pressed("c_jump"):
 		controller.set_jump_pressed()
@@ -43,7 +44,7 @@ func _check_inputs(event: InputEvent, controller: input_controller) -> void:
 	   _mobile_input._process_mouse_motion(event, controller)
 
 
-func _update(delta: float, controller: input_controller) -> void:
+func _update(delta, controller) -> void:
 	_process_x_inputs(controller)
 	_update_dash_timer(delta)
 	
@@ -53,7 +54,7 @@ func _update(delta: float, controller: input_controller) -> void:
 	controller.target_reached = (_mobile_input._is_target_reached(controller) || target_canceled)
 
 
-func _process_x_inputs(controller: input_controller) -> void:
+func _process_x_inputs(controller) -> void:
 	controller.horizontal = (Input.get_action_strength("c_right") - Input.get_action_strength("c_left"))
 	controller.horizontal = clamp(controller.horizontal, -1.0, 1.0)
 
@@ -70,7 +71,8 @@ func _update_dash_timer(delta: float) -> void:
 		_dash_press_count = 0
 
 
-func _check_dash_and_direction(dir: int, controller: input_controller) -> void:
+#dir: int
+func _check_dash_and_direction(dir, controller) -> void:
 	
 	if controller.x_direction != dir:
 		_dash_press_count = 1

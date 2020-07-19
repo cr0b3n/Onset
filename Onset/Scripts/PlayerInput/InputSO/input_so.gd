@@ -15,5 +15,3 @@ func _check_inputs(event: InputEvent, controller: input_controller) -> void:
 #Preferable called on _process & _physics process
 func _update(delta: float, controller: input_controller) -> void:
 	pass
-
-

@@ -17,7 +17,8 @@ class_name run_state_so
 
 
 func _update(delta: float, controller: player_controller) -> void:
-	controller.apply_gravity_and_movement(delta)
+	#controller.apply_gravity_and_movement(delta)
+	controller.apply_movement()
 	._update(delta, controller)
 
 
