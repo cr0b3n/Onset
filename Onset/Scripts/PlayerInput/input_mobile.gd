@@ -1,5 +1,5 @@
-extends input
-class_name input_mobile
+class_name InputMobile
+extends CrobenInput
 
 
 const SWIPE_DISTANCE: float = 25.0#10000.0

@@ -1,5 +1,5 @@
+class_name InputController
 extends Node2D
-class_name input_controller
 
 
 #NOTE: its best to use this script as a Child and at local position = Vector2.ZERO
@@ -41,10 +41,10 @@ func _ready() -> void:
 	#Assign appropriate controls
 	if Global.has_touch: #Mobile
 		#_current_input = load("res://Scripts/PlayerInput/InputSO/MobileInputSO.tres")
-		_current_input = input_mobile.new()
+		_current_input = InputMobile.new()
 	else: #Desktop
 		#_current_input = load("res://Scripts/PlayerInput/InputSO/DesktopInputSO.tres")
-		_current_input = input_desktop.new()
+		_current_input = InputDesktop.new()
 
 	_current_input._setup()
 

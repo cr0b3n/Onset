@@ -1,5 +1,5 @@
-extends state
-class_name state_fall
+class_name StateFall
+extends State
 
 
 #Setup or reset values here

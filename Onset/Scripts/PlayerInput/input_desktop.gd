@@ -1,5 +1,5 @@
-extends input
-class_name input_desktop
+class_name InputDesktop
+extends CrobenInput
 
 
 var target_canceled: bool
@@ -9,7 +9,7 @@ var _mobile_input
 #Always reset since values of scriptable objects are stored
 func _setup() -> void:
 	#_mobile_input = load("res://Scripts/PlayerInput/MobileInputSO.tres")
-	_mobile_input = input_mobile.new()
+	_mobile_input = InputMobile.new()
 	_mobile_input._setup()
 	target_canceled = true
 	#_reset_dash()

@@ -1,5 +1,6 @@
+class_name PlayerController
 extends KinematicBody2D
-class_name player_controller
+
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
@@ -28,7 +29,7 @@ onready var jump_buffer_timer: Timer = $JumpBufferTimer
 onready var graphic: Node2D = $Graphic
 onready var ground_raycasts: Array #$CollisionBoxAndInput.get_children() DO NOT USE Since a Node2D is created by Input
 onready var obstacle_raycast: RayCast2D = $CollisionBoxAndInput/ObstacleRayCast
-onready var input: input_controller = $CollisionBoxAndInput
+onready var input: InputController = $CollisionBoxAndInput
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
@@ -44,11 +45,11 @@ func _ready() -> void:
 #	_states["Fall"] = load("res://Scripts/PlayerController/StateSO/FallStateSO.tres")
 #	_states["Dash"] = load("res://Scripts/PlayerController/StateSO/DashStateSO.tres")
 
-	_states["Idle"] = state_idle.new()
-	_states["Run"] = state_run.new()
-	_states["Jump"] = state_jump.new()
-	_states["Fall"] = state_fall.new()
-	_states["Dash"] = state_dash.new()
+	_states["Idle"] = StateIdle.new()
+	_states["Run"] = StateRun.new()
+	_states["Jump"] = StateJump.new()
+	_states["Fall"] = StateFall.new()
+	_states["Dash"] = StateDash.new()
 	
 	#Setup ground raycasts 
 	ground_raycasts.append($CollisionBoxAndInput/LeftRayCast)

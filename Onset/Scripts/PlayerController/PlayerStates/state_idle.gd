@@ -1,5 +1,5 @@
-extends state
-class_name state_idle
+class_name StateIdle
+extends State
 
 
 var _is_coyote: bool

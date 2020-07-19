@@ -1,4 +1,4 @@
-class_name state
+class_name State
 
 
 #Static Typing doesn't work well in Godot as of ver. 3.2.2

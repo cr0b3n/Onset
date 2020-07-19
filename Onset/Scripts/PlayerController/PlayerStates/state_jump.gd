@@ -1,5 +1,6 @@
-extends state
-class_name state_jump
+class_name StateJump
+extends State
+
 
 #controller param refers to player_controller
 #Since Static typing can sometimes lead to errors in godot ver 3.2.2

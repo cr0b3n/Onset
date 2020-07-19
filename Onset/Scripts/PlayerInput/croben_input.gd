@@ -1,4 +1,4 @@
-class_name input
+class_name CrobenInput
 
 #Always reset since values of scriptable objects are stored
 func _setup() -> void:

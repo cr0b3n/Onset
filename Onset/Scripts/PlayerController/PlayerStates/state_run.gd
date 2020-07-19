@@ -1,5 +1,5 @@
-extends state_idle
-class_name state_run
+class_name StateRun
+extends StateIdle
 
 
 #controller param refers to player_controller

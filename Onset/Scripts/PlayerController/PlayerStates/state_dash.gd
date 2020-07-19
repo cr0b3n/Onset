@@ -1,5 +1,5 @@
-extends state
-class_name state_dash
+class_name StateDash
+extends State
 
 
 const DASH_TIME: float = 0.2
