@@ -14,6 +14,7 @@ var _dash_dir: int
 func _start(controller) -> void:
 	_dash_timer = 0
 	_dash_dir = controller.input.x_direction
+	controller.is_uninteruptible = true
 
 
 #Called per _physics_process
@@ -28,6 +29,13 @@ func _update(delta, controller) -> void:
 		_end("Fall", controller)
 	elif _dash_timer > DASH_TIME:
 		_end("Idle", controller)
+
+
+#Transitioning part here
+func _end(key, controller) -> void:
+	controller.is_uninteruptible = false
+	controller.on_direction_changed(controller.input.x_direction)
+	._end(key, controller)
 
 
 #Transitioning part here

@@ -2,11 +2,7 @@ extends input
 class_name input_desktop
 
 
-const DOUBLE_PRESS_TIME: float = 0.2
-
 var target_canceled: bool
-var _dash_pressed_time: float
-var _dash_press_count: int
 var _mobile_input
 
 
@@ -14,8 +10,9 @@ var _mobile_input
 func _setup() -> void:
 	#_mobile_input = load("res://Scripts/PlayerInput/MobileInputSO.tres")
 	_mobile_input = input_mobile.new()
+	_mobile_input._setup()
 	target_canceled = true
-	_reset_dash()
+	#_reset_dash()
 
 
 func _check_inputs(event, controller) -> void:
@@ -27,11 +24,11 @@ func _check_inputs(event, controller) -> void:
 		
 	if event.is_action_pressed("c_right"):
 		target_canceled = true
-		_check_dash_and_direction(1, controller)
+		controller.check_dash_and_direction(1)
 		
 	if event.is_action_pressed("c_left"):
 		target_canceled = true
-		_check_dash_and_direction(-1, controller)
+		controller.check_dash_and_direction(-1)
 	
 	if controller.horizontal != 0:
 		return
@@ -39,14 +36,14 @@ func _check_inputs(event, controller) -> void:
 	if event is InputEventMouseButton:
 		target_canceled = false
 		_mobile_input._process_mouse_click(event, controller)
-		
+
 	if event is InputEventMouseMotion:
 	   _mobile_input._process_mouse_motion(event, controller)
 
 
 func _update(delta, controller) -> void:
 	_process_x_inputs(controller)
-	_update_dash_timer(delta)
+	controller.update_dash_timer(delta)
 	
 	if !target_canceled: #Only update when mouse is used
 		_mobile_input._update_click_held(controller)
@@ -59,34 +56,34 @@ func _process_x_inputs(controller) -> void:
 	controller.horizontal = clamp(controller.horizontal, -1.0, 1.0)
 
 
-func _update_dash_timer(delta: float) -> void:
-	
-	if _dash_press_count == 0: #No need to update timer if no new press
-		return
-
-	_dash_pressed_time += delta
-
-	if _dash_pressed_time > DOUBLE_PRESS_TIME:
-		_dash_pressed_time = 0
-		_dash_press_count = 0
-
-
-#dir: int
-func _check_dash_and_direction(dir, controller) -> void:
-	
-	if controller.x_direction != dir:
-		_dash_press_count = 1
-		controller.notify_direction_change(dir)
-	else:
-		_dash_press_count +=1
-		
-		if _dash_press_count > 1:
-			controller.dash_pressed = true
-			_dash_press_count = 0
-			
-	_dash_pressed_time = 0.0
+#func _update_dash_timer(delta: float) -> void:
+#
+#	if _dash_press_count == 0: #No need to update timer if no new press
+#		return
+#
+#	_dash_pressed_time += delta
+#
+#	if _dash_pressed_time > DOUBLE_PRESS_TIME:
+#		_dash_pressed_time = 0
+#		_dash_press_count = 0
 
 
-func _reset_dash() -> void:
-	_dash_pressed_time = 0.0
-	_dash_press_count = 0
+##dir: int
+#func _check_dash_and_direction(dir, controller) -> void:
+#
+#	if controller.x_direction != dir:
+#		_dash_press_count = 1
+#		controller.notify_direction_change(dir)
+#	else:
+#		_dash_press_count +=1
+#
+#		if _dash_press_count > 1:
+#			controller.dash_pressed = true
+#			_dash_press_count = 0
+#
+#	_dash_pressed_time = 0.0
+
+
+#func _reset_dash() -> void:
+#	_dash_pressed_time = 0.0
+#	_dash_press_count = 0

@@ -7,12 +7,13 @@ class_name player_controller
 const MOVE_SPEED: float = 5.0 * Global.TILE_SIZE
 const FLOOR: Vector2 = Vector2.UP
 const MAX_Y_VELOCITY: float = 3000.0
-const FALL_GRAVITY_MULTIPLIER: float = 1.7
+const FALL_GRAVITY_MULTIPLIER: float = 1.5
 #const JUMP_DURATION: float = 0.5
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
 var current_velocity: Vector2 = Vector2.ZERO
 var is_grounded: bool = false
+var is_uninteruptible: bool = false
 #Jump variables
 var max_jump_velocity: float
 var min_jump_velocity: float
@@ -58,7 +59,7 @@ func _ready() -> void:
 	_anim_state = anim_tree.get("parameters/playback")
 	set_new_state("Idle")
 	#Connect to movement state signal to determine facing directions
-	input.connect("x_direction_changed", self, "_on_direction_changed")	
+	input.connect("x_direction_changed", self, "on_direction_changed")	
 	#Setup jumping velocity and gravity
 	var min_jump_height: float = 1.5 * Global.TILE_SIZE
 	var max_jump_height: float = 3.5 * Global.TILE_SIZE 
@@ -120,14 +121,18 @@ func has_obstacle() -> bool:
 	return obstacle_raycast.is_colliding()
 
 
+func on_direction_changed(direction: float) -> void:
+	
+	if is_uninteruptible:
+		return
+	
+	graphic.scale.x = direction
+	obstacle_raycast.scale.x = direction
+
+
 func _is_on_ground() -> bool:
 	for r in ground_raycasts:
 #		if r.has_method("is_colliding"):
 		if  r.is_colliding():
 			return true
 	return false
-
-
-func _on_direction_changed(direction: float) -> void:
-	graphic.scale.x = direction
-	obstacle_raycast.scale.x = direction

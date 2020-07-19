@@ -6,6 +6,7 @@ class_name input_controller
 signal x_direction_changed(dir)
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
+const DOUBLE_PRESS_TIME: float = 0.33
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
 var jump_pressed: bool
@@ -14,11 +15,13 @@ var input_jump_release: bool = true
 var dash_pressed: bool
 var horizontal: float
 var x_direction: int = 1
-var target_reached = true
+var target_reached: bool = true
 var target: Node2D
 # private variables     i.e var _b: String = "text"
 var _ready_to_clear: bool = true #Boolean flag for clearing inputs
 var _current_input#Current input used #DO NOT!!! Static Type input_so will cause error
+var _dash_pressed_time: float = 0.0
+var _dash_press_count: int = 0
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 onready var target_x_pos: float = global_position.x
 
@@ -84,6 +87,33 @@ func notify_direction_change(new_dir: int) -> void:
 
 	x_direction = new_dir
 	emit_signal("x_direction_changed", x_direction)
+
+
+func update_dash_timer(delta: float) -> void:
+	
+	if _dash_press_count == 0: #No need to update timer if no new press
+		return
+	
+	_dash_pressed_time += delta
+
+	if _dash_pressed_time > DOUBLE_PRESS_TIME:
+		_dash_pressed_time = 0
+		_dash_press_count = 0
+
+
+func check_dash_and_direction(dir: int) -> void:
+	
+	if x_direction != dir:
+		_dash_press_count = 1
+		notify_direction_change(dir)
+	else:
+		_dash_press_count +=1
+		
+		if _dash_press_count > 1:
+			dash_pressed = true
+			_dash_press_count = 0
+			
+	_dash_pressed_time = 0.0
 
 
 func _clear_inputs() -> void:

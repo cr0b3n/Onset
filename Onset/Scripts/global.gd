@@ -12,7 +12,7 @@ const TILE_SIZE: float = 128.0
 # public variables      i.e var a: int = 2
 # private variables     i.e var _b: String = "text"
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
-var has_touch: bool = false #to be updated OS.has_touchscreen_ui_hint() onready
+var has_touch: bool = OS.has_touchscreen_ui_hint()
 var restart_count: int  = 0
 # optional built-in virtual _init method
 # built-in virtual _ready method
