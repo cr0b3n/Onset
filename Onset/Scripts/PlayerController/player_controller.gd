@@ -60,7 +60,7 @@ func _ready() -> void:
 	_anim_state = anim_tree.get("parameters/playback")
 	set_new_state("Idle")
 	#Connect to movement state signal to determine facing directions
-	input.connect("x_direction_changed", self, "on_direction_changed")	
+	input.connect("x_direction_changed", self, "on_direction_changed")
 	#Setup jumping velocity and gravity
 	var min_jump_height: float = 1.5 * Global.TILE_SIZE
 	var max_jump_height: float = 3.5 * Global.TILE_SIZE 
