@@ -20,6 +20,10 @@ var _inactive_border: Node2D
 
 func _ready() -> void:
 
+	var spawner: Spawner = $Spawner
+	spawner.player = $Godette
+	spawner.spawn_platform()
+
 	for i in range(10):
 		yield(get_tree(), "idle_frame")
 
@@ -44,7 +48,7 @@ func _ready() -> void:
 
 
 func _on_player_advanced() -> void:
-	_inactive_border.position.y = _active_border.position.y - BORDER_LENGHT
+	_inactive_border.global_position.y = _active_border.global_position.y - BORDER_LENGHT
 
 
 func _on_active_border_changed(border: Node2D, is_active: bool) -> void:
@@ -55,5 +59,5 @@ func _on_active_border_changed(border: Node2D, is_active: bool) -> void:
 	else:
 		_active_border = _inactive_border
 		_inactive_border = border
-		_active_border.position.y = _inactive_border.position.y + BORDER_LENGHT
+		_active_border.global_position.y = _inactive_border.global_position.y + BORDER_LENGHT
 		

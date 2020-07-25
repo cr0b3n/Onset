@@ -1,5 +1,5 @@
 class_name Border
-extends KinematicBody2D
+extends Node2D
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
 signal player_advanced
@@ -20,7 +20,7 @@ signal border_activated(border, is_active)
 
 func _on_player_exited(body: PlayerController) -> void:
 	
-	if body.position.y < $Area2D.global_position.y: #going up
+	if body.global_position.y < $Area2D.global_position.y: #going up
 		emit_signal("player_advanced")
 	else: #going down
 		emit_signal("border_activated", self, false)
@@ -29,5 +29,5 @@ func _on_player_exited(body: PlayerController) -> void:
 
 func _on_player_entered(body: PlayerController) -> void:
 
-	if body.position.y > $Area2D.global_position.y:
+	if body.global_position.y > $Area2D.global_position.y:
 		emit_signal("border_activated", self, true)
