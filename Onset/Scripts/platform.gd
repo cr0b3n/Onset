@@ -1,9 +1,7 @@
-class_name Border
+class_name Platform
 extends Node2D
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
-signal player_advanced
-signal border_activated(border, is_active)
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
@@ -18,22 +16,12 @@ signal border_activated(border, is_active)
 # private methods
 
 
-func _on_player_exited(body: PlayerController) -> void:
-	
-	if body == null:
-		return
-	
-	if body.global_position.y < $Area2D.global_position.y: #going up
-		emit_signal("player_advanced")
-	else: #going down
-		emit_signal("border_activated", self, false)
-	#print("player exited")
 
-
-func _on_player_entered(body: PlayerController) -> void:
-	
-	if body == null:
-		return
-	
-	if body.global_position.y > $Area2D.global_position.y:
-		emit_signal("border_activated", self, true)
+#func set_x_position(num_gen: RandomNumberGenerator) -> void:
+#
+#	var num: int = num_gen.randi_range(-3,3)
+#
+#	if num % 2 == 0:
+#		num += 1 if num_gen.randfn() > 0.5 else -1
+#
+#	global_position.x = 64 * num
