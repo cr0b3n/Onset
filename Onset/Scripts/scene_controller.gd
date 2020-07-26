@@ -19,10 +19,10 @@ var _inactive_border: Node2D
 
 
 func _ready() -> void:
-
-	var spawner: Spawner = $Spawner
-	spawner.player = $Godette
-	spawner.spawn_platform()
+	$Spawner.player = $Godette
+#	var spawner: Spawner = $Spawner
+#	spawner.player = $Godette
+	#spawner.spawn_platform()
 
 	for i in range(10):
 		yield(get_tree(), "idle_frame")

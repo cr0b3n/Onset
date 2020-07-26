@@ -18,6 +18,7 @@ var is_uninteruptible: bool = false
 #Jump variables
 var max_jump_velocity: float
 var min_jump_velocity: float
+#var was_off_platform: bool = false
 # private variables     i.e var _b: String = "text"
 var _states: = {}
 var _cur_state #DO NOT Static Type state_so
@@ -27,7 +28,8 @@ var _anim_state #AnimationNodeStateMachine asigned on _ready cannot by static ty
 onready var coyote_timer: Timer = $CoyoteTimer
 onready var jump_buffer_timer: Timer = $JumpBufferTimer
 onready var graphic: Node2D = $Graphic
-onready var ground_raycasts: Array #$CollisionBoxAndInput.get_children() DO NOT USE Since a Node2D is created by Input
+onready var ground_raycasts: Array = [$CollisionBoxAndInput/LeftRayCast,
+	$CollisionBoxAndInput/RightRayCast]
 onready var obstacle_raycast: RayCast2D = $CollisionBoxAndInput/ObstacleRayCast
 onready var input: InputController = $CollisionBoxAndInput
 # optional built-in virtual _init method
@@ -38,22 +40,12 @@ onready var input: InputController = $CollisionBoxAndInput
 
 
 func _ready() -> void:
-	#Load and add states to _states dictionary
-#	_states["Idle"] = load("res://Scripts/PlayerController/StateSO/IdleStateSO.tres")
-#	_states["Run"] = load("res://Scripts/PlayerController/StateSO/RunStateSO.tres")
-#	_states["Jump"] = load("res://Scripts/PlayerController/StateSO/JumpStateSO.tres")
-#	_states["Fall"] = load("res://Scripts/PlayerController/StateSO/FallStateSO.tres")
-#	_states["Dash"] = load("res://Scripts/PlayerController/StateSO/DashStateSO.tres")
-
 	_states["Idle"] = StateIdle.new()
 	_states["Run"] = StateRun.new()
 	_states["Jump"] = StateJump.new()
 	_states["Fall"] = StateFall.new()
 	_states["Dash"] = StateDash.new()
-	
-	#Setup ground raycasts 
-	ground_raycasts.append($CollisionBoxAndInput/LeftRayCast)
-	ground_raycasts.append($CollisionBoxAndInput/RightRayCast)
+
 	#Set up Animation
 	var anim_tree: AnimationTree = $AnimationTree
 	anim_tree.active = true #Activate animation tree then asign AnimationNodeStateMachine to anim_state
@@ -132,8 +124,12 @@ func on_direction_changed(direction: float) -> void:
 
 
 func _is_on_ground() -> bool:
+
+#	for i in ground_raycasts.size():
+#		if ground_raycasts[i].is_colliding():
+#			return true
+	
 	for r in ground_raycasts:
-#		if r.has_method("is_colliding"):
 		if  r.is_colliding():
 			return true
 	return false

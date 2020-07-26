@@ -3,8 +3,8 @@ extends State
 
 
 #Setup or reset values here
-#func _start(controller: player_controller) -> void:
-#	pass
+#func _start(controller) -> void:
+#	controller.was_off_platform = true
 
 
 #Called per _physics_process
@@ -16,6 +16,9 @@ func _update(delta, controller) -> void:
 		controller.jump_buffer_timer.start()
 		
 	if controller.is_grounded && controller.is_on_floor(): 
+
+		get_platform(controller)
+		
 		if !controller.jump_buffer_timer.is_stopped():
 			_end("Jump", controller)
 		else:
@@ -25,3 +28,14 @@ func _update(delta, controller) -> void:
 #Transitioning part here
 #func _end(key: String, controller: player_controller) -> void:
 #	controller.set_new_state(key)
+
+
+func get_platform(controller) -> void:
+	for r in controller.ground_raycasts:
+		if  r.is_colliding():
+			
+			var platform = r.get_collider()
+			
+			if platform is Platform:
+				platform.get_points()
+		return
