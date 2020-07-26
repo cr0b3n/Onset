@@ -35,7 +35,7 @@ func spawn_platform() -> void:
 	while !_is_far_enough():
 		var index: int = _num_gen.randi_range(0, Platforms.size() -1)
 		
-		var platform: Platform =  Platforms[index].instance()
+		var platform: Platform = Platforms[index].instance()
 		platform.global_position = Vector2(_get_x_position(index + 1), global_position.y)
 		platform.height_bonus = _height
 		platform.set_as_toplevel(true)
@@ -57,14 +57,14 @@ func _on_Timer_timeout() -> void:
 func _get_x_position(pos_range: int) -> float:
 	
 	if pos_range == 2:
-		return 128.0 * _num_gen.randi_range(-2,2)
+		return 128.0 * _num_gen.randi_range(1,5) # _num_gen.randi_range(-2,2)
 		
 	var num: int
 	
 	if (pos_range ==1):
-		num = _num_gen.randi_range(-5,5)
+		num = _num_gen.randi_range(1,11) # _num_gen.randi_range(-5,5)
 	else:	
-		num = _num_gen.randi_range(-3,3)
+		num = _num_gen.randi_range(3,9) # _num_gen.randi_range(-3,3)
 	
 	if num % 2 == 0:
 		num += 1 if _num_gen.randfn() > 0.5 else -1

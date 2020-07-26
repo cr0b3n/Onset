@@ -9,6 +9,7 @@
 [ext_resource path="res://Scripts/spawner.gd" type="Script" id=7]
 
 [node name="Gameplay" type="Node2D"]
+position = Vector2( 384, 0 )
 script = ExtResource( 5 )
 
 [node name="Godette" parent="." instance=ExtResource( 1 )]
