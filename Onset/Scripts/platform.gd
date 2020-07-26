@@ -7,7 +7,7 @@ extends Node2D
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 export(int, 50, 500) var points = 50
 # public variables      i.e var a: int = 2
-var height_bonus: int
+var height_bonus: int = 2
 # private variables     i.e var _b: String = "text"
 var _is_active: bool = true
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer

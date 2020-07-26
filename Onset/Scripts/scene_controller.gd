@@ -21,12 +21,12 @@ var _inactive_border: Node2D
 func _ready() -> void:
 	
 	var player: Node2D = $Godette
+	var spawner: Spawner = $Spawner
 	
-	$Spawner.player = player
 	$Spike.player = player
-#	var spawner: Spawner = $Spawner
-#	spawner.player = $Godette
-	#spawner.spawn_platform()
+	spawner.player = player
+	
+	$InitialPlatform.global_position.x = spawner._get_x_position(3)
 
 	for i in range(10):
 		yield(get_tree(), "idle_frame")
@@ -41,14 +41,6 @@ func _ready() -> void:
 	
 	_active_border = border2
 	_inactive_border = border1
-
-
-#func _process(delta: float) -> void:
-#   pass
-
-
-#func _physics_process(delta: float) -> void:
-#	pass
 
 
 func _on_player_advanced() -> void:

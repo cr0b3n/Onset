@@ -46,7 +46,7 @@ func _on_Spike_body_entered(body: Node) -> void:
 
 func _on_Spike_body_exited(body: Node) -> void:
 	
-	if body is Platform:
+	if !body is PlayerController:
 		body.queue_free()
 
 
