@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Prefabs/Godette.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/spike.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/game_control.gd" type="Script" id=3]
 [ext_resource path="res://Prefabs/Borders.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/scene_controller.gd" type="Script" id=5]
 [ext_resource path="res://Art/Tiles/Center-Fill.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/spawner.gd" type="Script" id=7]
 [ext_resource path="res://Prefabs/3x1Platform.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scripts/spike.gd" type="Script" id=9]
 [ext_resource path="res://Art/Tiles/Top-Center-Fill.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -19,6 +19,9 @@ extents = Vector2( 384, 24 )
 [node name="Gameplay" type="Node2D"]
 position = Vector2( 384, -640 )
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Godette" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, 410.74 )
@@ -36,6 +39,45 @@ texture = ExtResource( 6 )
 [node name="Timer" type="Timer" parent="Spawner"]
 wait_time = 0.2
 autostart = true
+
+[node name="Borders" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 2560 )
+
+[node name="Borders2" parent="." instance=ExtResource( 4 )]
+
+[node name="Spike" type="Area2D" parent="."]
+position = Vector2( 0, 896 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Spike"]
+self_modulate = Color( 0.776471, 0.184314, 0.184314, 1 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 768, 128 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike"]
+shape = SubResource( 1 )
+
+[node name="InitialPlatform" parent="." instance=ExtResource( 8 )]
+position = Vector2( -192.063, 320 )
+
+[node name="InitialGround" type="StaticBody2D" parent="."]
+position = Vector2( 0, 576 )
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InitialGround"]
+position = Vector2( 0, -29 )
+z_index = 5
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="Sprite" type="Sprite" parent="InitialGround"]
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 768, 128 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -76,45 +118,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Borders" parent="." instance=ExtResource( 4 )]
-position = Vector2( 0, 2560 )
-
-[node name="Borders2" parent="." instance=ExtResource( 4 )]
-
-[node name="Spike" type="Area2D" parent="."]
-position = Vector2( 0, 896 )
-script = ExtResource( 9 )
-
-[node name="Sprite" type="Sprite" parent="Spike"]
-self_modulate = Color( 0.776471, 0.184314, 0.184314, 1 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 768, 128 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike"]
-shape = SubResource( 1 )
-
-[node name="InitialPlatform" parent="." instance=ExtResource( 8 )]
-position = Vector2( -192.063, 320 )
-
-[node name="InitialGround" type="StaticBody2D" parent="."]
-position = Vector2( 0, 576 )
-collision_layer = 2
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InitialGround"]
-position = Vector2( 0, -29 )
-z_index = 5
-shape = SubResource( 2 )
-one_way_collision = true
-
-[node name="Sprite" type="Sprite" parent="InitialGround"]
-texture = ExtResource( 10 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 768, 128 )
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Spike" to="Spike" method="_on_Spike_body_entered"]
 [connection signal="body_exited" from="Spike" to="Spike" method="_on_Spike_body_exited"]

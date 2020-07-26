@@ -34,13 +34,13 @@ func spawn_platform() -> void:
 		
 	while !_is_far_enough():
 		var index: int = _num_gen.randi_range(0, 1)
-		
+
 		var platform: Platform = Platforms[index].instance()
 		platform.global_position = Vector2(_get_x_position(index + 1), global_position.y)
 		platform.height_bonus = _height
 		platform.set_as_toplevel(true)
 		add_child(platform)
-		
+
 		_height = _num_gen.randi_range(2, 3)
 		global_position.y -= (TILE_SIZE * _height)
 

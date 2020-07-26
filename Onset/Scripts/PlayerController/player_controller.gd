@@ -56,7 +56,7 @@ func _ready() -> void:
 	input.connect("x_direction_changed", self, "on_direction_changed")
 	#Setup jumping velocity and gravity
 	var min_jump_height: float = 1.5 * Global.TILE_SIZE
-	var max_jump_height: float = 3.5 * Global.TILE_SIZE 
+	var max_jump_height: float = 3.8 * Global.TILE_SIZE 
 	_gravity = 2 * max_jump_height / pow(0.5, 2) #0.5 is JUMP_DURATION
 	max_jump_velocity = -sqrt( 2 * _gravity * max_jump_height)
 	min_jump_velocity = -sqrt( 2 * _gravity * min_jump_height)

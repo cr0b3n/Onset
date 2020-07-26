@@ -3,7 +3,7 @@ extends Node2D
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
-const CATCH_UP_GAP: float = 600.0
+const CATCH_UP_GAP: float = 630.0
 const LEVEL_UP_GAP: float = 2000.0
 var speed: float = 40.0
 var player: Node2D
@@ -45,7 +45,7 @@ func _on_Spike_body_entered(body: Node) -> void:
 
 
 func _on_Spike_body_exited(body: Node) -> void:
-	
+
 	if !body is PlayerController:
 		body.queue_free()
 

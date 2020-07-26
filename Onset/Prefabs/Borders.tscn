@@ -12,6 +12,9 @@ extents = Vector2( 360, 200 )
 [node name="Borders" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="LeftBorderCollider" type="CollisionShape2D" parent="."]
 position = Vector2( -448, 0 )
