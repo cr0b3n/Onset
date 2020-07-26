@@ -16,6 +16,7 @@ var current_velocity: Vector2 = Vector2.ZERO
 var is_grounded: bool = false
 var is_uninteruptible: bool = false
 #Jump variables
+var jump_x_pos: float
 var max_jump_velocity: float
 var min_jump_velocity: float
 #var was_off_platform: bool = false

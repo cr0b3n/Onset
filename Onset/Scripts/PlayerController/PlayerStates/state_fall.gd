@@ -37,5 +37,5 @@ func get_platform(controller) -> void:
 			var platform = r.get_collider()
 			
 			if platform is Platform:
-				platform.get_points()
+				platform.get_points(controller.jump_x_pos, controller.global_position.x)
 		return

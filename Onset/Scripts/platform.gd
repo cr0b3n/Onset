@@ -20,11 +20,16 @@ var _is_active: bool = true
 
 
 
-func get_points() -> void:
+func get_points(jump_pos: float, land_pos: float) -> void:
 	
 	if !_is_active:
 		return
-	
+
+	var jump_bonus: int = float(Vector2(jump_pos, 0).distance_to(Vector2(land_pos, 0)) / 200) + 1
+
+	if jump_bonus > 1:
+		print("Risky bonus: x", jump_bonus)
+		
+	print("score: ", height_bonus * jump_bonus * points)
 	_is_active = false
-	#print("adding points: ", points * height_bonus)
 
