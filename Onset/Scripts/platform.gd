@@ -31,6 +31,6 @@ func get_points(jump_pos: float, land_pos: float) -> void:
 	if jump_bonus > 1:
 		print("Risky bonus: x", jump_bonus)
 
-	print("score: ", height_bonus * jump_bonus * points)
+	#print("score: ", height_bonus * jump_bonus * points)
 	_is_active = false
 

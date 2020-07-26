@@ -19,7 +19,11 @@ var _inactive_border: Node2D
 
 
 func _ready() -> void:
-	$Spawner.player = $Godette
+	
+	var player: Node2D = $Godette
+	
+	$Spawner.player = player
+	$Spike.player = player
 #	var spawner: Spawner = $Spawner
 #	spawner.player = $Godette
 	#spawner.spawn_platform()

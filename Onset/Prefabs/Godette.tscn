@@ -1077,14 +1077,14 @@ __meta__ = {
 }
 
 [node name="Body" type="Sprite" parent="Graphic"]
-position = Vector2( 0, 4 )
-rotation = 0.139626
+position = Vector2( 0, 0.8 )
+rotation = 0.0349066
 z_index = 1
 texture = ExtResource( 11 )
 
 [node name="Neck" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 0.334076, -36.143 )
-rotation = 0.261799
+rotation = 0.0261799
 z_index = -1
 texture = ExtResource( 3 )
 
@@ -1095,66 +1095,65 @@ texture = ExtResource( 26 )
 
 [node name="Arm-Right-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 12.4483, -23.8104 )
-rotation = -0.00318151
+rotation = -0.10472
 z_index = -1
 texture = ExtResource( 6 )
 offset = Vector2( -0.618535, 14.4798 )
 
 [node name="Hand-Right" type="Sprite" parent="Graphic/Body/Arm-Right-Up"]
 position = Vector2( 1.60196, 31.5883 )
-rotation = -1.5708
+rotation = 0.026359
 texture = ExtResource( 4 )
 offset = Vector2( 8.66032, 17.8287 )
 
 [node name="Arm-Left-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( -13.4558, -24.5019 )
-rotation = 0.463938
+rotation = 0.10472
 z_index = 5
 texture = ExtResource( 13 )
 offset = Vector2( -2.49409, 14.849 )
 
 [node name="Hand-Left" type="Sprite" parent="Graphic/Body/Arm-Left-Up"]
 position = Vector2( -4.03992, 31.4232 )
-rotation = -1.09923
+rotation = -0.218166
 z_index = 6
 texture = ExtResource( 1 )
 offset = Vector2( 1.28168, 18.2164 )
 
 [node name="Leg-Right-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 5.6, 22 )
-rotation = -0.619222
+rotation = -0.244346
 z_index = 1
 texture = ExtResource( 16 )
 offset = Vector2( 0.00240326, 19.4748 )
 
 [node name="Leg-Right-Bot" type="Sprite" parent="Graphic/Body/Leg-Right-Up"]
 position = Vector2( -0.6, 40.983 )
-rotation = 0.537404
+rotation = 0.200713
 texture = ExtResource( 7 )
 offset = Vector2( -1.24331, 17.484 )
 
 [node name="Foot-Right" type="Sprite" parent="Graphic/Body/Leg-Right-Up/Leg-Right-Bot"]
 position = Vector2( -5.9778, 35.8566 )
-rotation = -0.0412112
 texture = ExtResource( 9 )
 offset = Vector2( 8.19844, -0.834656 )
 
 [node name="Leg-Left-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( -6.3, 22 )
-rotation = 0.0134683
+rotation = 0.00523599
 z_index = 4
 texture = ExtResource( 14 )
 offset = Vector2( 0.00240326, 19.4748 )
 
 [node name="Leg-Left-Bot" type="Sprite" parent="Graphic/Body/Leg-Left-Up"]
 position = Vector2( -0.6, 40.983 )
-rotation = 0.706822
+rotation = 0.0959931
 texture = ExtResource( 2 )
 offset = Vector2( -1.24331, 17.484 )
 
 [node name="Foot-Left" type="Sprite" parent="Graphic/Body/Leg-Left-Up/Leg-Left-Bot"]
 position = Vector2( -5.9778, 35.8566 )
-rotation = 0.242597
+rotation = -0.124227
 texture = ExtResource( 9 )
 offset = Vector2( 8.19844, -0.834656 )
 

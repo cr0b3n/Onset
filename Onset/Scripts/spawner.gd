@@ -33,7 +33,7 @@ func _ready() -> void:
 func spawn_platform() -> void:
 		
 	while !_is_far_enough():
-		var index: int = _num_gen.randi_range(0, Platforms.size() -1)
+		var index: int = _num_gen.randi_range(0, 1)
 		
 		var platform: Platform = Platforms[index].instance()
 		platform.global_position = Vector2(_get_x_position(index + 1), global_position.y)

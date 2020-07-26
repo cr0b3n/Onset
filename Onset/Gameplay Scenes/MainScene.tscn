@@ -13,7 +13,7 @@
 extents = Vector2( 360, 64 )
 
 [node name="Gameplay" type="Node2D"]
-position = Vector2( 384, 0 )
+position = Vector2( 384, -640 )
 script = ExtResource( 5 )
 
 [node name="Godette" parent="." instance=ExtResource( 1 )]
@@ -88,7 +88,7 @@ position = Vector2( 0, 2560 )
 [node name="Borders2" parent="." instance=ExtResource( 4 )]
 
 [node name="Spike" type="Area2D" parent="."]
-position = Vector2( 0, 640 )
+position = Vector2( 0, 896 )
 script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Spike"]
