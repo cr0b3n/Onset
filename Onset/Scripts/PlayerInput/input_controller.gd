@@ -49,7 +49,7 @@ func _ready() -> void:
 	_current_input._setup()
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	_current_input._check_inputs(event, self)
 	
 

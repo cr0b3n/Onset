@@ -11,8 +11,9 @@ const LEVEL_TEXT: String = "Level: %s"
 # private variables     i.e var _b: String = "text"
 
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
-onready var score_label: Label = $HOD2/Margin/HBoxContainer/VBoxContainer/ScoreLabel
-onready var level_label: Label = $HOD2/Margin/HBoxContainer/VBoxContainer/LevelLabel
+onready var score_label: Label = $HUD/HBoxContainer/VBoxContainer/ScoreLabel
+onready var level_label: Label = $HUD/HBoxContainer/VBoxContainer/LevelLabel
+
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
@@ -26,14 +27,41 @@ func _ready() -> void:
 
 func update_score(score: String) -> void:
 	
-	#if score.length() > 3:
+	#if score.length() > 3: #Remove check since for the most part it's 4 digits
+	#Loop backwards starting at the last 3 digits add comma then repeat every 3rd step
 	for i in range(score.length()-3, -1, -3):
-		if i > 0:
+		if i > 0: #Avoid inserting at the beginning
 			score = score.insert(i, ",")
 
 	score_label.text = SCORE_TEXT %score
 
 
-
 func update_level(level: int) -> void:
 	level_label.text = LEVEL_TEXT %level
+
+
+func game_over() -> void:
+	$Menu/VBoxContainer/MenuLabel.text = "Game Over!"
+	_show_menu_guis(true)
+	
+
+func _on_MenuButton_pressed() -> void:
+	_show_menu_guis(true)
+
+
+func _on_Close_pressed() -> void:
+	_show_menu_guis(false)
+
+
+func _on_Restart_pressed() -> void:
+	#To be changed and handle by scene controller for transitions
+	get_tree().reload_current_scene()
+
+
+func _on_Home_pressed() -> void:
+	print("moving home")
+	
+
+func _show_menu_guis(has_menu: bool) -> void:
+	$HUD/HBoxContainer/MenuButton.visible = !has_menu
+	$Menu.visible = has_menu

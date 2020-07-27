@@ -12,7 +12,7 @@ var _cur_level: int = 1
 var _active_border: Node2D
 var _inactive_border: Node2D
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
-onready var gui: GUIController = $CanvasLayer/GUI
+onready var gui: GUIController = $GUI
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
@@ -27,6 +27,8 @@ func _ready() -> void:
 	
 	player.connect("score_added", self, "_on_score_added")
 	spike.connect("level_changed", self, "_on_level_changed")
+	spike.connect("player_died", self, "_on_player_death")
+	
 	spike.player = player
 	$Spawner.player = player
 
@@ -68,3 +70,7 @@ func _on_score_added(score: int) -> void:
 func _on_level_changed(level: int) -> void:
 	_cur_level+= level
 	gui.update_level(_cur_level)
+
+
+func _on_player_death() -> void:
+	gui.game_over()

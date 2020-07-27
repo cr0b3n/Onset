@@ -33,9 +33,9 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		is_paused = !is_paused
-		get_tree().paused = is_paused
+#	if event.is_action_pressed("ui_cancel"):
+#		is_paused = !is_paused
+#		get_tree().paused = is_paused
 	
 	if Input.is_key_pressed(KEY_R):
 		if Global.restart_count >= 500:

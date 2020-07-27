@@ -3,6 +3,7 @@ extends Node2D
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
 signal level_changed(level)
+signal player_died
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
 const CATCH_UP_GAP: float = 630.0
@@ -44,7 +45,9 @@ func _physics_process(delta: float) -> void:
 func _on_Spike_body_entered(body: Node) -> void:
 	
 	if body is PlayerController:
-		print("Player Died!!!")
+		#call body.change_state
+		set_physics_process(false)
+		emit_signal("player_died")
 
 
 func _on_Spike_body_exited(body: Node) -> void:
