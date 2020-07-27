@@ -7,10 +7,12 @@ const BORDER_LENGHT: float = 2560.0
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
 # private variables     i.e var _b: String = "text"
+var _cur_score: int = 0
+var _cur_level: int = 1
 var _active_border: Node2D
 var _inactive_border: Node2D
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
-
+onready var gui: GUIController = $CanvasLayer/GUI
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
@@ -20,15 +22,15 @@ var _inactive_border: Node2D
 
 func _ready() -> void:
 	
-	var player: Node2D = $Godette
-	var spawner: Spawner = $Spawner
+	var player: PlayerController = $Godette
+	var spike: Spike = $Spike
 	
-	$Spike.player = player
-	spawner.player = player
-	
-	$InitialPlatform.global_position.x = spawner._get_x_position(3)
+	player.connect("score_added", self, "_on_score_added")
+	spike.connect("level_changed", self, "_on_level_changed")
+	spike.player = player
+	$Spawner.player = player
 
-	for i in range(10):
+	for i in range(10): #Use coroutine to avoid detecting when the scene finished loading
 		yield(get_tree(), "idle_frame")
 
 	var border1: Border = $Borders
@@ -57,3 +59,12 @@ func _on_active_border_changed(border: Node2D, is_active: bool) -> void:
 		_inactive_border = border
 		_active_border.global_position.y = _inactive_border.global_position.y + BORDER_LENGHT
 		
+
+func _on_score_added(score: int) -> void:
+	_cur_score+= score
+	gui.update_score(str(_cur_score))
+
+
+func _on_level_changed(level: int) -> void:
+	_cur_level+= level
+	gui.update_level(_cur_level)

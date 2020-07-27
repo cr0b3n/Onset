@@ -1,6 +1,8 @@
+class_name Spike
 extends Node2D
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
+signal level_changed(level)
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
 const CATCH_UP_GAP: float = 630.0
@@ -8,7 +10,7 @@ const LEVEL_UP_GAP: float = 2000.0
 var speed: float = 40.0
 var player: Node2D
 var is_respositioning: bool = false
-var cur_level: int = 1
+#var cur_level: int = 1
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
 # private variables     i.e var _b: String = "text"
@@ -30,8 +32,9 @@ func _physics_process(delta: float) -> void:
 	elif _has_level_up():
 		is_respositioning = true
 		speed+= 5
-		cur_level+= 1
-		print("cur_level: ", cur_level)
+		#cur_level+= 1
+		emit_signal("level_changed", 1)
+		#print("cur_level: ", cur_level)
 		return
 	
 	global_position.y -= (speed * delta)

@@ -20,7 +20,7 @@ var _is_active: bool = true
 
 
 
-func get_points(jump_pos: float, land_pos: float) -> void:
+func get_points(jump_pos: float, land_pos: float, player) -> void:
 	
 	if !_is_active:
 		return
@@ -30,7 +30,8 @@ func get_points(jump_pos: float, land_pos: float) -> void:
 
 	if jump_bonus > 1:
 		print("Risky bonus: x", jump_bonus)
-
+	
+	player.add_score(height_bonus * jump_bonus * points)
 	#print("score: ", height_bonus * jump_bonus * points)
 	_is_active = false
 

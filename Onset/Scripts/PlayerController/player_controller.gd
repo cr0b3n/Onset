@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
+signal score_added(score)
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
 const MOVE_SPEED: float = 5.0 * Global.TILE_SIZE
@@ -122,6 +123,10 @@ func on_direction_changed(direction: float) -> void:
 	
 	graphic.scale.x = direction
 	obstacle_raycast.scale.x = direction
+
+
+func add_score(score: int) -> void:
+	emit_signal("score_added", score)
 
 
 func _is_on_ground() -> bool:

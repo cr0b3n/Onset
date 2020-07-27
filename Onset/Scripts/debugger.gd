@@ -27,8 +27,8 @@ func _ready() -> void:
 	device_data += str("\n Real Window Size: ", OS.get_real_window_size())
 	device_data += str("\n Safe Window Size: ", OS.get_window_safe_area())
 	device_data += str("\n Total Restart: ", Global.restart_count)
-	$Control/VBoxContainer/LblOSData.text = device_data
-	lbl_game_data = $Control/VBoxContainer/LblGameData
+	$VBoxContainer/LblOSData.text = device_data
+	lbl_game_data = $VBoxContainer/LblGameData
 
 
 
