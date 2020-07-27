@@ -1,6 +1,5 @@
 extends Node
 
-
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
@@ -13,6 +12,7 @@ const TILE_SIZE: float = 128.0
 # private variables     i.e var _b: String = "text"
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 var has_touch: bool = OS.has_touchscreen_ui_hint()
+var top_score: int = 0
 var restart_count: int  = 0
 # optional built-in virtual _init method
 # built-in virtual _ready method
@@ -25,12 +25,36 @@ var restart_count: int  = 0
 #use call_deferred("_deferred_goto_scene", path) to transition to next scenes
 
 func _ready() -> void:
-	pass
+	print("singleton reloaded")
+#	var s = ResourceLoader.load("res://Gameplay Scenes/MenuScene.tscn").instance()
+#	add_child(s)
+
+func submit_score(score: int) -> bool:
+	
+	if score > top_score:
+		top_score = score
+		return true
+		
+	return false
 
 
-#func _process(delta: float) -> void:
-#   pass
+func change_scene(scene: int) -> void:
+	#Play transitions by yield
+	call_deferred("_load_scene", scene)
 
 
-#func _physics_process(delta: float) -> void:
-#	pass
+func _load_scene(scene: int) -> void: 
+	
+	if scene == 1:
+		get_tree().change_scene("res://Gameplay Scenes/MainScene.tscn")
+	else:
+		get_tree().change_scene("res://Gameplay Scenes/MenuScene.tscn")
+
+
+func restart_scene() -> void:
+	#Play transitions by yield
+	call_deferred("_restart_deferred")
+
+
+func _restart_deferred() -> void:
+	get_tree().reload_current_scene()

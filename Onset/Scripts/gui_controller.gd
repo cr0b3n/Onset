@@ -54,12 +54,11 @@ func _on_Close_pressed() -> void:
 
 
 func _on_Restart_pressed() -> void:
-	#To be changed and handle by scene controller for transitions
-	get_tree().reload_current_scene()
+	Global.restart_scene()	
 
 
 func _on_Home_pressed() -> void:
-	print("moving home")
+	Global.change_scene(0)
 	
 
 func _show_menu_guis(has_menu: bool) -> void:
