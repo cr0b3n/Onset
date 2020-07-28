@@ -18,7 +18,7 @@ var _trigger: Control
 
 
 func open(btn: Control, title: String = "Menu") -> void:
-	$VBoxContainer/MenuLabel.text = title
+	$VBoxContainer/Panel/MenuLabel.text = title
 	_trigger = btn
 	btn.visible = false
 

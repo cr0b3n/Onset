@@ -9,7 +9,7 @@ const LEVEL_TEXT: String = "Level: %s"
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
 # private variables     i.e var _b: String = "text"
-
+var _game_over: bool = false
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 onready var score_label: Label = $HUD/HBoxContainer/VBoxContainer/ScoreLabel
 onready var level_label: Label = $HUD/HBoxContainer/VBoxContainer/LevelLabel
@@ -42,6 +42,7 @@ func update_level(level: int) -> void:
 
 
 func game_over() -> void:
+	_game_over = true
 	var btn: Control = $HUD/HBoxContainer/MenuButton
 	
 	if btn.visible: #Check if the menu is not open
@@ -55,7 +56,8 @@ func game_over() -> void:
 
 
 func _on_MenuButton_pressed() -> void:
-	_create_menu().open($HUD/HBoxContainer/MenuButton)
+	_create_menu().open($HUD/HBoxContainer/MenuButton,
+		"Game Over!" if _game_over else "Menu")
 
 
 func _create_menu() -> MenuController:

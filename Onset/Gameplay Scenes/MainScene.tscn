@@ -180,10 +180,10 @@ autowrap = true
 clip_text = true
 
 [node name="MenuButton" type="TextureButton" parent="GUI/HUD/HBoxContainer"]
-margin_left = 399.0
-margin_top = 6.0
-margin_right = 449.0
-margin_bottom = 56.0
+margin_left = 400.0
+margin_top = 7.0
+margin_right = 450.0
+margin_bottom = 57.0
 rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -191,6 +191,7 @@ texture_normal = ExtResource( 14 )
 expand = true
 script = ExtResource( 12 )
 max_scale = 1.1
+pressed_color = Color( 0.831373, 0.639216, 0.313726, 1 )
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Spike" to="Spike" method="_on_Spike_body_entered"]
 [connection signal="body_exited" from="Spike" to="Spike" method="_on_Spike_body_exited"]
