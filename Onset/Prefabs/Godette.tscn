@@ -1212,8 +1212,6 @@ limit_right = 803
 smoothing_speed = 25.0
 drag_margin_top = 0.5
 drag_margin_bottom = 0.1
-editor_draw_limits = true
-editor_draw_drag_margin = true
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.08

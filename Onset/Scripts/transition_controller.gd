@@ -9,8 +9,8 @@ signal transition_completed
 # public variables      i.e var a: int = 2
 # private variables     i.e var _b: String = "text"
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
-onready var _transition: TextureProgress = $Transition
-onready var _tween: Tween = $Tween
+#onready var _transition: TextureProgress = $Transition
+#onready var tween: Tween = $Tween
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
@@ -19,6 +19,9 @@ onready var _tween: Tween = $Tween
 
 
 func play_transition() -> void:
+	
+	var _transition: TextureProgress = $Transition
+	var tween: Tween = $Tween
 	#Always set initial value to current transition value
 	var initial_val: float = _transition.value
 	var final_val: float  #Identified base on the current transition value
@@ -31,12 +34,12 @@ func play_transition() -> void:
 		final_val = _transition.min_value
 		_transition.fill_mode = _transition.FILL_TOP_TO_BOTTOM
 	
-	_tween.interpolate_property(_transition, "value", initial_val, final_val,\
-								0.5, Tween.TRANS_CIRC, Tween.EASE_OUT)
-	_tween.start()
+	tween.interpolate_property(_transition,"value", initial_val, final_val,
+								0.35, Tween.TRANS_CIRC, Tween.EASE_OUT)
+	tween.start()
 	
 	#Wait for tween to complete
-	yield(_tween, "tween_all_completed")
+	yield(tween, "tween_all_completed")
 	
 	#Make sure we don't under/over shoot when the animation complete
 	_transition.value = final_val
@@ -44,4 +47,4 @@ func play_transition() -> void:
 
 
 func enable_transition(enable: bool) -> void:
-	_transition.visible = enable
+	$Transition.visible = enable

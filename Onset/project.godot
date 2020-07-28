@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/PlayerInput/input_mobile.gd"
 }, {
+"base": "Node",
+"class": "MenuController",
+"language": "GDScript",
+"path": "res://Scripts/menu_controller.gd"
+}, {
 "base": "Node2D",
 "class": "Platform",
 "language": "GDScript",
@@ -101,6 +106,7 @@ _global_script_class_icons={
 "InputController": "",
 "InputDesktop": "",
 "InputMobile": "",
+"MenuController": "",
 "Platform": "",
 "PlayerController": "",
 "Spawner": "",

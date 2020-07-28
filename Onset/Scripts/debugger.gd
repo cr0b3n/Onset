@@ -41,7 +41,7 @@ func _input(event: InputEvent) -> void:
 		if Global.restart_count >= 500:
 			return
 		Global.restart_count +=1
-		get_tree().reload_current_scene()
+		Global.restart_scene()
 
 
 func _physics_process(delta: float) -> void:

@@ -20,9 +20,10 @@ onready var level_label: Label = $HUD/HBoxContainer/VBoxContainer/LevelLabel
 # public methods
 # private methods
 
-
-func _ready() -> void:
-	pass
+#
+#func _ready() -> void:
+#	print(get_child_count())
+#	print(get_child(get_child_count()-1).name)
 
 
 func update_score(score: String) -> void:
@@ -41,26 +42,23 @@ func update_level(level: int) -> void:
 
 
 func game_over() -> void:
-	$Menu/VBoxContainer/MenuLabel.text = "Game Over!"
-	_show_menu_guis(true)
+	var btn: Control = $HUD/HBoxContainer/MenuButton
 	
+	if btn.visible: #Check if the menu is not open
+		_create_menu().open(btn, "Game Over!")
+		return
+	#If the menu is open the get the menu 
+	var menu: MenuController = get_child(get_child_count()-1)
+	
+	if menu:
+		menu.open(btn, "Game Over!")
+
 
 func _on_MenuButton_pressed() -> void:
-	_show_menu_guis(true)
+	_create_menu().open($HUD/HBoxContainer/MenuButton)
 
 
-func _on_Close_pressed() -> void:
-	_show_menu_guis(false)
-
-
-func _on_Restart_pressed() -> void:
-	Global.restart_scene()	
-
-
-func _on_Home_pressed() -> void:
-	Global.change_scene(0)
-	
-
-func _show_menu_guis(has_menu: bool) -> void:
-	$HUD/HBoxContainer/MenuButton.visible = !has_menu
-	$Menu.visible = has_menu
+func _create_menu() -> MenuController:
+	var menu: MenuController = ResourceLoader.load("res://Prefabs/Menu.tscn").instance()
+	add_child(menu)
+	return menu

@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/croben_button.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/TitanOne13.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Art/UI-Art/homeicon.png" type="Texture" id=3]
+[ext_resource path="res://Art/UI-Art/button.png" type="Texture" id=4]
+
+[node name="MenuButton" type="TextureButton"]
+self_modulate = Color( 0.32549, 0.560784, 0.956863, 1 )
+margin_left = 140.0
+margin_top = 43.0
+margin_right = 240.0
+margin_bottom = 93.0
+rect_min_size = Vector2( 100, 50 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+max_scale = 1.1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 90.0
+margin_bottom = 42.0
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_left = 36.0
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 2 )
+text = "Home"
+align = 1
+valign = 1
+clip_text = true

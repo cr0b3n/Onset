@@ -74,4 +74,5 @@ func _on_level_changed(level: int) -> void:
 
 
 func _on_player_death() -> void:
+	Global.submit_score(_cur_score)
 	gui.game_over()

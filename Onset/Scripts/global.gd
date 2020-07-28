@@ -27,7 +27,6 @@ var _transition: TransitionController
 #use call_deferred("_deferred_goto_scene", path) to transition to next scenes
 
 func _ready() -> void:
-	#print("singleton reloaded")
 	_transition = ResourceLoader.load("res://Prefabs/Transition.tscn").instance()
 	add_child(_transition)
 	
@@ -36,8 +35,8 @@ func submit_score(score: int) -> bool:
 	
 	if score > top_score:
 		top_score = score
+		print("new top score: ", top_score)
 		return true
-		
 	return false
 
 
@@ -55,7 +54,6 @@ func change_scene(scene: int) -> void:
 
 
 func _load_scene(scene: int) -> void: 
-	
 	if scene == 1:
 		get_tree().change_scene("res://Gameplay Scenes/MainScene.tscn")
 	else:
