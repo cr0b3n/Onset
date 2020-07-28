@@ -45,6 +45,7 @@ func _ready() -> void:
 	
 	_active_border = border2
 	_inactive_border = border1
+	Global.scene_loaded()
 
 
 func _on_player_advanced() -> void:

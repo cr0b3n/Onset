@@ -16,7 +16,7 @@ extends Node
 
 
 func _ready() -> void:
-	pass
+	Global.scene_loaded()
 
 
 #func _process(delta: float) -> void:

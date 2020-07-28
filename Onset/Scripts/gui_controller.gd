@@ -29,9 +29,9 @@ func update_score(score: String) -> void:
 	
 	#if score.length() > 3: #Remove check since for the most part it's 4 digits
 	#Loop backwards starting at the last 3 digits add comma then repeat every 3rd step
-	for i in range(score.length()-3, -1, -3):
-		if i > 0: #Avoid inserting at the beginning
-			score = score.insert(i, ",")
+	for i in range(score.length()-3, 0, -3):#Use 0 instead of -1 to remove if check
+		#if i > 0: #Avoid inserting at the beginning
+		score = score.insert(i, ",")
 
 	score_label.text = SCORE_TEXT %score
 
