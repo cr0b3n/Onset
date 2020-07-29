@@ -57,6 +57,7 @@ func show_dash_effect(controller) -> void:
 	if !controller.is_grounded:
 		return
 	
-	Global.get_dash_effect(controller.obstacle_raycast.global_position).scale.x = controller.graphic.scale.x
+	Global.show_dash_effect(controller.obstacle_raycast.global_position,
+		 controller.graphic.scale.x)
 
 

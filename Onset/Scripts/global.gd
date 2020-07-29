@@ -4,6 +4,7 @@ extends Node
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
 const TILE_SIZE: float = 128.0
+const Text_Effect: PackedScene = preload("res://Prefabs/TextEffect.tscn")
 #const JUMP_DURATION: float = 0.5
 #var _max_jump_height: float = 3.5 * TILE_SIZE
 #var gravity: float = 2 * _max_jump_height / pow(JUMP_DURATION, 2)
@@ -17,6 +18,7 @@ var _transition: TransitionController
 var _step_effects: Array = []
 var _dash_effects: Array = []
 var _jump_effects: Array = []
+#var _text_effects: Array = []
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 
 # optional built-in virtual _init method
@@ -34,11 +36,13 @@ func _ready() -> void:
 	add_child(_transition)
 
 	for i in range(2):
-		get_jump_effect(Vector2(1, 1000))
+		show_jump_effect(Vector2(1, 1000))
 	for i in range(2):
-		get_step_effect(Vector2(1, 1000))
+		_get_effect(Vector2(1, 1000), _step_effects, 1)
 	for	i in range(5):
-		get_dash_effect(Vector2(1, 1000))
+		_get_effect(Vector2(1, 1000), _dash_effects, 2)
+#	for	i in range(2):
+#		_spawn_new_text_effect(Vector2(1, 1000)).visible = false
 
 
 func submit_score(score: int) -> bool:
@@ -50,16 +54,42 @@ func submit_score(score: int) -> bool:
 	return false
 
 
-func get_jump_effect(pos: Vector2) -> CPUParticles2D:
-	return _get_effect(pos, _jump_effects, 0)
+func show_text_effect(pos: Vector2, text: String, color: Color) -> void:
+	
+	var effect: TextEffect = Text_Effect.instance()
+	effect.global_position = pos
+	effect.set_as_toplevel(true)
+	add_child(effect)
+	effect.setup(text, color)
+#	for e in _text_effects:
+#		if !e.visible:
+#			e.global_position = pos
+#			e.visible = true
+#			e.show_effect(text, color)
+#			return
+#
+#	_spawn_new_text_effect(pos).show_effect(text, color)
 
 
-func get_step_effect(pos: Vector2) -> CPUParticles2D:
-	return _get_effect(pos, _step_effects, 1)
+#func _spawn_new_text_effect(pos: Vector2) -> TextEffect:
+#	var effect: TextEffect = load("res://Prefabs/TextEffect.tscn").instance()
+#	effect.global_position = pos
+#	effect.set_as_toplevel(true)
+#	add_child(effect)
+#	_text_effects.append(effect)
+#	return effect
 
 
-func get_dash_effect(pos: Vector2) -> CPUParticles2D:
-	return _get_effect(pos, _dash_effects, 2)
+func show_jump_effect(pos: Vector2) -> void:
+	_get_effect(pos, _jump_effects, 0)
+
+
+func show_step_effect(pos: Vector2, dir: int) -> void:
+	_get_effect(pos, _step_effects, 1).scale.x = dir
+
+
+func show_dash_effect(pos: Vector2, dir: int) -> void:
+	_get_effect(pos, _dash_effects, 2).scale.x = dir
 
 
 func _get_effect(pos: Vector2, effects: Array, e_type: int) -> CPUParticles2D:

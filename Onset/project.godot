@@ -99,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/PlayerController/PlayerStates/state_run.gd"
 }, {
+"base": "Node2D",
+"class": "TextEffect",
+"language": "GDScript",
+"path": "res://Scripts/text_effect.gd"
+}, {
 "base": "Node",
 "class": "TransitionController",
 "language": "GDScript",
@@ -123,6 +128,7 @@ _global_script_class_icons={
 "StateIdle": "",
 "StateJump": "",
 "StateRun": "",
+"TextEffect": "",
 "TransitionController": ""
 }
 

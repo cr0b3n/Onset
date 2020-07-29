@@ -62,5 +62,5 @@ func show_jump_effect(controller) -> void:
 	if !controller.is_grounded:
 		return
 	
-	Global.get_jump_effect(controller.obstacle_raycast.global_position)
+	Global.show_jump_effect(controller.obstacle_raycast.global_position)
 

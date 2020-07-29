@@ -2369,7 +2369,8 @@
        id="path2464" />
   </g>
   <g
-     style="display:inline;opacity:0"
+     sodipodi:insensitive="true"
+     style="display:none;opacity:0"
      inkscape:label="catcher"
      id="layer4"
      inkscape:groupmode="layer">
@@ -2385,7 +2386,7 @@
        style="opacity:1;fill:#000000;stroke:none;stroke-width:0.307032;stroke-linecap:round;stroke-linejoin:round" />
   </g>
   <g
-     style="opacity:0.7"
+     style="display:none;opacity:0.7"
      sodipodi:insensitive="true"
      inkscape:label="smoke"
      id="layer3"

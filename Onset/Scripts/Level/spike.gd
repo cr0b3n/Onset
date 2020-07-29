@@ -35,7 +35,10 @@ func _physics_process(delta: float) -> void:
 		speed+= 5
 		#cur_level+= 1
 		emit_signal("level_changed", 1)
-		#print("cur_level: ", cur_level)
+		Global.show_text_effect(
+			Vector2(player.global_position.x, player.global_position.y - 120),
+			"Level Up!",
+			Color("16de25"))
 		return
 	
 	global_position.y -= (speed * delta)

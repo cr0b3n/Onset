@@ -136,7 +136,7 @@ func foot_step() -> void:
 	if !is_grounded:
 		return
 	
-	Global.get_step_effect(obstacle_raycast.global_position).scale.x = graphic.scale.x
+	Global.show_step_effect(obstacle_raycast.global_position, graphic.scale.x)
 
 
 func _is_on_ground() -> bool:

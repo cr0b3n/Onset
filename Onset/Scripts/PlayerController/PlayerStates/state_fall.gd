@@ -22,7 +22,7 @@ func _update(delta, controller) -> void:
 		if !controller.jump_buffer_timer.is_stopped():
 			_end("Jump", controller)
 		else:
-			Global.get_jump_effect(controller.obstacle_raycast.global_position)
+			Global.show_jump_effect(controller.obstacle_raycast.global_position)
 			_end("Idle", controller)
 
 
@@ -31,12 +31,28 @@ func _update(delta, controller) -> void:
 #	controller.set_new_state(key)
 
 
-func get_platform(controller) -> void:
+func get_platform(controller) -> bool:
 	for r in controller.ground_raycasts:
+		
+#		var y: float = r.cast_to.y
+#		r.cast_to.y = 10.0
+#
+#		if r.is_colliding():
+#
+#			var platform = r.get_collider()
+#
+#			if platform.has_method("get_points"):
+#				platform.get_points(controller)
+		
 		if  r.is_colliding():
-			
+
 			var platform = r.get_collider()
-			
+
 			if platform is Platform:
 				platform.get_points(controller)
-		return
+				#return
+			#print("collided but platform not detected!")
+		
+#		r.cast_to.y = y
+		return true
+	return false

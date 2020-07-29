@@ -26,12 +26,18 @@ func get_points(player) -> void:
 		return
 
 	var jump_bonus: int = floor(abs(player.jump_x_pos - player.global_position.x) / 200) + 1
-	#var jump_bonus: int = float(Vector2(jump_pos, 0).distance_to(Vector2(land_pos, 0)) / 200) + 1
+	var final_score = height_bonus * jump_bonus * points
+	var text: String = ""
+	var color: Color = Color("d4a350")
 
 	if jump_bonus > 1:
-		print("High Jump Bonus: x", jump_bonus)
-	
-	player.add_score(height_bonus * jump_bonus * points)
+		text+= str("High Jump x%s\n" %jump_bonus)#print("High Jump Bonus: x", jump_bonus)
+		color = Color("850fff")
+		
+	text += str(final_score)
+	player.add_score(final_score)
+	Global.show_text_effect(global_position, text, color)
+	#print(text)
 	#print("score: ", height_bonus * jump_bonus * points)
 	_is_active = false
 
