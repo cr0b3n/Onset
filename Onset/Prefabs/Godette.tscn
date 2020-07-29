@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Art/Godette 128 x 256/Hand-Left.png" type="Texture" id=1]
 [ext_resource path="res://Art/Godette 128 x 256/Leg-Left-Bot.png" type="Texture" id=2]
@@ -17,7 +17,10 @@
 [ext_resource path="res://Art/Godette 128 x 256/Mask-Left.png" type="Texture" id=15]
 [ext_resource path="res://Art/Godette 128 x 256/Leg-Right-Top.png" type="Texture" id=16]
 [ext_resource path="res://Scripts/PlayerController/player_controller.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/particle_pooler.gd" type="Script" id=18]
 [ext_resource path="res://Scripts/PlayerInput/input_controller.gd" type="Script" id=19]
+[ext_resource path="res://Prefabs/JumpParticle.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Prefabs/StepParticle.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Art/Godette 128 x 256/Face.png" type="Texture" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -1006,6 +1009,23 @@ tracks/12/keys = {
 "update": 0,
 "values": [ 4.0, 0.0, 0.0, 4.0, 0.0, 0.0, 4.0 ]
 }
+tracks/13/type = "method"
+tracks/13/path = NodePath(".")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "foot_step"
+}, {
+"args": [  ],
+"method": "foot_step"
+} ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Fall"
@@ -1080,14 +1100,14 @@ __meta__ = {
 }
 
 [node name="Body" type="Sprite" parent="Graphic"]
-position = Vector2( 0, 0.8 )
-rotation = 0.0349066
+position = Vector2( 0, 2.8 )
+rotation = 0.0872665
 z_index = 1
 texture = ExtResource( 11 )
 
 [node name="Neck" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 0.334076, -36.143 )
-rotation = 0.0261799
+rotation = 0.0698132
 z_index = -1
 texture = ExtResource( 3 )
 
@@ -1098,65 +1118,66 @@ texture = ExtResource( 26 )
 
 [node name="Arm-Right-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 12.4483, -23.8104 )
-rotation = -0.10472
+rotation = 0.131279
 z_index = -1
 texture = ExtResource( 6 )
 offset = Vector2( -0.618535, 14.4798 )
 
 [node name="Hand-Right" type="Sprite" parent="Graphic/Body/Arm-Right-Up"]
 position = Vector2( 1.60196, 31.5883 )
-rotation = 0.026359
+rotation = -0.610865
 texture = ExtResource( 4 )
 offset = Vector2( 8.66032, 17.8287 )
 
 [node name="Arm-Left-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( -13.4558, -24.5019 )
-rotation = 0.10472
+rotation = 0.200713
 z_index = 5
 texture = ExtResource( 13 )
 offset = Vector2( -2.49409, 14.849 )
 
 [node name="Hand-Left" type="Sprite" parent="Graphic/Body/Arm-Left-Up"]
 position = Vector2( -4.03992, 31.4232 )
-rotation = -0.218166
+rotation = -1.309
 z_index = 6
 texture = ExtResource( 1 )
 offset = Vector2( 1.28168, 18.2164 )
 
 [node name="Leg-Right-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 5.6, 22 )
-rotation = -0.244346
+rotation = -0.305433
 z_index = 1
 texture = ExtResource( 16 )
 offset = Vector2( 0.00240326, 19.4748 )
 
 [node name="Leg-Right-Bot" type="Sprite" parent="Graphic/Body/Leg-Right-Up"]
 position = Vector2( -0.6, 40.983 )
-rotation = 0.200713
+rotation = 0.466003
 texture = ExtResource( 7 )
 offset = Vector2( -1.24331, 17.484 )
 
 [node name="Foot-Right" type="Sprite" parent="Graphic/Body/Leg-Right-Up/Leg-Right-Bot"]
 position = Vector2( -5.9778, 35.8566 )
+rotation = -0.230383
 texture = ExtResource( 9 )
 offset = Vector2( 8.19844, -0.834656 )
 
 [node name="Leg-Left-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( -6.3, 22 )
-rotation = 0.00523599
+rotation = -0.0802851
 z_index = 4
 texture = ExtResource( 14 )
 offset = Vector2( 0.00240326, 19.4748 )
 
 [node name="Leg-Left-Bot" type="Sprite" parent="Graphic/Body/Leg-Left-Up"]
 position = Vector2( -0.6, 40.983 )
-rotation = 0.0959931
+rotation = 1.74533
 texture = ExtResource( 2 )
 offset = Vector2( -1.24331, 17.484 )
 
 [node name="Foot-Left" type="Sprite" parent="Graphic/Body/Leg-Left-Up/Leg-Left-Bot"]
 position = Vector2( -5.9778, 35.8566 )
-rotation = -0.124227
+rotation = 0.20944
 texture = ExtResource( 9 )
 offset = Vector2( 8.19844, -0.834656 )
 
@@ -1216,10 +1237,14 @@ drag_margin_bottom = 0.1
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.08
 one_shot = true
+script = ExtResource( 18 )
+particle = ExtResource( 21 )
 
 [node name="JumpBufferTimer" type="Timer" parent="."]
 wait_time = 0.08
 one_shot = true
+script = ExtResource( 18 )
+particle = ExtResource( 20 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"

@@ -6,6 +6,7 @@ extends Node
 # constants             i.e const MOVE_SPEED: float = 50.0
 const SCORE_TEXT: String = "Score: %s"
 const LEVEL_TEXT: String = "Level: %s"
+const Menu: PackedScene = preload("res://Prefabs/Menu.tscn")
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
 # private variables     i.e var _b: String = "text"
@@ -46,9 +47,11 @@ func game_over() -> void:
 	var btn: Control = $HUD/HBoxContainer/MenuButton
 	
 	if btn.visible: #Check if the menu is not open
+		#Make sure it invisible to avoid double press incase instancing is longer
+		btn.visible = false
 		_create_menu().open(btn, "Game Over!")
 		return
-	#If the menu is open the get the menu 
+	#Get a reference of the menu from this control
 	var menu: MenuController = get_child(get_child_count()-1)
 	
 	if menu:
@@ -56,8 +59,11 @@ func game_over() -> void:
 
 
 func _on_MenuButton_pressed() -> void:
-	_create_menu().open($HUD/HBoxContainer/MenuButton,
-		"Game Over!" if _game_over else "Menu")
+	var btn: Control = $HUD/HBoxContainer/MenuButton
+	#Make sure it invisible to avoid double press incase instancing is longer
+	btn.visible = false
+	#Added _game_over check incase the menu was closed after the player died
+	_create_menu().open(btn, "Game Over!" if _game_over else "Menu")
 
 
 func _create_menu() -> MenuController:

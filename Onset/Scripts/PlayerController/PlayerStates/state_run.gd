@@ -16,4 +16,5 @@ func _has_horizontal_movement(controller) -> bool:
 
 
 func _horizontal_transition(controller) -> void:
+	controller.foot_step()
 	_end("Idle", controller)

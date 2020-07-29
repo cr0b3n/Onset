@@ -12,6 +12,7 @@ func _start(controller) -> void:
 	controller.jump_buffer_timer.stop()
 	controller.coyote_timer.stop()
 	controller.jump_x_pos = controller.global_position.x
+	controller.show_jump_effect()
 
 
 #Called per _physics_process

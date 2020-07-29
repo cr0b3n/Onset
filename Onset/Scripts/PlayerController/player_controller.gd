@@ -34,6 +34,8 @@ onready var ground_raycasts: Array = [$CollisionBoxAndInput/LeftRayCast,
 	$CollisionBoxAndInput/RightRayCast]
 onready var obstacle_raycast: RayCast2D = $CollisionBoxAndInput/ObstacleRayCast
 onready var input: InputController = $CollisionBoxAndInput
+onready var jump_effect_pool: ParticlePooler = $JumpBufferTimer
+onready var step_effect_pool: ParticlePooler = $CoyoteTimer
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
@@ -127,6 +129,17 @@ func on_direction_changed(direction: float) -> void:
 
 func add_score(score: int) -> void:
 	emit_signal("score_added", score)
+
+
+func show_jump_effect() -> void:
+	jump_effect_pool.get_particle(Vector2(global_position.x,
+		global_position.y + 111.0)).restart()
+
+
+func foot_step() -> void:
+	var p: CPUParticles2D = step_effect_pool.get_particle(obstacle_raycast.global_position)
+	p.scale.x = graphic.scale.x
+	p.restart()
 
 
 func _is_on_ground() -> bool:

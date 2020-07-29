@@ -23,6 +23,7 @@ func _update(delta, controller) -> void:
 			_end("Jump", controller)
 		else:
 			_end("Idle", controller)
+			controller.show_jump_effect()
 
 
 #Transitioning part here
