@@ -22,8 +22,8 @@ func _update(delta, controller) -> void:
 		if !controller.jump_buffer_timer.is_stopped():
 			_end("Jump", controller)
 		else:
+			Global.get_jump_effect(controller.obstacle_raycast.global_position)
 			_end("Idle", controller)
-			controller.show_jump_effect()
 
 
 #Transitioning part here
@@ -38,6 +38,5 @@ func get_platform(controller) -> void:
 			var platform = r.get_collider()
 			
 			if platform is Platform:
-				platform.get_points(controller.jump_x_pos,
-					controller.global_position.x, controller)
+				platform.get_points(controller)
 		return

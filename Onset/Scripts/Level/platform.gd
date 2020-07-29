@@ -20,16 +20,16 @@ var _is_active: bool = true
 
 
 
-func get_points(jump_pos: float, land_pos: float, player) -> void:
+func get_points(player) -> void:
 	
 	if !_is_active:
 		return
 
-	var jump_bonus: int = floor(abs(jump_pos - land_pos) / 200) + 1
+	var jump_bonus: int = floor(abs(player.jump_x_pos - player.global_position.x) / 200) + 1
 	#var jump_bonus: int = float(Vector2(jump_pos, 0).distance_to(Vector2(land_pos, 0)) / 200) + 1
 
 	if jump_bonus > 1:
-		print("Risky bonus: x", jump_bonus)
+		print("High Jump Bonus: x", jump_bonus)
 	
 	player.add_score(height_bonus * jump_bonus * points)
 	#print("score: ", height_bonus * jump_bonus * points)

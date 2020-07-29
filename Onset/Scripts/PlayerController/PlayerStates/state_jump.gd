@@ -12,7 +12,7 @@ func _start(controller) -> void:
 	controller.jump_buffer_timer.stop()
 	controller.coyote_timer.stop()
 	controller.jump_x_pos = controller.global_position.x
-	controller.show_jump_effect()
+	show_jump_effect(controller)
 
 
 #Called per _physics_process
@@ -56,4 +56,11 @@ func _adjust_jump_velocity(controller) -> float:
 	#print(controller.current_velocity.y)
 	return ((controller.max_jump_velocity * -1) + controller.current_velocity.y) + controller.min_jump_velocity
 #	return (abs(controller.max_jump_velocity) + controller.current_velocity.y) + vel_y
+
+
+func show_jump_effect(controller) -> void:
+	if !controller.is_grounded:
+		return
+	
+	Global.get_jump_effect(controller.obstacle_raycast.global_position)
 

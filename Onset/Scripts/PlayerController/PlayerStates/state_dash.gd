@@ -27,7 +27,7 @@ func _update(delta, controller) -> void:
 	_effect_timer += delta
 	
 	if _effect_timer >= EFFECT_TIME:
-		controller.show_dash_effect()
+		show_dash_effect(controller)
 		_effect_timer = 0
 	
 	controller.move_and_slide(Vector2(_dash_speed * _dash_dir, 0))
@@ -51,3 +51,12 @@ func _end(key, controller) -> void:
 #Transitioning part here
 #func _end(key: String, controller: player_controller) -> void:
 #	controller.set_new_state(key)
+
+
+func show_dash_effect(controller) -> void:
+	if !controller.is_grounded:
+		return
+	
+	Global.get_dash_effect(controller.obstacle_raycast.global_position).scale.x = controller.graphic.scale.x
+
+

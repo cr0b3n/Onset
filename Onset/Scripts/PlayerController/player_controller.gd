@@ -132,27 +132,11 @@ func add_score(score: int) -> void:
 	emit_signal("score_added", score)
 
 
-func show_jump_effect() -> void:
-	if !is_grounded:
-		return
-	
-	Global.get_jump_effect(obstacle_raycast.global_position)
-	#jump_effect_pool.get_particle(Vector2(global_position.x,
-	#global_position.y + 111.0)).restart()
-
-
 func foot_step() -> void:
 	if !is_grounded:
 		return
 	
 	Global.get_step_effect(obstacle_raycast.global_position).scale.x = graphic.scale.x
-
-
-func show_dash_effect() -> void:
-	if !is_grounded:
-		return
-	
-	Global.get_dash_effect(obstacle_raycast.global_position).scale.x = graphic.scale.x
 
 
 func _is_on_ground() -> bool:

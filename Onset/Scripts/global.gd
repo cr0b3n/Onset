@@ -32,16 +32,13 @@ var _jump_effects: Array = []
 func _ready() -> void:
 	_transition = ResourceLoader.load("res://Prefabs/Transition.tscn").instance()
 	add_child(_transition)
-	
-	_spawn_new_particle(Vector2(1, 1000),
-		load("res://Prefabs/JumpParticle.tscn").instance(),
-		_jump_effects)
-	_spawn_new_particle(Vector2(1, 1000),
-		load("res://Prefabs/StepParticle.tscn").instance(),
-		_step_effects)
-	_spawn_new_particle(Vector2(1, 1000),
-		load("res://Prefabs/DashParticle.tscn").instance(),
-		_dash_effects)
+
+	for i in range(2):
+		get_jump_effect(Vector2(1, 1000))
+	for i in range(2):
+		get_step_effect(Vector2(1, 1000))
+	for	i in range(5):
+		get_dash_effect(Vector2(1, 1000))
 
 
 func submit_score(score: int) -> bool:
@@ -90,6 +87,7 @@ func _spawn_new_particle(pos: Vector2, effect: CPUParticles2D, effects: Array) -
 	effect.set_as_toplevel(true)
 	add_child(effect)
 	effects.append(effect)
+	effect.restart()
 	return effect
 
 
