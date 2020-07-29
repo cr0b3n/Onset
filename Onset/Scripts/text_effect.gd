@@ -23,7 +23,7 @@ func _ready() -> void:
 		display,
 		"rect_position",
 		display.rect_position,
-		Vector2(display.rect_position.x, display.rect_position.y * 4),
+		Vector2(display.rect_position.x, display.rect_position.y * 5),
 		0.3,
 		Tween.TRANS_LINEAR,
 		Tween.EASE_OUT)

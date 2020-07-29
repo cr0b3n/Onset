@@ -34,8 +34,15 @@ func play_transition() -> void:
 		final_val = _transition.min_value
 		_transition.fill_mode = _transition.FILL_TOP_TO_BOTTOM
 	
-	tween.interpolate_property(_transition,"value", initial_val, final_val,
-								0.35, Tween.TRANS_CIRC, Tween.EASE_OUT)
+	tween.interpolate_property(
+		_transition,
+		"value",
+		initial_val,
+		final_val,
+		0.35,
+		Tween.TRANS_CIRC,
+		Tween.EASE_OUT)
+	
 	tween.start()
 	
 	#Wait for tween to complete

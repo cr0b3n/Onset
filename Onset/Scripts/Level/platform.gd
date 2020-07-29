@@ -30,12 +30,13 @@ func get_points(player) -> void:
 	var text: String = ""
 	var color: Color = Color("d4a350")
 
-	if jump_bonus > 1:
-		text+= str("High Jump x%s\n" %jump_bonus)#print("High Jump Bonus: x", jump_bonus)
-		color = Color("850fff")
-		
 	text += str(final_score)
 	player.add_score(final_score)
+	
+	if jump_bonus > 1:
+		text+= str("\nLong Jump x",jump_bonus)#print("High Jump Bonus: x", jump_bonus)
+		color = Color("850fff")
+		
 	Global.show_text_effect(global_position, text, color)
 	#print(text)
 	#print("score: ", height_bonus * jump_bonus * points)

@@ -80,6 +80,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/PlayerController/PlayerStates/state_dash.gd"
 }, {
 "base": "State",
+"class": "StateDeath",
+"language": "GDScript",
+"path": "res://Scripts/PlayerController/PlayerStates/state_death.gd"
+}, {
+"base": "State",
 "class": "StateFall",
 "language": "GDScript",
 "path": "res://Scripts/PlayerController/PlayerStates/state_fall.gd"
@@ -124,6 +129,7 @@ _global_script_class_icons={
 "Spike": "",
 "State": "",
 "StateDash": "",
+"StateDeath": "",
 "StateFall": "",
 "StateIdle": "",
 "StateJump": "",

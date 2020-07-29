@@ -14,6 +14,7 @@ var has_touch: bool = OS.has_touchscreen_ui_hint()
 var top_score: int = 0
 var restart_count: int  = 0
 # private variables     i.e var _b: String = "text"
+var _transitioning: bool = true
 var _transition: TransitionController
 var _step_effects: Array = []
 var _dash_effects: Array = []
@@ -41,8 +42,6 @@ func _ready() -> void:
 		_get_effect(Vector2(1, 1000), _step_effects, 1)
 	for	i in range(5):
 		_get_effect(Vector2(1, 1000), _dash_effects, 2)
-#	for	i in range(2):
-#		_spawn_new_text_effect(Vector2(1, 1000)).visible = false
 
 
 func submit_score(score: int) -> bool:
@@ -61,23 +60,6 @@ func show_text_effect(pos: Vector2, text: String, color: Color) -> void:
 	effect.set_as_toplevel(true)
 	add_child(effect)
 	effect.setup(text, color)
-#	for e in _text_effects:
-#		if !e.visible:
-#			e.global_position = pos
-#			e.visible = true
-#			e.show_effect(text, color)
-#			return
-#
-#	_spawn_new_text_effect(pos).show_effect(text, color)
-
-
-#func _spawn_new_text_effect(pos: Vector2) -> TextEffect:
-#	var effect: TextEffect = load("res://Prefabs/TextEffect.tscn").instance()
-#	effect.global_position = pos
-#	effect.set_as_toplevel(true)
-#	add_child(effect)
-#	_text_effects.append(effect)
-#	return effect
 
 
 func show_jump_effect(pos: Vector2) -> void:
@@ -125,11 +107,15 @@ func scene_loaded() -> void:
 	_transition.play_transition()
 	yield(_transition, "transition_completed")
 	_transition.enable_transition(false)
+	_transitioning = false
 
 
 func change_scene(scene: int) -> void:
-	_transition.enable_transition(true)
-	_transition.play_transition()
+	
+	if _transitioning:
+		return
+	
+	_start_transition()
 	yield(_transition, "transition_completed")
 	call_deferred("_load_scene", scene)
 
@@ -142,11 +128,20 @@ func _load_scene(scene: int) -> void:
 
 
 func restart_scene() -> void:
+	
+	if _transitioning:
+		return
+	
+	_start_transition()
+	yield(_transition, "transition_completed")
+	call_deferred("_restart_cur_scene")
+
+
+func _start_transition() -> void:
+	_transitioning = true
 	_transition.enable_transition(true)
 	_transition.play_transition()
-	yield(_transition, "transition_completed")
-	call_deferred("_restart_deferred")
 
 
-func _restart_deferred() -> void:
+func _restart_cur_scene() -> void:
 	get_tree().reload_current_scene()

@@ -6,7 +6,7 @@ extends KinematicBody2D
 signal score_added(score)
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
-const MOVE_SPEED: float = 5.0 * Global.TILE_SIZE
+const MOVE_SPEED: float = 5.0 * 128#Global.TILE_SIZE
 const FLOOR: Vector2 = Vector2.UP
 const MAX_Y_VELOCITY: float = 3000.0
 const FALL_GRAVITY_MULTIPLIER: float = 1.5
@@ -50,7 +50,8 @@ func _ready() -> void:
 	_states["Jump"] = StateJump.new()
 	_states["Fall"] = StateFall.new()
 	_states["Dash"] = StateDash.new()
-
+	_states["Death"] = StateDeath.new()
+	
 	#Set up Animation
 	var anim_tree: AnimationTree = $AnimationTree
 	anim_tree.active = true #Activate animation tree then asign AnimationNodeStateMachine to anim_state

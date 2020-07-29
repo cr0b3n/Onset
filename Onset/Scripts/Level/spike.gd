@@ -8,7 +8,7 @@ signal player_died
 # constants             i.e const MOVE_SPEED: float = 50.0
 const CATCH_UP_GAP: float = 630.0
 const LEVEL_UP_GAP: float = 2000.0
-var speed: float = 40.0
+var speed: float = 100.0#40.0
 var player: Node2D
 var is_respositioning: bool = false
 #var cur_level: int = 1
@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 func _on_Spike_body_entered(body: Node) -> void:
 	
 	if body is PlayerController:
-		#call body.change_state
+		#body.set_new_state("Death")
 		set_physics_process(false)
 		emit_signal("player_died")
 

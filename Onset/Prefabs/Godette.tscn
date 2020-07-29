@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Art/Godette 128 x 256/Hand-Left.png" type="Texture" id=1]
 [ext_resource path="res://Art/Godette 128 x 256/Leg-Left-Bot.png" type="Texture" id=2]
@@ -348,10 +348,10 @@ tracks/13/loop_wrap = true
 tracks/13/imported = false
 tracks/13/enabled = true
 tracks/13/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 1 ),
+"transitions": PoolRealArray( 0, 0, 0 ),
 "update": 1,
-"values": [ ExtResource( 8 ), ExtResource( 8 ) ]
+"values": [ ExtResource( 8 ), ExtResource( 8 ), ExtResource( 8 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -1024,6 +1024,9 @@ tracks/13/keys = {
 } ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "Death"
+
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Fall"
 
@@ -1065,20 +1068,30 @@ xfade_time = 0.05
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
 [sub_resource type="AnimationNodeStateMachine" id=24]
 states/Dash/node = ExtResource( 12 )
-states/Dash/position = Vector2( 407, 353.627 )
+states/Dash/position = Vector2( 394, 606.627 )
+states/Death/node = SubResource( 26 )
+states/Death/position = Vector2( 275, 322.627 )
 states/Fall/node = SubResource( 8 )
-states/Fall/position = Vector2( 521, 37 )
+states/Fall/position = Vector2( 564, 22 )
 states/Idle/node = SubResource( 9 )
-states/Idle/position = Vector2( 900, 168 )
+states/Idle/position = Vector2( 999, 165 )
 states/Jump/node = SubResource( 10 )
 states/Jump/position = Vector2( 407, -145 )
 states/Run/node = SubResource( 11 )
-states/Run/position = Vector2( 120, 147 )
-transitions = [ "Idle", "Run", SubResource( 12 ), "Run", "Idle", SubResource( 13 ), "Idle", "Jump", SubResource( 14 ), "Run", "Jump", SubResource( 15 ), "Jump", "Fall", SubResource( 16 ), "Fall", "Idle", SubResource( 17 ), "Run", "Fall", SubResource( 18 ), "Idle", "Fall", SubResource( 19 ), "Run", "Dash", SubResource( 20 ), "Idle", "Dash", SubResource( 21 ), "Dash", "Idle", SubResource( 22 ), "Dash", "Jump", SubResource( 23 ) ]
+states/Run/position = Vector2( -100, 184 )
+transitions = [ "Idle", "Run", SubResource( 12 ), "Run", "Idle", SubResource( 13 ), "Idle", "Jump", SubResource( 14 ), "Run", "Jump", SubResource( 15 ), "Jump", "Fall", SubResource( 16 ), "Fall", "Idle", SubResource( 17 ), "Run", "Fall", SubResource( 18 ), "Idle", "Fall", SubResource( 19 ), "Run", "Dash", SubResource( 20 ), "Idle", "Dash", SubResource( 21 ), "Dash", "Idle", SubResource( 22 ), "Dash", "Jump", SubResource( 23 ), "Fall", "Death", SubResource( 29 ), "Idle", "Death", SubResource( 30 ), "Dash", "Death", SubResource( 31 ), "Run", "Death", SubResource( 32 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -102.266, -247.366 )
+graph_offset = Vector2( -254.266, 32.1243 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=25]
 
@@ -1098,12 +1111,13 @@ __meta__ = {
 
 [node name="Body" type="Sprite" parent="Graphic"]
 position = Vector2( 0, 0.8 )
+rotation = 0.0349066
 z_index = 1
 texture = ExtResource( 11 )
 
 [node name="Neck" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 0.334076, -36.143 )
-rotation = -0.0261799
+rotation = 0.0261799
 z_index = -1
 texture = ExtResource( 3 )
 
@@ -1114,40 +1128,41 @@ texture = ExtResource( 26 )
 
 [node name="Arm-Right-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 12.4483, -23.8104 )
-rotation = -0.0523599
+rotation = -0.10472
 z_index = -1
 texture = ExtResource( 6 )
 offset = Vector2( -0.618535, 14.4798 )
 
 [node name="Hand-Right" type="Sprite" parent="Graphic/Body/Arm-Right-Up"]
 position = Vector2( 1.60196, 31.5883 )
+rotation = 0.026359
 texture = ExtResource( 4 )
 offset = Vector2( 8.66032, 17.8287 )
 
 [node name="Arm-Left-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( -13.4558, -24.5019 )
-rotation = 0.0610865
+rotation = 0.10472
 z_index = 5
 texture = ExtResource( 13 )
 offset = Vector2( -2.49409, 14.849 )
 
 [node name="Hand-Left" type="Sprite" parent="Graphic/Body/Arm-Left-Up"]
 position = Vector2( -4.03992, 31.4232 )
-rotation = -0.261799
+rotation = -0.218166
 z_index = 6
 texture = ExtResource( 1 )
 offset = Vector2( 1.28168, 18.2164 )
 
 [node name="Leg-Right-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 5.6, 22 )
-rotation = -0.301942
+rotation = -0.349066
 z_index = 1
 texture = ExtResource( 16 )
 offset = Vector2( 0.00240326, 19.4748 )
 
 [node name="Leg-Right-Bot" type="Sprite" parent="Graphic/Body/Leg-Right-Up"]
 position = Vector2( -0.6, 40.983 )
-rotation = 0.308923
+rotation = 0.301493
 texture = ExtResource( 7 )
 offset = Vector2( -1.24331, 17.484 )
 
@@ -1158,14 +1173,14 @@ offset = Vector2( 8.19844, -0.834656 )
 
 [node name="Leg-Left-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( -6.3, 22 )
-rotation = 0.0401426
+rotation = 0.00523599
 z_index = 4
 texture = ExtResource( 14 )
 offset = Vector2( 0.00240326, 19.4748 )
 
 [node name="Leg-Left-Bot" type="Sprite" parent="Graphic/Body/Leg-Left-Up"]
 position = Vector2( -0.6, 40.983 )
-rotation = 0.113446
+rotation = 0.0959931
 texture = ExtResource( 2 )
 offset = Vector2( -1.24331, 17.484 )
 
