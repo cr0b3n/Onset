@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Art/Godette 128 x 256/Hand-Left.png" type="Texture" id=1]
 [ext_resource path="res://Art/Godette 128 x 256/Leg-Left-Bot.png" type="Texture" id=2]
@@ -20,7 +20,8 @@
 [ext_resource path="res://Scripts/particle_pooler.gd" type="Script" id=18]
 [ext_resource path="res://Scripts/PlayerInput/input_controller.gd" type="Script" id=19]
 [ext_resource path="res://Prefabs/JumpParticle.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Prefabs/StepParticle.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Prefabs/DashParticle.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Prefabs/StepParticle.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Art/Godette 128 x 256/Face.png" type="Texture" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -1100,14 +1101,14 @@ __meta__ = {
 }
 
 [node name="Body" type="Sprite" parent="Graphic"]
-position = Vector2( 0, 2.8 )
-rotation = 0.0872665
+position = Vector2( 0, 0.8 )
+rotation = 0.0218166
 z_index = 1
 texture = ExtResource( 11 )
 
 [node name="Neck" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 0.334076, -36.143 )
-rotation = 0.0698132
+rotation = 0.00654498
 z_index = -1
 texture = ExtResource( 3 )
 
@@ -1118,66 +1119,65 @@ texture = ExtResource( 26 )
 
 [node name="Arm-Right-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 12.4483, -23.8104 )
-rotation = 0.131279
+rotation = -0.0850848
 z_index = -1
 texture = ExtResource( 6 )
 offset = Vector2( -0.618535, 14.4798 )
 
 [node name="Hand-Right" type="Sprite" parent="Graphic/Body/Arm-Right-Up"]
 position = Vector2( 1.60196, 31.5883 )
-rotation = -0.610865
+rotation = 0.0164744
 texture = ExtResource( 4 )
 offset = Vector2( 8.66032, 17.8287 )
 
 [node name="Arm-Left-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( -13.4558, -24.5019 )
-rotation = 0.200713
+rotation = 0.0883573
 z_index = 5
 texture = ExtResource( 13 )
 offset = Vector2( -2.49409, 14.849 )
 
 [node name="Hand-Left" type="Sprite" parent="Graphic/Body/Arm-Left-Up"]
 position = Vector2( -4.03992, 31.4232 )
-rotation = -1.309
+rotation = -0.234529
 z_index = 6
 texture = ExtResource( 1 )
 offset = Vector2( 1.28168, 18.2164 )
 
 [node name="Leg-Right-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( 5.6, 22 )
-rotation = -0.305433
+rotation = -0.231256
 z_index = 1
 texture = ExtResource( 16 )
 offset = Vector2( 0.00240326, 19.4748 )
 
 [node name="Leg-Right-Bot" type="Sprite" parent="Graphic/Body/Leg-Right-Up"]
 position = Vector2( -0.6, 40.983 )
-rotation = 0.466003
+rotation = 0.207258
 texture = ExtResource( 7 )
 offset = Vector2( -1.24331, 17.484 )
 
 [node name="Foot-Right" type="Sprite" parent="Graphic/Body/Leg-Right-Up/Leg-Right-Bot"]
 position = Vector2( -5.9778, 35.8566 )
-rotation = -0.230383
 texture = ExtResource( 9 )
 offset = Vector2( 8.19844, -0.834656 )
 
 [node name="Leg-Left-Up" type="Sprite" parent="Graphic/Body"]
 position = Vector2( -6.3, 22 )
-rotation = -0.0802851
+rotation = 0.018326
 z_index = 4
 texture = ExtResource( 14 )
 offset = Vector2( 0.00240326, 19.4748 )
 
 [node name="Leg-Left-Bot" type="Sprite" parent="Graphic/Body/Leg-Left-Up"]
 position = Vector2( -0.6, 40.983 )
-rotation = 1.74533
+rotation = 0.102538
 texture = ExtResource( 2 )
 offset = Vector2( -1.24331, 17.484 )
 
 [node name="Foot-Left" type="Sprite" parent="Graphic/Body/Leg-Left-Up/Leg-Left-Bot"]
 position = Vector2( -5.9778, 35.8566 )
-rotation = 0.20944
+rotation = -0.124227
 texture = ExtResource( 9 )
 offset = Vector2( 8.19844, -0.834656 )
 
@@ -1238,7 +1238,7 @@ drag_margin_bottom = 0.1
 wait_time = 0.08
 one_shot = true
 script = ExtResource( 18 )
-particle = ExtResource( 21 )
+particle = ExtResource( 22 )
 
 [node name="JumpBufferTimer" type="Timer" parent="."]
 wait_time = 0.08
@@ -1254,6 +1254,8 @@ anims/Fall = SubResource( 4 )
 anims/Idle = SubResource( 5 )
 anims/Jump = SubResource( 6 )
 anims/Run = SubResource( 7 )
+script = ExtResource( 18 )
+particle = ExtResource( 21 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 24 )
