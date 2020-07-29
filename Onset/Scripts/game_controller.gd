@@ -21,7 +21,7 @@ onready var gui: GUIController = $GUI
 
 
 func _ready() -> void:
-	
+
 	var player: PlayerController = $Godette
 	var spike: Spike = $Spike
 	

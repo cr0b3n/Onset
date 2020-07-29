@@ -14,6 +14,9 @@ var top_score: int = 0
 var restart_count: int  = 0
 # private variables     i.e var _b: String = "text"
 var _transition: TransitionController
+var _step_effects: Array = []
+var _dash_effects: Array = []
+var _jump_effects: Array = []
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 
 # optional built-in virtual _init method
@@ -30,6 +33,16 @@ func _ready() -> void:
 	_transition = ResourceLoader.load("res://Prefabs/Transition.tscn").instance()
 	add_child(_transition)
 	
+	_spawn_new_particle(Vector2(1, 1000),
+		load("res://Prefabs/JumpParticle.tscn").instance(),
+		_jump_effects)
+	_spawn_new_particle(Vector2(1, 1000),
+		load("res://Prefabs/StepParticle.tscn").instance(),
+		_step_effects)
+	_spawn_new_particle(Vector2(1, 1000),
+		load("res://Prefabs/DashParticle.tscn").instance(),
+		_dash_effects)
+
 
 func submit_score(score: int) -> bool:
 	
@@ -38,6 +51,46 @@ func submit_score(score: int) -> bool:
 		print("new top score: ", top_score)
 		return true
 	return false
+
+
+func get_jump_effect(pos: Vector2) -> CPUParticles2D:
+	return _get_effect(pos, _jump_effects, 0)
+
+
+func get_step_effect(pos: Vector2) -> CPUParticles2D:
+	return _get_effect(pos, _step_effects, 1)
+
+
+func get_dash_effect(pos: Vector2) -> CPUParticles2D:
+	return _get_effect(pos, _dash_effects, 2)
+
+
+func _get_effect(pos: Vector2, effects: Array, e_type: int) -> CPUParticles2D:
+	
+	for p in effects:
+		if  !p.emitting:
+			p.global_position = pos
+			p.restart()
+			return p
+
+	var e: CPUParticles2D
+
+	if e_type == 0:
+		e = load("res://Prefabs/JumpParticle.tscn").instance()
+	elif e_type == 2:
+		e = load("res://Prefabs/DashParticle.tscn").instance()
+	else:
+		e = load("res://Prefabs/StepParticle.tscn").instance()
+	
+	return _spawn_new_particle(pos, e, effects)
+
+
+func _spawn_new_particle(pos: Vector2, effect: CPUParticles2D, effects: Array) -> CPUParticles2D:
+	effect.global_position = pos
+	effect.set_as_toplevel(true)
+	add_child(effect)
+	effects.append(effect)
+	return effect
 
 
 func scene_loaded() -> void:

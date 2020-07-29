@@ -34,9 +34,9 @@ onready var ground_raycasts: Array = [$CollisionBoxAndInput/LeftRayCast,
 	$CollisionBoxAndInput/RightRayCast]
 onready var obstacle_raycast: RayCast2D = $CollisionBoxAndInput/ObstacleRayCast
 onready var input: InputController = $CollisionBoxAndInput
-onready var jump_effect_pool: ParticlePooler = $JumpBufferTimer
-onready var step_effect_pool: ParticlePooler = $CoyoteTimer
-onready var dash_effect_pool: ParticlePooler = $AnimationPlayer
+#onready var jump_effect_pool: ParticlePooler = $JumpBufferTimer
+#onready var step_effect_pool: ParticlePooler = $CoyoteTimer
+#onready var dash_effect_pool: ParticlePooler = $AnimationPlayer
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
@@ -135,26 +135,24 @@ func add_score(score: int) -> void:
 func show_jump_effect() -> void:
 	if !is_grounded:
 		return
-		
-	jump_effect_pool.get_particle(Vector2(global_position.x,
-		global_position.y + 111.0)).restart()
+	
+	Global.get_jump_effect(obstacle_raycast.global_position)
+	#jump_effect_pool.get_particle(Vector2(global_position.x,
+	#global_position.y + 111.0)).restart()
 
 
 func foot_step() -> void:
-	_show_ground_effect(step_effect_pool)
-
-
-func show_dash_effect() -> void:
-	_show_ground_effect(dash_effect_pool)
-
-
-func _show_ground_effect(pool: ParticlePooler) -> void:
 	if !is_grounded:
 		return
 	
-	var p: CPUParticles2D = pool.get_particle(obstacle_raycast.global_position)
-	p.scale.x = graphic.scale.x
-	p.restart()
+	Global.get_step_effect(obstacle_raycast.global_position).scale.x = graphic.scale.x
+
+
+func show_dash_effect() -> void:
+	if !is_grounded:
+		return
+	
+	Global.get_dash_effect(obstacle_raycast.global_position).scale.x = graphic.scale.x
 
 
 func _is_on_ground() -> bool:

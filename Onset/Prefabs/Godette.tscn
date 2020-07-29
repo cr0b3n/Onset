@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Art/Godette 128 x 256/Hand-Left.png" type="Texture" id=1]
 [ext_resource path="res://Art/Godette 128 x 256/Leg-Left-Bot.png" type="Texture" id=2]
@@ -17,11 +17,7 @@
 [ext_resource path="res://Art/Godette 128 x 256/Mask-Left.png" type="Texture" id=15]
 [ext_resource path="res://Art/Godette 128 x 256/Leg-Right-Top.png" type="Texture" id=16]
 [ext_resource path="res://Scripts/PlayerController/player_controller.gd" type="Script" id=17]
-[ext_resource path="res://Scripts/particle_pooler.gd" type="Script" id=18]
 [ext_resource path="res://Scripts/PlayerInput/input_controller.gd" type="Script" id=19]
-[ext_resource path="res://Prefabs/JumpParticle.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Prefabs/DashParticle.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Prefabs/StepParticle.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Art/Godette 128 x 256/Face.png" type="Texture" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -1205,7 +1201,7 @@ __meta__ = {
 }
 
 [node name="ObstacleRayCast" type="RayCast2D" parent="CollisionBoxAndInput"]
-position = Vector2( 0, 100 )
+position = Vector2( 0, 110 )
 enabled = true
 cast_to = Vector2( 23, 0 )
 collision_mask = 2
@@ -1237,14 +1233,10 @@ drag_margin_bottom = 0.1
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.08
 one_shot = true
-script = ExtResource( 18 )
-particle = ExtResource( 22 )
 
 [node name="JumpBufferTimer" type="Timer" parent="."]
 wait_time = 0.08
 one_shot = true
-script = ExtResource( 18 )
-particle = ExtResource( 20 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
@@ -1254,8 +1246,6 @@ anims/Fall = SubResource( 4 )
 anims/Idle = SubResource( 5 )
 anims/Jump = SubResource( 6 )
 anims/Run = SubResource( 7 )
-script = ExtResource( 18 )
-particle = ExtResource( 21 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 24 )
