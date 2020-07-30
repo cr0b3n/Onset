@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/croben_button.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/FredokaOne16.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scripts/main_menu_controller.gd" type="Script" id=3]
 [ext_resource path="res://Art/UI-Art/playicon.png" type="Texture" id=4]
 [ext_resource path="res://Art/UI-Art/button.png" type="Texture" id=5]
+[ext_resource path="res://Art/Evironment-Art/bg-gradient.png" type="Texture" id=6]
+[ext_resource path="res://Art/Evironment-Art/mist.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/background_scroller.gd" type="Script" id=8]
 
 [node name="MenuScene" type="Node2D"]
 script = ExtResource( 3 )
@@ -91,4 +94,45 @@ custom_fonts/font = ExtResource( 2 )
 text = "Play"
 valign = 1
 clip_text = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="bg-gradient" type="Sprite" parent="ParallaxBackground"]
+self_modulate = Color( 0.423529, 0.619608, 0.956863, 1 )
+scale = Vector2( 3.75, 6.66406 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="BG1" type="Node" parent="."]
+
+[node name="mist" type="Sprite" parent="BG1"]
+scale = Vector2( 4, 3.70898 )
+texture = ExtResource( 7 )
+script = ExtResource( 8 )
+speed = 50.0
+
+[node name="mist2" type="Sprite" parent="BG1"]
+position = Vector2( 0, 947.2 )
+scale = Vector2( 4, 3.70898 )
+texture = ExtResource( 7 )
+script = ExtResource( 8 )
+speed = 50.0
+
+[node name="BG2" type="Node" parent="."]
+
+[node name="mist" type="Sprite" parent="BG2"]
+scale = Vector2( -4, -3.709 )
+texture = ExtResource( 7 )
+script = ExtResource( 8 )
+speed = 18.0
+
+[node name="mist2" type="Sprite" parent="BG2"]
+position = Vector2( 0, 947.2 )
+scale = Vector2( -4, -3.709 )
+texture = ExtResource( 7 )
+script = ExtResource( 8 )
+speed = 18.0
 [connection signal="pressed" from="CanvasLayer/Panel/PlayButton" to="." method="_on_PlayButton_pressed"]

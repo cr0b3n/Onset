@@ -206,7 +206,7 @@ pressed_color = Color( 0.831373, 0.639216, 0.313726, 1 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="bg-gradient" type="Sprite" parent="ParallaxBackground"]
-self_modulate = Color( 0.552941, 0.52549, 0.360784, 1 )
+self_modulate = Color( 0.423529, 0.619608, 0.956863, 1 )
 scale = Vector2( 3.75, 6.66406 )
 texture = ExtResource( 15 )
 centered = false
