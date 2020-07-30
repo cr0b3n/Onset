@@ -8,7 +8,7 @@ signal player_died
 # constants             i.e const MOVE_SPEED: float = 50.0
 const CATCH_UP_GAP: float = 630.0
 const LEVEL_UP_GAP: float = 2000.0
-var speed: float = 100.0#40.0
+var speed: float = 40.0
 var player: Node2D
 var is_respositioning: bool = false
 #var cur_level: int = 1
