@@ -1045,6 +1045,7 @@
     </filter>
   </defs>
   <sodipodi:namedview
+     inkscape:snap-nodes="true"
      inkscape:object-nodes="true"
      inkscape:window-maximized="1"
      inkscape:window-y="-8"
@@ -1057,11 +1058,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="2143.7114"
-     inkscape:cy="1276.6418"
+     inkscape:zoom="1"
+     inkscape:cx="661.17922"
+     inkscape:cy="611.41247"
      inkscape:document-units="px"
-     inkscape:current-layer="layer9"
+     inkscape:current-layer="layer10"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
@@ -1086,7 +1087,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      sodipodi:insensitive="true"
-     style="display:none">
+     style="display:inline">
     <g
        id="g1002"
        transform="matrix(0.28465508,0,0,0.28465508,6.8356583,103.2049)">
@@ -1463,7 +1464,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Tile"
-     style="display:inline">
+     style="display:none">
     <path
        id="path2341"
        style="opacity:1;fill:#bf8834;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
@@ -3676,10 +3677,11 @@
     </g>
   </g>
   <g
+     sodipodi:insensitive="true"
      inkscape:groupmode="layer"
      id="layer9"
      inkscape:label="tile catcher"
-     style="display:inline;opacity:0">
+     style="display:none;opacity:0">
     <path
        d="m 257.3998,436.23436 v 33.86667 h 33.86666 33.86667 33.86666 v -33.86667 h -33.86666 -33.86667 z"
        style="display:inline;opacity:1;fill:#800000;fill-opacity:1;stroke-width:0.375888;stroke-linecap:round;stroke-linejoin:round"
@@ -3728,6 +3730,353 @@
        id="path2722"
        style="display:inline;opacity:1;fill:#800000;fill-opacity:1;stroke-width:0.373915;stroke-linecap:round;stroke-linejoin:round"
        d="m 528.59483,267.16628 v 33.86667 h 30.72091 2.79112 22.60059 11.4434 34.04398 v -33.86667 h -34.04398 -11.4434 -22.60059 -2.79112 z" />
+  </g>
+  <g
+     inkscape:label="border"
+     id="layer10"
+     inkscape:groupmode="layer">
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       d="m 140.19868,159.62902 v 11.92795 h 14.27044 v -11.92795 z"
+       style="display:inline;fill:#ac9d93;fill-opacity:1;stroke:#000000;stroke-width:0.658265;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1886" />
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       d="m 140.19868,159.62902 v 11.92795 h 14.27044 v -11.92795 z"
+       style="display:inline;fill:#ac9d93;fill-opacity:1;stroke-width:0.220239;stroke-linecap:round;stroke-linejoin:round"
+       id="rect1817" />
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       d="m 140.19868,171.55697 v 10.48049 h 15.13086 v -10.48049 z"
+       style="display:inline;fill:#484537;fill-opacity:1;stroke:#000000;stroke-width:0.658265;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1884" />
+    <path
+       d="m 223.40136,132.67097 v 11.23807 12.04526 10.58333 11.23808 12.04526 10.58333 h 33.86666 v -10.58333 h -0.85989 v -12.04526 h 1.5875 v -11.23808 h -0.72761 V 155.9543 h -0.79375 v -12.04526 h 1.7384 v -11.23807 z"
+       style="display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.661458;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1851" />
+    <rect
+       y="29.966665"
+       x="89.303642"
+       height="33.866665"
+       width="33.866665"
+       id="rect2088-5"
+       style="display:inline;opacity:1;fill:#bf8834;fill-opacity:1;stroke-width:0.375888;stroke-linecap:round;stroke-linejoin:round"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Tiles\Top-Center-Fill.png" />
+    <path
+       id="rect2090-7"
+       style="display:inline;opacity:0.25;fill:#000000;stroke:#000000;stroke-width:0.529167"
+       d="m 89.872394,44.449996 c 0,0 6.66119,-2.08287 9.85591,-1.21608 2.115856,0.57407 5.170766,2.20657 5.225336,3.9942 -0.41255,3.10741 -6.606636,4.14273 -9.154196,4.1813 -2.03023,-0.0161 -5.92705,-1.40317 -5.92705,-1.40317 -1.50619,-0.31652 -2.77813,-1.23905 -2.77813,-2.77813 0,-1.53908 1.23904,-2.77812 2.77813,-2.77812 z"
+       sodipodi:nodetypes="saccsss" />
+    <path
+       id="path1636-5"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#000000"
+       d="m 89.303654,29.966669 v 0.26355 10.847917 H 123.17032 V 29.966669 Z" />
+    <rect
+       style="display:inline;opacity:1;fill:#62bf3d;fill-opacity:1;stroke-width:0.210128;stroke-linecap:round;stroke-linejoin:round"
+       id="rect1638-8"
+       width="33.866665"
+       height="10.583333"
+       x="89.303429"
+       y="30.230715" />
+    <rect
+       y="30.230715"
+       x="89.303429"
+       height="2.6458333"
+       width="33.866665"
+       id="rect1640-3"
+       style="display:inline;opacity:0.35;fill:#ffffff;fill-opacity:1;stroke-width:0.105064;stroke-linecap:round;stroke-linejoin:round" />
+    <path
+       id="path1654-0"
+       style="display:inline;opacity:0.3;fill:#000000;fill-opacity:1;stroke-width:0.115685;stroke-linecap:round;stroke-linejoin:round"
+       d="m 89.303434,37.606226 c 0,0 3.93808,-1.04773 6.95203,-1.17388 3.70034,-0.15488 11.487706,1.71501 16.282806,2.0008 6.00822,0.3581 10.63182,-0.82692 10.63182,-0.82692 v 3.20781 H 89.303434 Z"
+       sodipodi:nodetypes="csscccc" />
+    <path
+       id="path2184-4"
+       style="display:inline;opacity:0.25;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.529167;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 117.50172,47.069796 c 0.0711,2.11884 -3.30635,3.58977 -5.25018,3.58977 -1.94382,-10e-6 -3.98566,-2.46649 -3.63653,-4.31474 0.28068,-1.48583 2.47546,-2.19011 3.98733,-2.16321 1.89547,0.0337 4.83582,0.99347 4.89938,2.88818 z"
+       sodipodi:nodetypes="asaaa" />
+    <path
+       sodipodi:nodetypes="asaaa"
+       d="m 98.518054,58.693736 c 0.0595,-1.77345 -2.76738,-3.0046 -4.39435,-3.0046 -1.62696,1e-5 -3.33595,2.06442 -3.04374,3.61139 0.23493,1.24362 2.07194,1.8331 3.33736,1.81058 1.58649,-0.0282 4.04753,-0.83152 4.10073,-2.41737 z"
+       style="display:inline;opacity:0.25;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.442907;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path2187-0" />
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       d="m 140.19868,126.09153 v 11.92795 h 14.33659 v -11.92795 z"
+       style="display:inline;fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.658265;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1892" />
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       d="m 140.19868,126.09153 v 11.92795 h 14.33659 v -11.92795 z"
+       style="display:inline;fill:#808080;fill-opacity:1;stroke-width:0.220459;stroke-linecap:round;stroke-linejoin:round"
+       id="rect1807" />
+    <rect
+       transform="rotate(90)"
+       style="display:inline;opacity:0.35;fill:#ffffff;fill-opacity:1;stroke-width:0.105064;stroke-linecap:round;stroke-linejoin:round"
+       id="rect1771"
+       width="33.866665"
+       height="2.6458333"
+       x="132.67114"
+       y="-189.53491" />
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       d="m 140.19868,171.55697 v 10.48049 h 15.13086 v -10.48049 z"
+       style="display:inline;fill:#484537;fill-opacity:1;stroke-width:0.209114;stroke-linecap:round;stroke-linejoin:round"
+       id="rect1813" />
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       d="m 140.19868,138.01948 v 10.4805 h 15.13086 v -10.4805 z"
+       style="display:inline;fill:#535d6c;fill-opacity:1;stroke:#000000;stroke-width:0.658265;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1890" />
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       d="m 140.19868,138.01948 v 10.4805 h 15.13086 v -10.4805 z"
+       style="display:inline;fill:#535d6c;fill-opacity:1;stroke-width:0.209114;stroke-linecap:round;stroke-linejoin:round"
+       id="rect1801" />
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       d="m 140.19868,148.49998 v 11.12904 h 15.85846 v -11.12904 z"
+       style="display:inline;fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:0.658265;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1888" />
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       d="m 140.19868,148.49998 v 11.12904 h 15.85846 v -11.12904 z"
+       style="display:inline;fill:#b3b3b3;fill-opacity:1;stroke-width:0.217789;stroke-linecap:round;stroke-linejoin:round"
+       id="rect1815" />
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       d="m 140.20062,114.96443 v 11.12516 h 16.27118 v -11.12516 z"
+       style="display:inline;fill:#6c5353;fill-opacity:1;stroke:#000000;stroke-width:0.662154;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1894" />
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       d="m 140.20062,114.96443 v 11.12516 h 16.27118 v -11.12516 z"
+       style="display:inline;fill:#6c5353;fill-opacity:1;stroke-width:0.219761;stroke-linecap:round;stroke-linejoin:round"
+       id="rect1907" />
+    <rect
+       y="114.63334"
+       x="173.53629"
+       height="67.733315"
+       width="16.933332"
+       id="rect1911"
+       style="fill:#aa8800;fill-opacity:1;stroke:none;stroke-width:1.73241;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
+    <rect
+       style="fill:#aa8800;fill-opacity:1;stroke:none;stroke-width:1.73241;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="rect1913"
+       width="16.933332"
+       height="67.733315"
+       x="241.26962"
+       y="114.63334" />
+    <rect
+       style="display:inline;fill:#ac9d93;fill-opacity:1;stroke:#000000;stroke-width:0.658266;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1917"
+       width="33.009792"
+       height="11.92814"
+       x="-120.60267"
+       y="-476.35706"
+       transform="scale(-1)" />
+    <rect
+       transform="scale(-1)"
+       y="-476.35706"
+       x="-120.60267"
+       height="11.92814"
+       width="33.009792"
+       id="rect1919"
+       style="display:inline;fill:#ac9d93;fill-opacity:1;stroke-width:0.220239;stroke-linecap:round;stroke-linejoin:round" />
+    <rect
+       transform="scale(-1)"
+       y="-486.83752"
+       x="-121.46262"
+       height="10.480478"
+       width="33.86977"
+       id="rect1921"
+       style="display:inline;fill:#484537;fill-opacity:1;stroke:#000000;stroke-width:0.658266;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       transform="scale(-1)"
+       y="-442.81952"
+       x="-120.66882"
+       height="11.92814"
+       width="33.075947"
+       id="rect1923"
+       style="display:inline;fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.658266;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       style="display:inline;fill:#808080;fill-opacity:1;stroke-width:0.220459;stroke-linecap:round;stroke-linejoin:round"
+       id="rect1925"
+       width="33.075947"
+       height="11.92814"
+       x="-120.66882"
+       y="-442.81952"
+       transform="scale(-1)" />
+    <rect
+       style="display:inline;fill:#484537;fill-opacity:1;stroke-width:0.209114;stroke-linecap:round;stroke-linejoin:round"
+       id="rect1927"
+       width="33.86977"
+       height="10.480478"
+       x="-121.46262"
+       y="-486.83752"
+       transform="scale(-1)" />
+    <rect
+       style="display:inline;fill:#535d6c;fill-opacity:1;stroke:#000000;stroke-width:0.658266;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1929"
+       width="33.86977"
+       height="10.480478"
+       x="-121.46262"
+       y="-453.29999"
+       transform="scale(-1)" />
+    <rect
+       transform="scale(-1)"
+       y="-453.29999"
+       x="-121.46262"
+       height="10.480478"
+       width="33.86977"
+       id="rect1931"
+       style="display:inline;fill:#535d6c;fill-opacity:1;stroke-width:0.209114;stroke-linecap:round;stroke-linejoin:round" />
+    <rect
+       style="display:inline;fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:0.658266;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1933"
+       width="34.597435"
+       height="11.128924"
+       x="-122.19028"
+       y="-464.42892"
+       transform="scale(-1)" />
+    <rect
+       transform="scale(-1)"
+       y="-464.42892"
+       x="-122.19028"
+       height="11.128924"
+       width="34.597435"
+       id="rect1935"
+       style="display:inline;fill:#b3b3b3;fill-opacity:1;stroke-width:0.217789;stroke-linecap:round;stroke-linejoin:round" />
+    <rect
+       transform="scale(-1)"
+       y="-430.89139"
+       x="-122.40715"
+       height="11.128924"
+       width="34.814278"
+       id="rect1937"
+       style="display:inline;fill:#6c5353;fill-opacity:1;stroke:#000000;stroke-width:0.658266;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       transform="scale(-1)"
+       y="-430.89139"
+       x="-122.40715"
+       height="11.128924"
+       width="34.814278"
+       id="rect1939"
+       style="display:inline;fill:#6c5353;fill-opacity:1;stroke-width:0.21847;stroke-linecap:round;stroke-linejoin:round" />
+    <rect
+       y="414.38196"
+       x="66.044792"
+       height="77.836105"
+       width="40.287312"
+       id="rect1941"
+       style="fill:#aa8800;fill-opacity:1;stroke:none;stroke-width:2.86452;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
+    <rect
+       y="109.58195"
+       x="32.178127"
+       height="77.836105"
+       width="40.287312"
+       id="rect1943"
+       style="fill:#aa8800;fill-opacity:1;stroke:none;stroke-width:2.86452;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
+    <path
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       transform="scale(0.26458333)"
+       d="M 528.64062 433.25977 L 528.64062 689.25977 L 554.05469 689.25977 L 554.05469 688.01562 L 564.76562 688.01562 C 564.76562 688.01562 560.28522 670.54026 561.63867 647.83203 C 562.71882 629.70882 569.78655 600.27655 569.20117 586.29102 C 568.72438 574.89971 564.76562 560.01563 564.76562 560.01562 L 564.47852 560.01562 C 563.53552 555.80425 560.48758 540.38933 561.63867 521.07617 C 562.71882 502.95296 569.78655 473.52066 569.20117 459.53516 C 568.72438 448.14385 564.76562 433.25977 564.76562 433.25977 L 554.05469 433.25977 L 552.64062 433.25977 L 528.64062 433.25977 z "
+       style="display:inline;opacity:0.3;fill:#000000;fill-opacity:1;stroke-width:0.437235;stroke-linecap:round;stroke-linejoin:round"
+       id="path2003" />
+    <rect
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       y="-156.4718"
+       x="114.96443"
+       height="2.6458333"
+       width="11.127098"
+       id="rect1819"
+       style="display:inline;opacity:0.35;fill:#ffffff;fill-opacity:1;stroke-width:0.0602225;stroke-linecap:round;stroke-linejoin:round"
+       transform="rotate(90)" />
+    <rect
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       transform="rotate(90)"
+       style="display:inline;opacity:0.35;fill:#ffffff;fill-opacity:1;stroke-width:0.0606071;stroke-linecap:round;stroke-linejoin:round"
+       id="rect2015"
+       width="11.269678"
+       height="2.6458333"
+       x="126.42067"
+       y="-154.53526" />
+    <rect
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       y="-155.32954"
+       x="138.01949"
+       height="2.6458333"
+       width="10.151362"
+       id="rect2017"
+       style="display:inline;opacity:0.35;fill:#ffffff;fill-opacity:1;stroke-width:0.0575215;stroke-linecap:round;stroke-linejoin:round"
+       transform="rotate(90)" />
+    <rect
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       transform="rotate(90)"
+       style="display:inline;opacity:0.35;fill:#ffffff;fill-opacity:1;stroke-width:0.0602278;stroke-linecap:round;stroke-linejoin:round"
+       id="rect2019"
+       width="11.129035"
+       height="2.6458333"
+       x="148.49998"
+       y="-156.05714" />
+    <rect
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       y="-154.46912"
+       x="159.95815"
+       height="2.6458333"
+       width="11.269692"
+       id="rect2021"
+       style="display:inline;opacity:0.35;fill:#ffffff;fill-opacity:1;stroke-width:0.0606072;stroke-linecap:round;stroke-linejoin:round"
+       transform="rotate(90)" />
+    <rect
+       inkscape:export-ydpi="96"
+       inkscape:export-xdpi="96"
+       inkscape:export-filename="D:\Saves\Godot\Main Projects\Onset\Onset\Art\Evironment-Art\border.png"
+       transform="rotate(90)"
+       style="display:inline;opacity:0.35;fill:#ffffff;fill-opacity:1;stroke-width:0.0584465;stroke-linecap:round;stroke-linejoin:round"
+       id="rect2023"
+       width="10.480484"
+       height="2.6458333"
+       x="171.55698"
+       y="-155.32954" />
   </g>
   <g
      inkscape:groupmode="layer"
