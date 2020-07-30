@@ -84,10 +84,16 @@ z_index = 5
 shape = SubResource( 2 )
 one_way_collision = true
 
-[node name="Sprite" type="Sprite" parent="InitialGround"]
+[node name="Ground" type="Sprite" parent="InitialGround"]
 texture = ExtResource( 10 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 768, 128 )
+
+[node name="Fill" type="Sprite" parent="InitialGround"]
+position = Vector2( 0, 256 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 768, 384 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 pause_mode = 2

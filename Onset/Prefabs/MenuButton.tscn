@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/croben_button.gd" type="Script" id=1]
-[ext_resource path="res://Fonts/TitanOne13.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Fonts/FredokaOne16.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Art/UI-Art/homeicon.png" type="Texture" id=3]
 [ext_resource path="res://Art/UI-Art/button.png" type="Texture" id=4]
 
@@ -56,9 +56,9 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
 margin_left = 36.0
-margin_top = 8.0
+margin_top = 6.0
 margin_right = 80.0
-margin_bottom = 24.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 2 )
