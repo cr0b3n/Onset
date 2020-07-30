@@ -4,7 +4,7 @@ extends Node2D
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 # constants             i.e const MOVE_SPEED: float = 50.0
-const TILE_SIZE: float = Global.TILE_SIZE
+#const TILE_SIZE: float = 
 const MAX_DISTANCE: float = 1152.0
 const Platforms: Array = [preload("res://Prefabs/1x1Platform.tscn"),
 	preload("res://Prefabs/2x1Platform.tscn"),
@@ -42,7 +42,7 @@ func spawn_platform() -> void:
 		add_child(platform)
 
 		_height = _num_gen.randi_range(2, 3)
-		global_position.y -= (TILE_SIZE * _height)
+		global_position.y -= (Global.TILE_SIZE * _height)
 
 
 func _is_far_enough() -> bool:

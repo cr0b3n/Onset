@@ -33,10 +33,9 @@ func _physics_process(delta: float) -> void:
 	elif _has_level_up():
 		is_respositioning = true
 		speed+= 5
-		#cur_level+= 1
 		emit_signal("level_changed", 1)
 		Global.show_text_effect(
-			Vector2(player.global_position.x, player.global_position.y - 120),
+			Vector2(player.global_position),
 			"Level Up!",
 			Color("16de25"))
 		return
