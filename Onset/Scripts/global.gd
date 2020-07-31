@@ -3,20 +3,28 @@ extends Node
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
 enum {JUMP, STEP, LAND, DASH}
-enum {LEVEL, BUTTON, TRANSITION, POINTS}
+enum {LEVEL, BUTTON, TRANSITION, POINTS, DEATH}
 # constants             i.e const MOVE_SPEED: float = 50.0
 const TILE_SIZE: float = 128.0
 const Text_Effect: PackedScene = preload("res://Prefabs/TextEffect.tscn")
+
+#Player audio
 const Jump_Audio: AudioStreamOGGVorbis = preload("res://Audio/jump.ogg")
 const Step_Audio: AudioStreamOGGVorbis = preload("res://Audio/footstep_1.ogg")
 const Land_Audio: AudioStreamOGGVorbis = preload("res://Audio/land.ogg")
 const Dash_Audio: AudioStreamOGGVorbis = preload("res://Audio/dash.ogg")
 const Death_Audio: AudioStreamOGGVorbis = preload("res://Audio/gameover.ogg")
-#const JUMP_DURATION: float = 0.5
-#var _max_jump_height: float = 3.5 * TILE_SIZE
-#var gravity: float = 2 * _max_jump_height / pow(JUMP_DURATION, 2)
-# exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
-# public variables      i.e var a: int = 2
+
+#Other Audio
+const Level_Audio: AudioStreamOGGVorbis = preload("res://Audio/levelup.ogg")
+const Points_Audio: AudioStreamOGGVorbis = preload("res://Audio/points.ogg")
+const Trans_Audio: AudioStreamOGGVorbis = preload("res://Audio/transition.ogg")
+const Button_Audio: AudioStreamOGGVorbis = preload("res://Audio/button.ogg")
+
+#BGM Audio
+const Menu_Audio: AudioStreamOGGVorbis = preload("res://Audio/Goat - Wayne Jones 1.ogg")
+const Main_Audio: AudioStreamOGGVorbis = preload("res://Audio/Goat - Wayne Jones 2.ogg")
+
 var has_touch: bool = OS.has_touchscreen_ui_hint()
 var top_score: int = 0
 var restart_count: int  = 0
@@ -30,6 +38,7 @@ var _jump_effects: Array = []
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 var _player_audio: AudioStreamPlayer = AudioStreamPlayer.new()
 var _ui_audio: AudioStreamPlayer = AudioStreamPlayer.new()
+var _bgm_audio: AudioStreamPlayer = AudioStreamPlayer.new()
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
@@ -54,6 +63,8 @@ func _init() -> void:
 
 	add_child(_player_audio)
 	add_child(_ui_audio)
+	add_child(_bgm_audio)
+	_bgm_audio.volume_db = -15.0
 	
 
 func submit_score(score: int) -> bool:
@@ -65,13 +76,16 @@ func submit_score(score: int) -> bool:
 	return false
 
 
-func play_player_audio(audio, must_stop: bool = true) -> void:
+func play_bgm(is_menu: bool) -> void:
+	_bgm_audio.stream = Menu_Audio if is_menu else Main_Audio
+	_bgm_audio.play()
+
+
+func play_player_audio(audio, is_priority: bool) -> void:
 	
-	if must_stop:
-		_player_audio.stop()
-	elif _player_audio.playing:
+	if _player_audio.playing && !is_priority:
 		return
-		
+			
 	match audio:
 		JUMP:
 			_player_audio.stream = Jump_Audio
@@ -81,26 +95,27 @@ func play_player_audio(audio, must_stop: bool = true) -> void:
 			_player_audio.stream = Land_Audio
 		DASH:
 			_player_audio.stream = Dash_Audio
-			
+	
 	_player_audio.play()
 
 
-func play_ui_audio(audio, must_stop: bool = true) -> void:
+func play_ui_audio(audio) -> void:
 
-	if must_stop:
-		_ui_audio.stop()
-	elif _ui_audio.playing:
-		return
-		
+#	if is_priority:
+#		_ui_audio.stop()
+
 	match audio:
 		POINTS:
-			_ui_audio.stream = Jump_Audio
+			_ui_audio.stream = Points_Audio
 		LEVEL:
-			_ui_audio.stream = Step_Audio
+			_ui_audio.stream = Level_Audio
 		TRANSITION:
-			_ui_audio.stream = Land_Audio
+			_ui_audio.stream = Trans_Audio
 		BUTTON:
-			_ui_audio.stream = Dash_Audio
+			_ui_audio.stream = Button_Audio
+		DEATH:
+			_bgm_audio.stop()
+			_ui_audio.stream = Death_Audio
 			
 	_ui_audio.play()
 
@@ -125,7 +140,6 @@ func show_step_effect(pos: Vector2, dir: int) -> void:
 
 func show_dash_effect(pos: Vector2, dir: int) -> void:
 	_get_effect(pos, _dash_effects, 2).scale.x = dir
-	play_player_audio(DASH, false)
 
 
 func _get_effect(pos: Vector2, effects: Array, e_type: int) -> CPUParticles2D:
@@ -158,7 +172,8 @@ func _spawn_new_particle(pos: Vector2, effect: CPUParticles2D, effects: Array) -
 
 
 func scene_loaded() -> void:
-	_transition.play_transition()
+	play_ui_audio(TRANSITION)
+	_transition.play_transition()	
 	yield(_transition, "transition_completed")
 	_transition.enable_transition(false)
 	_transitioning = false
@@ -192,6 +207,9 @@ func restart_scene() -> void:
 
 
 func _start_transition() -> void:
+	_bgm_audio.stop()
+	_player_audio.stop()
+	play_ui_audio(TRANSITION)
 	_transitioning = true
 	_transition.enable_transition(true)
 	_transition.play_transition()

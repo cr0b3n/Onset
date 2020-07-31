@@ -18,6 +18,7 @@ func _start(controller) -> void:
 	_dash_timer = 0
 	_dash_dir = controller.input.x_direction
 	controller.is_uninteruptible = true
+	Global.play_player_audio(Global.DASH, true)
 
 
 #Called per _physics_process

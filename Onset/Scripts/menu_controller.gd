@@ -36,4 +36,5 @@ func _on_Close_pressed() -> void:
 	if _trigger != null:
 		_trigger.visible = true
 	
+	Global.play_ui_audio(Global.BUTTON)
 	queue_free()

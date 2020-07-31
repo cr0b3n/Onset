@@ -34,6 +34,7 @@ func _physics_process(delta: float) -> void:
 		is_respositioning = true
 		speed+= 5
 		emit_signal("level_changed", 1)
+		Global.play_ui_audio(Global.LEVEL)
 		Global.show_text_effect(
 			Vector2(player.global_position.x, player.global_position.y -110),
 			"Level Up!",
@@ -48,6 +49,7 @@ func _on_Spike_body_entered(body: Node) -> void:
 	
 	if body is PlayerController:
 		#body.set_new_state("Death")
+		Global.play_ui_audio(Global.DEATH)
 		set_physics_process(false)
 		emit_signal("player_died")
 

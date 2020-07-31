@@ -17,6 +17,7 @@ extends Node
 
 func _ready() -> void:
 	Global.scene_loaded()
+	Global.play_bgm(true)
 
 
 #func _process(delta: float) -> void:

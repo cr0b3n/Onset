@@ -13,7 +13,7 @@ func _start(controller) -> void:
 	controller.coyote_timer.stop()
 	controller.jump_x_pos = controller.global_position.x
 	show_jump_effect(controller)
-	Global.play_player_audio(Global.JUMP)
+	Global.play_player_audio(Global.JUMP, true)
 
 
 #Called per _physics_process

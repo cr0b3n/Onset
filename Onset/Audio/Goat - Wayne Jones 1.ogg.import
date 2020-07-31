@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Goat - Wayne Jones 1.ogg-1f9af79f3c2fa00976e054b47bc156e2.oggstr"
+
+[deps]
+
+source_file="res://Audio/Goat - Wayne Jones 1.ogg"
+dest_files=[ "res://.import/Goat - Wayne Jones 1.ogg-1f9af79f3c2fa00976e054b47bc156e2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
