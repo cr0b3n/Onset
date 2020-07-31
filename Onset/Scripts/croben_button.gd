@@ -1,3 +1,4 @@
+class_name CrobenButton
 extends BaseButton
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
@@ -29,7 +30,7 @@ func _ready() -> void:
 	connect("mouse_entered", self, "_on_mouse_entered")
 	connect("mouse_exited", self, "_on_mouse_exited")
 	connect("visibility_changed", self, "_on_visibility_changed")
-	connect("focus_exited", self, "_on_focus_exited")
+	#connect("focus_exited", self, "_on_focus_exited")
 	#print("ancestor ready")
 
 
@@ -61,8 +62,8 @@ func _on_visibility_changed() -> void:
 	rect_scale = Vector2.ONE
 
 
-func _on_focus_exited() -> void:
-	print("focus loss")
+#func _on_focus_exited() -> void:
+#	print("focus loss")
 
 
 func _scale(from: Vector2, target: Vector2, scale_status: bool) -> void:

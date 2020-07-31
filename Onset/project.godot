@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Level/border_controller.gd"
 }, {
+"base": "CrobenButton",
+"class": "ButtonToggle",
+"language": "GDScript",
+"path": "res://Scripts/button_toogle.gd"
+}, {
+"base": "BaseButton",
+"class": "CrobenButton",
+"language": "GDScript",
+"path": "res://Scripts/croben_button.gd"
+}, {
 "base": "Reference",
 "class": "CrobenInput",
 "language": "GDScript",
@@ -116,6 +126,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Border": "",
+"ButtonToggle": "",
+"CrobenButton": "",
 "CrobenInput": "",
 "GUIController": "",
 "InputController": "",

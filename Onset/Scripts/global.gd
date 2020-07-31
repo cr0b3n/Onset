@@ -2,8 +2,7 @@ extends Node
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
-enum {JUMP, STEP, LAND, DASH}
-enum {LEVEL, BUTTON, TRANSITION, POINTS, DEATH}
+enum {JUMP, STEP, LAND, DASH, LEVEL, BUTTON, TRANSITION, POINTS, DEATH}
 # constants             i.e const MOVE_SPEED: float = 50.0
 const TILE_SIZE: float = 128.0
 const Text_Effect: PackedScene = preload("res://Prefabs/TextEffect.tscn")
@@ -39,6 +38,7 @@ var _jump_effects: Array = []
 var _player_audio: AudioStreamPlayer = AudioStreamPlayer.new()
 var _ui_audio: AudioStreamPlayer = AudioStreamPlayer.new()
 var _bgm_audio: AudioStreamPlayer = AudioStreamPlayer.new()
+var _spike_audio: AudioStreamPlayer = AudioStreamPlayer.new()
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
@@ -64,7 +64,8 @@ func _init() -> void:
 	add_child(_player_audio)
 	add_child(_ui_audio)
 	add_child(_bgm_audio)
-	_bgm_audio.volume_db = -15.0
+	add_child(_spike_audio)
+	_bgm_audio.volume_db = -13.0
 	
 
 func submit_score(score: int) -> bool:
@@ -107,18 +108,25 @@ func play_ui_audio(audio) -> void:
 	match audio:
 		POINTS:
 			_ui_audio.stream = Points_Audio
-		LEVEL:
-			_ui_audio.stream = Level_Audio
 		TRANSITION:
 			_ui_audio.stream = Trans_Audio
 		BUTTON:
 			_ui_audio.stream = Button_Audio
-		DEATH:
-			_bgm_audio.stop()
-			_ui_audio.stream = Death_Audio
-			
+
 	_ui_audio.play()
 
+
+func play_spike_audio(audio) -> void:
+
+	match audio:
+		LEVEL:
+			_spike_audio.stream = Level_Audio
+		DEATH:
+			_bgm_audio.stop()
+			_spike_audio.stream = Death_Audio
+			
+	_spike_audio.play()
+	
 
 func show_text_effect(pos: Vector2, text: String, color: Color) -> void:
 	
@@ -193,7 +201,7 @@ func _load_scene(scene: int) -> void:
 	if scene == 1:
 		get_tree().change_scene("res://Gameplay Scenes/MainScene.tscn")
 	else:
-		get_tree().change_scene("res://Gameplay Scenes/MenuScene.tscn")
+		get_tree().change_scene("res://Gameplay Scenes/HomeScene.tscn")
 
 
 func restart_scene() -> void:
@@ -208,6 +216,7 @@ func restart_scene() -> void:
 
 func _start_transition() -> void:
 	_bgm_audio.stop()
+	_spike_audio.stop()
 	_player_audio.stop()
 	play_ui_audio(TRANSITION)
 	_transitioning = true
