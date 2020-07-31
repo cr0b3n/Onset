@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 func _on_Spike_body_entered(body: Node) -> void:
 	
 	if body is PlayerController:
-		#body.set_new_state("Death")
+		body.set_new_state("Death")
 		Global.play_spike_audio(Global.DEATH)
 		set_physics_process(false)
 		emit_signal("player_died")

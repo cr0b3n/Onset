@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Level/border_controller.gd"
 }, {
-"base": "CrobenButton",
-"class": "ButtonToggle",
-"language": "GDScript",
-"path": "res://Scripts/button_toogle.gd"
-}, {
 "base": "BaseButton",
 "class": "CrobenButton",
 "language": "GDScript",
@@ -126,7 +121,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Border": "",
-"ButtonToggle": "",
 "CrobenButton": "",
 "CrobenInput": "",
 "GUIController": "",
@@ -153,7 +147,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Onset"
-run/main_scene="res://Gameplay Scenes/MainScene.tscn"
+run/main_scene="res://Gameplay Scenes/HomeScene.tscn"
 boot_splash/image="res://Art/Others-Art/logo200x200.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
