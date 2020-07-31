@@ -23,6 +23,7 @@ func _update(delta, controller) -> void:
 			_end("Jump", controller)
 		else:
 			Global.show_jump_effect(controller.obstacle_raycast.global_position)
+			Global.play_player_audio(Global.LAND)
 			_end("Idle", controller)
 
 

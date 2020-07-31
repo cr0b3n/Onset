@@ -37,7 +37,7 @@ func get_points(player) -> void:
 		text+= str("\nLong Jump x",jump_bonus)#print("High Jump Bonus: x", jump_bonus)
 		color = Color("850fff")
 		
-	Global.show_text_effect(global_position, text, color)
+	Global.show_text_effect(Vector2(player.global_position.x, player.global_position.y -110), text, color)
 	#print(text)
 	#print("score: ", height_bonus * jump_bonus * points)
 	_is_active = false

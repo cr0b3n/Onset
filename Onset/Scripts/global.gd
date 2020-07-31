@@ -2,9 +2,16 @@ extends Node
 
 # signals               i.e signal my_signal(value, other_value) / signal my_signal
 # enums                 i.e enum MoveDirection {UP, DOWN, LEFT, RIGHT}
+enum {JUMP, STEP, LAND, DASH}
+enum {LEVEL, BUTTON, TRANSITION, POINTS}
 # constants             i.e const MOVE_SPEED: float = 50.0
 const TILE_SIZE: float = 128.0
 const Text_Effect: PackedScene = preload("res://Prefabs/TextEffect.tscn")
+const Jump_Audio: AudioStreamOGGVorbis = preload("res://Audio/jump.ogg")
+const Step_Audio: AudioStreamOGGVorbis = preload("res://Audio/footstep_1.ogg")
+const Land_Audio: AudioStreamOGGVorbis = preload("res://Audio/land.ogg")
+const Dash_Audio: AudioStreamOGGVorbis = preload("res://Audio/dash.ogg")
+const Death_Audio: AudioStreamOGGVorbis = preload("res://Audio/gameover.ogg")
 #const JUMP_DURATION: float = 0.5
 #var _max_jump_height: float = 3.5 * TILE_SIZE
 #var gravity: float = 2 * _max_jump_height / pow(JUMP_DURATION, 2)
@@ -21,7 +28,8 @@ var _dash_effects: Array = []
 var _jump_effects: Array = []
 #var _text_effects: Array = []
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
-
+var _player_audio: AudioStreamPlayer = AudioStreamPlayer.new()
+var _ui_audio: AudioStreamPlayer = AudioStreamPlayer.new()
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
@@ -32,7 +40,8 @@ var _jump_effects: Array = []
 #https://docs.godotengine.org/en/stable/getting_started/step_by_step/singletons_autoload.html
 #use call_deferred("_deferred_goto_scene", path) to transition to next scenes
 
-func _ready() -> void:
+func _init() -> void:
+	
 	_transition = ResourceLoader.load("res://Prefabs/Transition.tscn").instance()
 	add_child(_transition)
 
@@ -43,6 +52,9 @@ func _ready() -> void:
 	for	i in range(5):
 		_get_effect(Vector2(1, 1000), _dash_effects, 2)
 
+	add_child(_player_audio)
+	add_child(_ui_audio)
+	
 
 func submit_score(score: int) -> bool:
 	
@@ -51,6 +63,46 @@ func submit_score(score: int) -> bool:
 		print("new top score: ", top_score)
 		return true
 	return false
+
+
+func play_player_audio(audio, must_stop: bool = true) -> void:
+	
+	if must_stop:
+		_player_audio.stop()
+	elif _player_audio.playing:
+		return
+		
+	match audio:
+		JUMP:
+			_player_audio.stream = Jump_Audio
+		STEP:
+			_player_audio.stream = Step_Audio
+		LAND:
+			_player_audio.stream = Land_Audio
+		DASH:
+			_player_audio.stream = Dash_Audio
+			
+	_player_audio.play()
+
+
+func play_ui_audio(audio, must_stop: bool = true) -> void:
+
+	if must_stop:
+		_ui_audio.stop()
+	elif _ui_audio.playing:
+		return
+		
+	match audio:
+		POINTS:
+			_ui_audio.stream = Jump_Audio
+		LEVEL:
+			_ui_audio.stream = Step_Audio
+		TRANSITION:
+			_ui_audio.stream = Land_Audio
+		BUTTON:
+			_ui_audio.stream = Dash_Audio
+			
+	_ui_audio.play()
 
 
 func show_text_effect(pos: Vector2, text: String, color: Color) -> void:
@@ -68,10 +120,12 @@ func show_jump_effect(pos: Vector2) -> void:
 
 func show_step_effect(pos: Vector2, dir: int) -> void:
 	_get_effect(pos, _step_effects, 1).scale.x = dir
+	play_player_audio(STEP, false)
 
 
 func show_dash_effect(pos: Vector2, dir: int) -> void:
 	_get_effect(pos, _dash_effects, 2).scale.x = dir
+	play_player_audio(DASH, false)
 
 
 func _get_effect(pos: Vector2, effects: Array, e_type: int) -> CPUParticles2D:
