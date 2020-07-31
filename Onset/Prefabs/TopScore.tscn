@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Fonts/TitanOne40.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Art/UI-Art/crown.png" type="Texture" id=2]
+
+[node name="TopScore" type="Panel"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+margin_top = 94.0
+margin_right = 480.0
+margin_bottom = 188.0
+rect_min_size = Vector2( 0, 94 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopScore" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 94 )
+mouse_filter = 2
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopScore"]
+margin_left = 48.0
+margin_top = 15.0
+margin_right = 432.0
+margin_bottom = 79.0
+mouse_filter = 2
+size_flags_horizontal = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopScoreIcon" type="TextureRect" parent="TopScore/HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+mouse_filter = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+texture = ExtResource( 2 )
+stretch_mode = 1
+
+[node name="TopScoreLbl" type="Label" parent="TopScore/HBoxContainer"]
+margin_left = 68.0
+margin_right = 384.0
+margin_bottom = 64.0
+size_flags_horizontal = 5
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 1 )
+text = "New Top Score"
+valign = 2

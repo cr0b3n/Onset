@@ -42,7 +42,12 @@ func update_level(level: int) -> void:
 	level_label.text = LEVEL_TEXT %level
 
 
-func game_over() -> void:
+func game_over(is_topscore: bool) -> void:
+	
+	if is_topscore:
+		var top_ui = load("res://Prefabs/TopScore.tscn").instance()
+		add_child(top_ui)
+		
 	_game_over = true
 	var btn: Control = $HUD/HBoxContainer/MenuButton
 	
@@ -51,11 +56,12 @@ func game_over() -> void:
 		btn.visible = false
 		_create_menu().open(btn, "Game Over!")
 		return
-	#Get a reference of the menu from this control
-	var menu: MenuController = get_child(get_child_count()-1)
 	
-	if menu:
-		menu.open(btn, "Game Over!")
+	#Get a reference of the menu from this control	
+	for i in range(get_child_count() -1, 0, -1):
+		if get_child(i) is MenuController:
+			get_child(i).open(btn, "Game Over!")
+			return
 
 
 func _on_MenuButton_pressed() -> void:
@@ -68,6 +74,6 @@ func _on_MenuButton_pressed() -> void:
 
 
 func _create_menu() -> MenuController:
-	var menu: MenuController = ResourceLoader.load("res://Prefabs/Menu.tscn").instance()
+	var menu: MenuController = load("res://Prefabs/Menu.tscn").instance()
 	add_child(menu)
 	return menu

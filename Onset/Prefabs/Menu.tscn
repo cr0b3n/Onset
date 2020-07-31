@@ -5,7 +5,7 @@
 [ext_resource path="res://Fonts/TitanOne40.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Scripts/menu_controller.gd" type="Script" id=4]
 
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="StreamTexture" id=1]
 flags = 4
 load_path = "res://.import/reseticon.png-7bbe230a392d15bad571b0c44645cfee.stex"
 
@@ -97,7 +97,7 @@ margin_right = 100.0
 margin_bottom = 50.0
 
 [node name="Icon" parent="VBoxContainer/Buttons/VBoxContainer/HBoxContainer/Restart/MarginContainer/HBoxContainer" index="0"]
-texture = SubResource( 2 )
+texture = SubResource( 1 )
 
 [node name="Label" parent="VBoxContainer/Buttons/VBoxContainer/HBoxContainer/Restart/MarginContainer/HBoxContainer" index="1"]
 text = "Reset"

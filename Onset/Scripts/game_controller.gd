@@ -32,6 +32,9 @@ func _ready() -> void:
 	spike.player = player
 	$Spawner.player = player
 
+	if Global.has_guide:
+		print("Showing Guide")
+
 	for i in range(10): #Use coroutine to avoid detecting when the scene finished loading
 		yield(get_tree(), "idle_frame")
 
@@ -75,5 +78,5 @@ func _on_level_changed(level: int) -> void:
 
 
 func _on_player_death() -> void:
-	Global.submit_score(_cur_score)
-	gui.game_over()
+	var is_top: bool = Global.submit_score(_cur_score)
+	gui.game_over(is_top)

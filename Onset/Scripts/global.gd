@@ -26,7 +26,7 @@ const Main_Audio: AudioStreamOGGVorbis = preload("res://Audio/Goat - Wayne Jones
 
 var has_touch: bool = OS.has_touchscreen_ui_hint()
 var top_score: int = 0
-var restart_count: int  = 0
+var has_guide: bool  = true
 # private variables     i.e var _b: String = "text"
 var _transitioning: bool = true
 var _transition: TransitionController
@@ -51,7 +51,7 @@ var _spike_audio: AudioStreamPlayer = AudioStreamPlayer.new()
 
 func _init() -> void:
 	
-	_transition = ResourceLoader.load("res://Prefabs/Transition.tscn").instance()
+	_transition = load("res://Prefabs/Transition.tscn").instance()
 	add_child(_transition)
 
 	for i in range(2):
@@ -70,9 +70,10 @@ func _init() -> void:
 
 func submit_score(score: int) -> bool:
 	
+	has_guide = false
+	
 	if score > top_score:
 		top_score = score
-		print("new top score: ", top_score)
 		return true
 	return false
 

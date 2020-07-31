@@ -26,7 +26,8 @@ extents = Vector2( 384, 24 )
 position = Vector2( 383.937, -640 )
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="Godette" parent="." instance=ExtResource( 1 )]
@@ -36,7 +37,8 @@ position = Vector2( 0, 411 )
 position = Vector2( 64, 64 )
 script = ExtResource( 7 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="Timer" type="Timer" parent="Spawner"]
@@ -52,7 +54,8 @@ position = Vector2( 0, 2560 )
 position = Vector2( 0, 1152 )
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="Sprite" type="Sprite" parent="Spike"]
@@ -71,7 +74,8 @@ position = Vector2( 0, 576 )
 z_index = -2
 collision_layer = 2
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InitialGround"]
@@ -107,6 +111,7 @@ custom_constants/margin_left = 15
 custom_constants/margin_bottom = 15
 __meta__ = {
 "_edit_group_": true,
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -166,11 +171,17 @@ self_modulate = Color( 0.423529, 0.619608, 0.956863, 1 )
 scale = Vector2( 3.75, 6.66406 )
 texture = ExtResource( 15 )
 centered = false
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="MistLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2( 0, 1 )
 motion_scale = Vector2( 1, 0.1 )
 motion_mirroring = Vector2( 0, 1536 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="mist" type="Sprite" parent="ParallaxBackground/MistLayer1"]
 position = Vector2( 831.937, 1512 )
@@ -184,6 +195,9 @@ region_rect = Rect2( 0, 0, 128, 256 )
 position = Vector2( 0, 1 )
 motion_scale = Vector2( 1, 0.5 )
 motion_mirroring = Vector2( 0, 1536 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="mist" type="Sprite" parent="ParallaxBackground/MistLayer2"]
 position = Vector2( -64.063, 0 )

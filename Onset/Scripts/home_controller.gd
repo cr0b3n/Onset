@@ -6,7 +6,7 @@ extends Node
 # exported variables    i.e export(PackedScene) var scene_file / export var scene_file: PackedScene
 # public variables      i.e var a: int = 2
 # private variables     i.e var _b: String = "text"
-var _controls: ButtonGroup = ButtonGroup.new()
+#var _controls: ButtonGroup = ButtonGroup.new()
 var _can_play: bool = true
 # onready variables     i.e onready var player_anim: AnimationPlayer = $AnimationPlayer
 onready var control_lbl: Label = $CanvasLayer/Settings/Panel/MarginContainer/VBoxContainer/MarginContainer/ControlsLbl
@@ -30,8 +30,8 @@ func _ready() -> void:
 	$CanvasLayer/Footer/HBoxContainer/TopScoreLabel.text = top_score
 	
 	#Set Controls Toogle
-	kb_btn.set_button_group(_controls)
-	touch_btn.set_button_group(_controls)
+#	kb_btn.set_button_group(_controls)
+#	touch_btn.set_button_group(_controls)
 	
 	if !Global.has_touch:
 		touch_btn.self_modulate = Color.gray
@@ -60,6 +60,7 @@ func _on_KeyboardBtn_pressed() -> void:
 
 
 func _set_settings_btn(btn: BaseButton, has_touch: bool) -> void:
+	Global.has_guide = true
 	btn.self_modulate = Color.gray
 	Global.has_touch = has_touch
 	Global.play_ui_audio(Global.BUTTON)
