@@ -178,7 +178,6 @@ custom_constants/margin_left = 15
 custom_constants/margin_bottom = 15
 __meta__ = {
 "_edit_group_": true,
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -190,8 +189,10 @@ margin_bottom = 49.0
 
 [node name="TopScoreImg" type="TextureRect" parent="CanvasLayer/Footer/HBoxContainer"]
 margin_right = 32.0
-margin_bottom = 36.0
+margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 5
+size_flags_vertical = 5
 texture = ExtResource( 12 )
 stretch_mode = 6
 
@@ -200,7 +201,7 @@ margin_left = 36.0
 margin_right = 414.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
-size_flags_vertical = 1
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 11 )
 text = "000000"
 valign = 2
@@ -209,7 +210,8 @@ clip_text = true
 [node name="SettingsButton" type="TextureButton" parent="CanvasLayer/Footer/HBoxContainer"]
 margin_left = 418.0
 margin_right = 450.0
-margin_bottom = 36.0
+margin_bottom = 32.0
+size_flags_vertical = 0
 texture_normal = ExtResource( 10 )
 stretch_mode = 5
 script = ExtResource( 1 )

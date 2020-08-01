@@ -38,7 +38,7 @@ func get_points(player) -> void:
 		color = Color("850fff")
 		
 	Global.show_text_effect(Vector2(player.global_position.x, player.global_position.y -110), text, color)
-	Global.play_ui_audio(Global.POINTS)
+	Global.play_ui_audio(Global.POINTS, false)
 	#print("score: ", height_bonus * jump_bonus * points)
 	_is_active = false
 	return

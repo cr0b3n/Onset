@@ -24,11 +24,13 @@ const Button_Audio: AudioStreamOGGVorbis = preload("res://Audio/button.ogg")
 const Menu_Audio: AudioStreamOGGVorbis = preload("res://Audio/Goat - Wayne Jones 1.ogg")
 const Main_Audio: AudioStreamOGGVorbis = preload("res://Audio/Goat - Wayne Jones 2.ogg")
 
-var has_touch: bool = OS.has_touchscreen_ui_hint()
+var on_mobile: bool = OS.has_touchscreen_ui_hint()
+var has_touch: bool = on_mobile
 var top_score: int = 0
 var has_guide: bool  = true
 # private variables     i.e var _b: String = "text"
 var _transitioning: bool = true
+var _must_ui_audio: bool = false
 var _transition: TransitionController
 var _step_effects: Array = []
 var _dash_effects: Array = []
@@ -38,7 +40,7 @@ var _jump_effects: Array = []
 var _player_audio: AudioStreamPlayer = AudioStreamPlayer.new()
 var _ui_audio: AudioStreamPlayer = AudioStreamPlayer.new()
 var _bgm_audio: AudioStreamPlayer = AudioStreamPlayer.new()
-var _spike_audio: AudioStreamPlayer = AudioStreamPlayer.new()
+#var _spike_audio: AudioStreamPlayer = AudioStreamPlayer.new()
 # optional built-in virtual _init method
 # built-in virtual _ready method
 # remaining built-in virtual methods
@@ -64,7 +66,7 @@ func _init() -> void:
 	add_child(_player_audio)
 	add_child(_ui_audio)
 	add_child(_bgm_audio)
-	add_child(_spike_audio)
+	#add_child(_spike_audio)
 	_bgm_audio.volume_db = -13.0
 	
 
@@ -79,12 +81,16 @@ func submit_score(score: int) -> bool:
 
 
 func play_bgm(is_menu: bool) -> void:
+	
+	if on_mobile:
+		return
+		
 	_bgm_audio.stream = Menu_Audio if is_menu else Main_Audio
 	_bgm_audio.play()
 
 
 func play_player_audio(audio, is_priority: bool) -> void:
-	
+
 	if _player_audio.playing && !is_priority:
 		return
 			
@@ -97,18 +103,25 @@ func play_player_audio(audio, is_priority: bool) -> void:
 			_player_audio.stream = Land_Audio
 		DASH:
 			_player_audio.stream = Dash_Audio
-	
+		DEATH:
+			_bgm_audio.stop()
+			_player_audio.stream = Death_Audio
 	_player_audio.play()
 
 
-func play_ui_audio(audio) -> void:
+func play_ui_audio(audio, is_priority: bool) -> void:
 
-#	if is_priority:
-#		_ui_audio.stop()
+	if _must_ui_audio:
+		if _ui_audio.playing:
+			return
+	
+	_must_ui_audio = is_priority	
 
 	match audio:
 		POINTS:
 			_ui_audio.stream = Points_Audio
+		LEVEL:
+			_ui_audio.stream = Level_Audio
 		TRANSITION:
 			_ui_audio.stream = Trans_Audio
 		BUTTON:
@@ -117,16 +130,16 @@ func play_ui_audio(audio) -> void:
 	_ui_audio.play()
 
 
-func play_spike_audio(audio) -> void:
-
-	match audio:
-		LEVEL:
-			_spike_audio.stream = Level_Audio
-		DEATH:
-			_bgm_audio.stop()
-			_spike_audio.stream = Death_Audio
-			
-	_spike_audio.play()
+#func play_spike_audio(audio) -> void:
+#
+#	match audio:
+#		LEVEL:
+#			_spike_audio.stream = Level_Audio
+#		DEATH:
+#			_bgm_audio.stop()
+#			_spike_audio.stream = Death_Audio
+#
+#	_spike_audio.play()
 	
 
 func show_text_effect(pos: Vector2, text: String, color: Color) -> void:
@@ -181,7 +194,7 @@ func _spawn_new_particle(pos: Vector2, effect: CPUParticles2D, effects: Array) -
 
 
 func scene_loaded() -> void:
-	play_ui_audio(TRANSITION)
+	play_ui_audio(TRANSITION, false)
 	_transition.play_transition()	
 	yield(_transition, "transition_completed")
 	_transition.enable_transition(false)
@@ -217,9 +230,9 @@ func restart_scene() -> void:
 
 func _start_transition() -> void:
 	_bgm_audio.stop()
-	_spike_audio.stop()
+	#_spike_audio.stop()
 	_player_audio.stop()
-	play_ui_audio(TRANSITION)
+	play_ui_audio(TRANSITION, false)
 	_transitioning = true
 	_transition.enable_transition(true)
 	_transition.play_transition()

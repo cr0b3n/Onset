@@ -63,7 +63,7 @@ func _set_settings_btn(btn: BaseButton, has_touch: bool) -> void:
 	Global.has_guide = true
 	btn.self_modulate = Color.gray
 	Global.has_touch = has_touch
-	Global.play_ui_audio(Global.BUTTON)
+	Global.play_ui_audio(Global.BUTTON, false)
 
 
 func _control_lbl_kb() -> void:
@@ -77,13 +77,13 @@ func _control_lbl_touch() -> void:
 func _on_CloseBtn_pressed() -> void:
 	_can_play = true
 	_open_close_settings(_can_play)
-	Global.play_ui_audio(Global.BUTTON)
+	Global.play_ui_audio(Global.BUTTON, false)
 
 
 func _on_SettingsButton_pressed() -> void:
 	_can_play = false
 	_open_close_settings(_can_play)
-	Global.play_ui_audio(Global.BUTTON)
+	Global.play_ui_audio(Global.BUTTON, false)
 	
 
 func _open_close_settings(has_settings: bool) -> void:

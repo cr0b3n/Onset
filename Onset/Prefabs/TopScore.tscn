@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Fonts/TitanOne40.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Art/UI-Art/crown.png" type="Texture" id=2]
+[ext_resource path="res://Art/UI-Art/crown64.png" type="Texture" id=2]
 
 [node name="TopScore" type="Panel"]
 self_modulate = Color( 1, 1, 1, 0.392157 )
@@ -46,7 +46,7 @@ mouse_filter = 2
 size_flags_horizontal = 5
 size_flags_vertical = 5
 texture = ExtResource( 2 )
-stretch_mode = 1
+stretch_mode = 6
 
 [node name="TopScoreLbl" type="Label" parent="TopScore/HBoxContainer"]
 margin_left = 68.0

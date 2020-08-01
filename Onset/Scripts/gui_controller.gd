@@ -70,7 +70,7 @@ func _on_MenuButton_pressed() -> void:
 	btn.visible = false
 	#Added _game_over check incase the menu was closed after the player died
 	_create_menu().open(btn, "Game Over!" if _game_over else "Menu")
-	Global.play_ui_audio(Global.BUTTON)
+	Global.play_ui_audio(Global.BUTTON, false)
 
 
 func _create_menu() -> MenuController:
