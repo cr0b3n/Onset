@@ -24,16 +24,23 @@ func _ready() -> void:
 
 	var player: PlayerController = $Godette
 	var spike: Spike = $Spike
+	var spawner: Spawner = $Spawner
 	
 	player.connect("score_added", self, "_on_score_added")
 	spike.connect("level_changed", self, "_on_level_changed")
 	spike.connect("player_died", self, "_on_player_death")
-	
 	spike.player = player
-	$Spawner.player = player
+	spawner.player = player
 
+	var init_platform: Node2D = $InitialPlatform
+	init_platform.global_position.x = spawner.get_x_position(3)
+	
 	if Global.has_guide:
-		print("Showing Guide")
+		var guide: GuideText = load("res://Prefabs/GuideText.tscn").instance()
+		guide.global_position = Vector2(384.0, 72.0) #Determine by print the designed global position
+		guide.set_as_toplevel(true)
+		guide.setup(init_platform.global_position.x)
+		init_platform.add_child(guide)
 
 	for i in range(10): #Use coroutine to avoid detecting when the scene finished loading
 		yield(get_tree(), "idle_frame")

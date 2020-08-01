@@ -25,10 +25,6 @@ extents = Vector2( 384, 24 )
 [node name="Gameplay" type="Node2D"]
 position = Vector2( 383.937, -640 )
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
 
 [node name="Godette" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, 411 )
@@ -80,20 +76,30 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InitialGround"]
 position = Vector2( 0, -29 )
-z_index = 5
 shape = SubResource( 2 )
 one_way_collision = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
-[node name="Ground" type="Sprite" parent="InitialGround"]
+[node name="Ground" type="Sprite" parent="InitialGround/CollisionShape2D"]
+position = Vector2( 0, 29 )
 texture = ExtResource( 10 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 800, 128 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Fill" type="Sprite" parent="InitialGround"]
-position = Vector2( 0, 254 )
+[node name="Fill" type="Sprite" parent="InitialGround/CollisionShape2D"]
+position = Vector2( 0, 283 )
 texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 800, 384 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="GUI" type="CanvasLayer" parent="."]
 pause_mode = 2

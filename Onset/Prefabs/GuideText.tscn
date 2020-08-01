@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Fonts/FredokaOne30.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/guide_text.gd" type="Script" id=2]
+
+[node name="GuideText" type="Node2D"]
+position = Vector2( 0, 136 )
+script = ExtResource( 2 )
+
+[node name="DashLbl" type="Label" parent="."]
+margin_left = -351.937
+margin_top = -257.0
+margin_right = -145.937
+margin_bottom = -219.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Dash: 2x A / D"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveLbl" type="Label" parent="."]
+margin_left = 192.063
+margin_top = -256.0
+margin_right = 363.063
+margin_bottom = -218.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Move: A / D"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JumpContainer" type="Node2D" parent="."]
+position = Vector2( -192.063, -513 )
+
+[node name="JumpLbl" type="Label" parent="JumpContainer"]
+margin_left = -127.874
+margin_right = 111.126
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Jump: W / Space"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

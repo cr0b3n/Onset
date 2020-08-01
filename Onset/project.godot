@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/gui_controller.gd"
 }, {
 "base": "Node2D",
+"class": "GuideText",
+"language": "GDScript",
+"path": "res://Scripts/guide_text.gd"
+}, {
+"base": "Node2D",
 "class": "InputController",
 "language": "GDScript",
 "path": "res://Scripts/PlayerInput/input_controller.gd"
@@ -124,6 +129,7 @@ _global_script_class_icons={
 "CrobenButton": "",
 "CrobenInput": "",
 "GUIController": "",
+"GuideText": "",
 "InputController": "",
 "InputDesktop": "",
 "InputMobile": "",

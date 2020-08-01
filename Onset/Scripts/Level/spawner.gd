@@ -36,7 +36,7 @@ func spawn_platform() -> void:
 		var index: int = _num_gen.randi_range(0, 1)
 
 		var platform: Platform = Platforms[index].instance()
-		platform.global_position = Vector2(_get_x_position(index + 1), global_position.y)
+		platform.global_position = Vector2(get_x_position(index + 1), global_position.y)
 		platform.height_bonus = _height
 		platform.set_as_toplevel(true)
 		add_child(platform)
@@ -45,16 +45,7 @@ func spawn_platform() -> void:
 		global_position.y -= (Global.TILE_SIZE * _height)
 
 
-func _is_far_enough() -> bool:
-	#print((global_position.y) - abs(player.global_position.y))
-	return abs(global_position.y) - abs(player.global_position.y) > MAX_DISTANCE
-
-
-func _on_Timer_timeout() -> void:
-	spawn_platform()
-
-
-func _get_x_position(pos_range: int) -> float:
+func get_x_position(pos_range: int) -> float:
 	
 	if pos_range == 2:
 		return 128.0 * _num_gen.randi_range(1,5) # _num_gen.randi_range(-2,2)
@@ -70,3 +61,12 @@ func _get_x_position(pos_range: int) -> float:
 		num += 1 if _num_gen.randfn() > 0.5 else -1
 
 	return 64.0 * num
+
+
+func _is_far_enough() -> bool:
+	#print((global_position.y) - abs(player.global_position.y))
+	return abs(global_position.y) - abs(player.global_position.y) > MAX_DISTANCE
+
+
+func _on_Timer_timeout() -> void:
+	spawn_platform()
