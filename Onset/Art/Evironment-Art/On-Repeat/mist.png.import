@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mist.png-38675446b34fe1e51ceb40792412fbcc.stex"
+path="res://.import/mist.png-346cc5fcee43ca19e5c0fc092fa3b558.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Evironment-Art/mist.png"
-dest_files=[ "res://.import/mist.png-38675446b34fe1e51ceb40792412fbcc.stex" ]
+source_file="res://Art/Evironment-Art/On-Repeat/mist.png"
+dest_files=[ "res://.import/mist.png-346cc5fcee43ca19e5c0fc092fa3b558.stex" ]
 
 [params]
 
